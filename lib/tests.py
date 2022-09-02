@@ -94,5 +94,58 @@ class Test(unittest.TestCase):
         self.assertEqual(res['getPaymentStatusResponse']['parameters']['responseCode'], '0001')
         print('should return responseCode 0001')
 
+    def testGetInterbankInquiry(self):
+        print('\n==============================================')
+        one_gate_payment = OneGatePayment(self.client)
+        res = one_gate_payment.getInterBankInquiry({
+            'customerReferenceNumber': '20180930112233003',
+            'accountNum': '0115476117',
+            'destinationBankCode': '014',
+            'destinationAccountNum': '01400000'
+        })
+        self.assertEqual(res['getInterbankInquiryResponse']['parameters']['responseCode'], '0001')
+        print('should return responseCode 0001')
+
+    def testGetInterBankPayment(self):
+        print('\n==============================================')
+        one_gate_payment = OneGatePayment(self.client)
+        res = one_gate_payment.getInterBankPayment({
+            'customerReferenceNumber': '20180930112233005',
+            'amount': '12007',
+            'destinationAccountNum': '01400000',
+            'destinationAccountName': 'Bpk HANS',
+            'destinationBankCode': '014',
+            'destinationBankName': 'BCA',
+            'accountNum': '0316031099',
+            'retrievalReffNum': '100000000097'
+        })
+        self.assertEqual(res['getInterbankPaymentResponse']['parameters']['responseCode'], '0001')
+        print('should return responseCode 0001')
+
+    def testHoldAmount(self):
+        print('\n==============================================')
+        one_gate_payment = OneGatePayment(self.client)
+        res = one_gate_payment.holdAmount({
+            'customerReferenceNumber': '20181001112233009',
+            'amount': '12007',
+            'accountNo': '0115476151',
+            'detail': 'testHold'
+        })
+        self.assertEqual(res['holdAmountResponse']['parameters']['responseCode'], '0001')
+        print('should return responseCode 0001')
+
+    def testHoldAmountRelease(self):
+        print('\n==============================================')
+        one_gate_payment = OneGatePayment(self.client)
+        res = one_gate_payment.holdAmountRelease({
+            'customerReferenceNumber': '20181001112233010',
+            'amount': '12007',
+            'accountNo': '0115476151',
+            'bankReference': '657364',
+            'holdTransactionDate': '31052010'
+        })
+        self.assertEqual(res['holdAmountReleaseResponse']['parameters']['responseCode'], '0001')
+        print('should return responseCode 0001')
+
 if __name__ == '__main__':
     unittest.main()

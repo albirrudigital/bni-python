@@ -115,3 +115,119 @@ class OneGatePayment():
                 })
         
         return res
+
+    def getInterBankInquiry(self,  params = {
+            'customerReferenceNumber',
+            'accountNum',
+            'destinationBankCode',
+            'destinationAccountNum' 
+        }):
+        payload = {}
+        body = {
+                'clientId': generateClientId(self.client['appName']),
+                'customerReferenceNumber': params['customerReferenceNumber'],
+                'accountNum': params['accountNum'],
+                'destinationBankCode': params['destinationBankCode'],
+                'destinationAccountNum': params['destinationAccountNum']
+                }
+        payload = body
+        payload['signature'] = generateSignature({ 'body': body, 'apiSecret': self.client['apiSecret'] })
+        res = self.httpClient.request({
+                    'method': 'POST',
+                    'apiKey': self.client['apiKey'],
+                    'accessToken': self.token,
+                    'url': f'{self.baseUrl}',
+                    'path': '/H2H/v2/getinterbankinquiry',
+                    'data': payload
+                })
+        return res
+
+    def getInterBankPayment(self, params = {
+            'customerReferenceNumber',
+            'amount',
+            'destinationAccountNum',
+            'destinationAccountName',
+            'destinationBankCode',
+            'destinationBankName',
+            'accountNum',
+            'retrievalReffNum'
+        }):
+        payload = {}
+        body = {
+            'clientId': generateClientId(self.client['appName']),
+            'customerReferenceNumber': params['customerReferenceNumber'],
+            'amount': params['amount'],
+            'destinationAccountNum': params['destinationAccountNum'],
+            'destinationAccountName': params['destinationAccountName'],
+            'destinationBankCode': params['destinationBankCode'],
+            'destinationBankName': params['destinationBankName'],
+            'accountNum': params['accountNum'],
+            'retrievalReffNum': params['retrievalReffNum']
+            }
+        payload = body
+        payload['signature'] = generateSignature({ 'body': body, 'apiSecret': self.client['apiSecret'] })
+        res = self.httpClient.request({
+                'method': 'POST',
+                'apiKey': self.client['apiKey'],
+                'accessToken': self.token,
+                'url': f'{self.baseUrl}',
+                'path': '/H2H/v2/getinterbankpayment',
+                'data': payload
+            })
+        return res
+        
+    def holdAmount(self, params = {
+            'customerReferenceNumber',
+            'amount',
+            'accountNo',
+            'detail'
+        }):
+        payload = {}
+        body = {
+            'clientId': generateClientId(self.client['appName']),
+            'customerReferenceNumber': params['customerReferenceNumber'],
+            'amount': params['amount'],
+            'accountNo': params['accountNo'],
+            'detail': params['detail']
+        }
+        payload = body
+        payload['signature'] = generateSignature({ 'body': body, 'apiSecret': self.client['apiSecret'] })
+        res = self.httpClient.request({
+                'method': 'POST',
+                'apiKey': self.client['apiKey'],
+                'accessToken': self.token,
+                'url': f'{self.baseUrl}',
+                'path': '/H2H/v2/holdamount',
+                'data': payload
+            })
+        
+        return res
+    
+    def holdAmountRelease(self, params = {
+            'customerReferenceNumber',
+            'amount',
+            'accountNo',
+            'bankReference',
+            'holdTransactionDate'
+        }):
+        payload = {}
+        body = {
+            'clientId': generateClientId(self.client['appName']),
+            'customerReferenceNumber': params['customerReferenceNumber'],
+            'amount': params['amount'],
+            'accountNo': params['accountNo'],
+            'bankReference': params['bankReference'],
+            'holdTransactionDate': params['holdTransactionDate']
+        }
+        payload = body
+        payload['signature'] = generateSignature({ 'body': body, 'apiSecret': self.client['apiSecret'] })
+        res = self.httpClient.request({
+                'method': 'POST',
+                'apiKey': self.client['apiKey'],
+                'accessToken': self.token,
+                'url': f'{self.baseUrl}',
+                'path': '/H2H/v2/holdamountrelease',
+                'data': payload
+            })
+        
+        return res

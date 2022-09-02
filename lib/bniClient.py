@@ -1,8 +1,5 @@
 from lib.net.httpClient import HttpClient
 from lib.util import constants
-import http.client
-import ssl,json
-import base64
 class BNIClient:
     def __init__(self, options = { 'prod': False, 'appName':'', 'clientId':'', 'clientSecret':'', 'apiKey':'', 'apiSecret':'' }):
         self.config = options

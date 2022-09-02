@@ -1,6 +1,6 @@
 PRODUCTION_BASE_URL = 'https://api.bni.co.id'
 # SANDBOX_BASE_URL = 'https://newapidev.bni.co.id'
-SANDBOX_BASE_URL = '0157-182-23-91-250.ap.ngrok.io'
+SANDBOX_BASE_URL = '4039-182-23-91-250.ap.ngrok.io'
 TOKEN_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6IklEQk5JVkdWemRDQkJVRkE9IiwiYWNjb3VudE5vIjoiMDExNTQ3NjExNyJ9.ljWtFHL0dHhLPw97U8SVWsFV3fRIJItHlQ-HPqCRUwc'
 APP_NAME = 'Test APP'
 APP_NAME_TEST = 'Test Wawat'
@@ -17,5 +17,5 @@ CLIENT_SECRET_ENCRYPT = 'd227997a-3525-442d-b80e-2ab2e7d908f0'
 API_KEY_ENCRYPT = '98c4277f-866d-46b0-ba83-d3e0e37e667e'
 API_SECRET_ENCRYPT = 'b3b58219-8a88-401f-89c0-f2dc5bb7ce21'
 
-# python -m unittest lib/tests.py -v
-# python -m unittest discover lib "test*.py" -v
+# running unit test
+# python -W ignore -m unittest discover lib "test*.py" -v
