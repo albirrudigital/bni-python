@@ -1,5 +1,6 @@
 from lib.net.httpClient import HttpClient
 from lib.util.utils import generateClientId, generateSignature
+from lib.util.response import responseOGPGetBalance
 
 class OneGatePayment():
     def __init__(self, client):
@@ -27,6 +28,7 @@ class OneGatePayment():
                 'data': payload
                 })
         return res
+        
 
     def getInHouseInquiry(self, params = { 'accountNo' }):
         payload = {}

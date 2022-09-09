@@ -22,3 +22,5 @@ class BNIClient:
                     'password': self.config['clientSecret']
                 })
         return token['access_token']
+
+
