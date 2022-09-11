@@ -1,6 +1,6 @@
 PRODUCTION_BASE_URL = 'https://api.bni.co.id'
 # SANDBOX_BASE_URL = 'https://newapidev.bni.co.id'
-SANDBOX_BASE_URL = 'dev.harismawan.com'
+SANDBOX_BASE_URL = 'https:/dev.harismawan.com'
 TOKEN_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6IklEQk5JVkdWemRDQkJVRkE9IiwiYWNjb3VudE5vIjoiMDExNTQ3NjExNyJ9.ljWtFHL0dHhLPw97U8SVWsFV3fRIJItHlQ-HPqCRUwc'
 APP_NAME = 'Test APP'
 APP_NAME_TEST = 'Test Wawat'
@@ -20,3 +20,5 @@ API_SECRET_ENCRYPT = 'b3b58219-8a88-401f-89c0-f2dc5bb7ce21'
 # running unit test
 # python -W ignore -m unittest discover lib "test*.py" -v
 # python -W ignore -m unittest discover lib "test_snapBI.py" -v
+# 134 005 768
+# diznnhsy

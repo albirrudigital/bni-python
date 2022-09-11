@@ -15,8 +15,7 @@ class SnapBI():
     
     def getTokenSnapBI(self):
         token = self.httpClient.tokenRequestSnapBI({
-                'url': f'{self.baseUrl}',
-                'path': '/snap/v1/access-token/b2b',
+                'url': f'{self.baseUrl}/snap/v1/access-token/b2b',
                 'clientId': self.config['clientId'],
                 'privateKeyPath': self.configSnap['privateKeyPath']
             })
@@ -45,8 +44,7 @@ class SnapBI():
                     'method': 'POST',
                     'apiKey': self.config['apiKey'],
                     'accessToken': token,
-                    'url': f'{self.baseUrl}',
-                    'path': '/snap-service/v1/balance-inquiry',
+                    'url': f'{self.baseUrl}/snap-service/v1/balance-inquiry',
                     'data': body,
                     'additionalHeader': {
                         'X-SIGNATURE': signature,

@@ -2,6 +2,7 @@ import http.client
 import json
 import ssl
 import base64
+import requests
 from lib.util.utils import getTimestamp, generateTokenSignature
 
 class HttpClient():
@@ -41,10 +42,11 @@ class HttpClient():
         data = res.read()
         return json.loads(str(data.decode('utf-8')))
 
-    def tokenRequestSnapBI(self, options = { 'url', 'path', 'clientId', 'privateKeyPath' }):
+    def tokenRequestSnapBI(self, options = { 'url', 'clientId', 'privateKeyPath' }):
         timeStamp = getTimestamp()
+        payload = "{\n\"grantType\":\"client_credentials\",\n\"additionalInfo\": {}\n}"
         headers = {
-            'Content-Type': 'application/json',
+           'Content-Type': 'application/json',
             'X-SIGNATURE': generateTokenSignature({
                 'privateKeyPath': options['privateKeyPath'],
                 'clientId': options['clientId'],
@@ -53,32 +55,20 @@ class HttpClient():
             'X-TIMESTAMP': timeStamp,
             'X-CLIENT-KEY': options['clientId']
         }
-        httpClient = http.client.HTTPSConnection(options['url'], context = ssl._create_unverified_context())
-        data =  {
-            'grantType': 'client_credentials',
-            'additionalInfo': {}
-          }
-        payload = json.dumps(data)
-        httpClient.request('POST', options['path'], payload, headers)
-        res = httpClient.getresponse()
-        data = res.read()
-        return json.loads(str(data.decode('utf-8')))
+        
+        response = requests.request("POST", options['url'], headers=headers, data=payload)
+        return json.loads(response.text.encode('utf8'))
 
-    def requestSnapBI(self, options = { 'method', 'apiKey', 'accessToken', 'url', 'path', 'data', 'additionalHeader' }):
+    def requestSnapBI(self, options = { 'method', 'apiKey', 'accessToken', 'url', 'data', 'additionalHeader' }):
         accessToken = options['accessToken']
         header = {
             'content-type': 'application/json',
             'user-agent': 'bni-python/0.1.0',
             'Authorization': f'Bearer {accessToken}',
         }
-        headers = options['additionalHeader']
-        headers = header
-        httpClient = http.client.HTTPSConnection(options['url'], context = ssl._create_unverified_context())
+        headers = header.update(options['additionalHeader'])
         payload = json.dumps(options['data'])
-        config = json.dumps(headers)
-        httpClient.request(options['method'], options['path'], payload, headers)
-        res = httpClient.getresponse()
-        data = res.read()
-        print(json.loads(str(data.decode('utf-8'))))
-        return json.loads(str(data.decode('utf-8')))
+        response = requests.request("POST", options['url'], headers=headers, data=payload)
+        return json.loads(response.text.encode('utf8'))
+
 

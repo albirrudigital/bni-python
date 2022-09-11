@@ -27,7 +27,7 @@ class OneGatePayment():
                 'path': '/H2H/v2/getbalance',
                 'data': payload
                 })
-        return res
+        return responseOGPGetBalance(res)
         
 
     def getInHouseInquiry(self, params = { 'accountNo' }):

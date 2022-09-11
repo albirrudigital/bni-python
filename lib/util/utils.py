@@ -31,9 +31,10 @@ def getTimestamp():
 
 def generateTokenSignature(params = { 'privateKeyPath', 'clientId', 'timeStamp'  }):
     privateKeyPath = params['privateKeyPath']
-    key_file = open(f'./lib/{privateKeyPath}', 'rb')
-    key = key_file.read()
-    key_file.close()
+    rsaPrivate = privateKeyPath.replace('./', '')
+    keyFile = open(f'./lib/{rsaPrivate}', 'rb')
+    key = keyFile.read()
+    keyFile.close()
     
     pkey = crypto.load_privatekey(crypto.FILETYPE_PEM, key)
     clienId = params['clientId']

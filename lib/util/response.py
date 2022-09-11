@@ -17,8 +17,10 @@ def responseSnapBI(params = { 'res' }):
     return params['res']
 
 def responseOGPGetBalance(params = { 'res' }):
-    
-    if (params['getBalanceResponse']['parameters']['responseCode'] != '0001'):
-        return f"{params['res']['getBalanceResponse']['parameters']['responseCode']} : {['params']['res']['getBalanceResponse']['parameters']['responseMessage']}"
+    print(params)
+    if (params['Response']['parameters']['responseCode'] == '0000'):
+        return 
+    elif (params['getBalanceResponse']['parameters']['responseCode'] != '0001'):
+        return params
     else:
-        return params['res']
+        return params
