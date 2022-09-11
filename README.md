@@ -9,13 +9,13 @@ Please visit [Digital Services](https://digitalservices.bni.co.id/en/) for more 
 ### 1.1 Using PyPI
 
 ```
-pip install bni-python
+pip install bnipython
 ```
 
 ### 1.2 Manual Installation
 
-If you are not using PyPI, you can clone or [download](https://github.com/bni-api/bni-python/archive/refs/heads/main.zip) this repository.
-Then import from bni-python folder. Or run Pip install from the repo folder.
+If you are not using PyPI, you can clone or [download](https://github.com/bni-api/bnipython/archive/refs/heads/main.zip) this repository.
+Then import from bnipython folder. Or run Pip install from the repo folder.
 
 ```
 pip install .
@@ -36,7 +36,7 @@ Get your client key and server key from [Menu - Applications](https://digitalser
 Create API client object
 
 ```python
-from bni-python import BNIClient
+from bnipython import BNIClient
 # Create Core API instance
 client = BNIClient({
   'prod': False,
@@ -52,7 +52,7 @@ client = BNIClient({
 
 Create `One Gate Payment` class object
 ```python
-from bni-python import BNIClient, OneGatePayment
+from bnipython import BNIClient, OneGatePayment
 
 # Create Client instance
 client = BNIClient({
@@ -166,7 +166,7 @@ holdAmountRelease = ogp.holdAmountRelease({
 
 Create `One Gate Payment` class object
 ```python
-from bni-python import BNIClient, SnapBI
+from bnipython import BNIClient, SnapBI
 
 # Create Client instance
 client = BNIClient({
