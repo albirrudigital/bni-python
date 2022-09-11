@@ -178,7 +178,7 @@ client = BNIClient({
   'appName': '{your-app-name}'
 })
 
-snap = SnapBI(client, { 
+snap = SnapBI(self.client,, { 
   'privateKeyPath': '{your-rsa-private-key-path}', 
   'channelId': '{your-channel-id}' 
 })
@@ -228,8 +228,8 @@ transactionStatusInquiry = snap.transactionStatusInquiry({
     'currency': 'IDR'
   },
   'additionalInfo': {
-    'deviceId': '123456', # optinal
-    'channel': 'mobilephone' # optinal
+    'deviceId': '123456', # optional
+    'channel': 'mobilephone' # optional
   }
 })
 ```
@@ -252,8 +252,8 @@ transferIntraBank = snap.transferIntraBank({
   'sourceAccountNo': '0115476151',
   'transactionDate': '2021-12-13',
   'additionalInfo': {
-    'deviceId': '123456', # optinal
-    'channel': 'mobilephone' # optinal
+    'deviceId': '123456', # optional
+    'channel': 'mobilephone' # optional
   }
 })
 ```
@@ -287,8 +287,8 @@ transferIntraBank = snap.transferIntraBank({
   'sourceAccountNo': '0115476151',
   'transactionDate': '2022-01-25',
   'additionalInfo': {
-    'deviceId': '123456', # optinal
-    'channel': 'mobilephone' # optinal
+    'deviceId': '123456', # optional
+    'channel': 'mobilephone' # optional
   }
 })
 ```
@@ -322,8 +322,8 @@ transferSKNBI = snap.transferSKNBI({
   'sourceAccountNo': '0115476151',
   'transactionDate': '2022-01-25',
   'additionalInfo': {
-    'deviceId': '123456', # optinal
-    'channel': 'mobilephone' # optinal
+    'deviceId': '123456', # optional
+    'channel': 'mobilephone' # optional
   }
 })
 ```
@@ -336,8 +336,8 @@ externalAccountInquiry = snap.externalAccountInquiry({
   'beneficiaryAccountNo': '888801000157508',
   'partnerReferenceNo': '2020102900000000000001', # optional
   'additionalInfo': {
-    'deviceId': '123456', # optinal
-    'channel': 'mobilephone' # optinal
+    'deviceId': '123456', # optional
+    'channel': 'mobilephone' # optional
   }
 })
 ```
@@ -363,8 +363,8 @@ transferInterBank = snap.transferInterBank({
   'transactionDate': '2019-07-03T12:08:56+07:00',
   'feeType': 'OUR', # OUR: fee will be paid by sender (default), BEN: fee will be paid by beneficary, SHA: fee divided
   'additionalInfo': {
-    'deviceId': '123456', # optinal
-    'channel': 'mobilephone' # optinal
+    'deviceId': '123456', # optional
+    'channel': 'mobilephone' # optional
   }
 })
 
