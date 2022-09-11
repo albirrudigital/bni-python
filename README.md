@@ -1,7 +1,7 @@
 
 BNI API SDK - Python
 ===============
-This is the Official Node JS API client / library for BNI API. 
+This is the Official Python API client / library for BNI API. 
 Please visit [Digital Services](https://digitalservices.bni.co.id/en/) for more information about our product and visit our documentation page at [API Documentation](https://digitalservices.bni.co.id/documentation/public/en) for more technical details.
 
 ## 1. Installation
