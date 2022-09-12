@@ -1,11 +1,15 @@
 def responseOGP(params = { 'res', 'resObj' }):
-    if (params['res'][params['resObj']]['parameters']['responseCode']!= '0001'):
-        code = params['res'][params['resObj']]['parameters']['responseCode']
-        message = params['res'][params['resObj']]['parameters']['responseMessage']
+    try:
+        if (params['res'][params['resObj']]['parameters']['responseCode']!= '0001'):
+            code = params['res'][params['resObj']]['parameters']['responseCode']
+            message = params['res'][params['resObj']]['parameters']['responseMessage']
+            raise ValueError(f'{code}:{message}')
+        else:
+            return params['res']
+    except Exception:
+        code = params['res']['Response']['parameters']['responseCode']
+        message = params['res']['Response']['parameters']['responseMessage']
         raise ValueError(f'{code}:{message}')
-    else:
-        return params['res']
-
 def responseSnapBI(params = { 'res' }):
     statusCodeSuccess = [
         '2000000',
