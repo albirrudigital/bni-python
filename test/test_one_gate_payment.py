@@ -3,8 +3,9 @@ from lib.util import constants
 import unittest
 from lib.bniClient import BNIClient
 
+
 class Test(unittest.TestCase):
-    
+
     client = BNIClient({
         'prod': False,
         'appName': constants.APP_NAME_TEST,
@@ -13,6 +14,7 @@ class Test(unittest.TestCase):
         'apiKey': constants.API_KEY_ENCRYPT,
         'apiSecret': constants.API_SECRET_ENCRYPT
     })
+
     def testGetBalance(self):
         print('\n==============================================')
         one_gate_payment = OneGatePayment(self.client)
@@ -29,7 +31,8 @@ class Test(unittest.TestCase):
         res = one_gate_payment.getInHouseInquiry({
             'accountNo': '115471119'
         })
-        self.assertEqual(res['getInHouseInquiryResponse']['parameters']['responseCode'], '0001')
+        self.assertEqual(res['getInHouseInquiryResponse']
+                         ['parameters']['responseCode'], '0001')
         print('should return responseCode 0001')
 
     def testDoPayment(self):
@@ -51,16 +54,18 @@ class Test(unittest.TestCase):
             'destinationBankCode': 'CENAIDJAXXX',
             'chargingModelId': 'OUR'
         })
-        self.assertEqual(res['doPaymentResponse']['parameters']['responseCode'], '0001')
+        self.assertEqual(res['doPaymentResponse']
+                         ['parameters']['responseCode'], '0001')
         print('should return responseCode 0001')
-    
+
     def testPaymentStatus(self):
         print('\n==============================================')
         one_gate_payment = OneGatePayment(self.client)
         res = one_gate_payment.getPaymentStatus({
             'customerReferenceNumber': '20170227000000000020',
         })
-        self.assertEqual(res['getPaymentStatusResponse']['parameters']['responseCode'], '0001')
+        self.assertEqual(res['getPaymentStatusResponse']
+                         ['parameters']['responseCode'], '0001')
         print('should return responseCode 0001')
 
     def testGetInterbankInquiry(self):
@@ -72,7 +77,8 @@ class Test(unittest.TestCase):
             'destinationBankCode': '014',
             'destinationAccountNum': '01400000'
         })
-        self.assertEqual(res['getInterbankInquiryResponse']['parameters']['responseCode'], '0001')
+        self.assertEqual(res['getInterbankInquiryResponse']
+                         ['parameters']['responseCode'], '0001')
         print('should return responseCode 0001')
 
     def testGetInterBankPayment(self):
@@ -88,7 +94,8 @@ class Test(unittest.TestCase):
             'accountNum': '0316031099',
             'retrievalReffNum': '100000000097'
         })
-        self.assertEqual(res['getInterbankPaymentResponse']['parameters']['responseCode'], '0001')
+        self.assertEqual(res['getInterbankPaymentResponse']
+                         ['parameters']['responseCode'], '0001')
         print('should return responseCode 0001')
 
     def testHoldAmount(self):
@@ -100,7 +107,8 @@ class Test(unittest.TestCase):
             'accountNo': '0115476151',
             'detail': 'testHold'
         })
-        self.assertEqual(res['holdAmountResponse']['parameters']['responseCode'], '0001')
+        self.assertEqual(res['holdAmountResponse']
+                         ['parameters']['responseCode'], '0001')
         print('should return responseCode 0001')
 
     def testHoldAmountRelease(self):
@@ -113,8 +121,10 @@ class Test(unittest.TestCase):
             'bankReference': '657364',
             'holdTransactionDate': '31052010'
         })
-        self.assertEqual(res['holdAmountReleaseResponse']['parameters']['responseCode'], '0001')
+        self.assertEqual(res['holdAmountReleaseResponse']
+                         ['parameters']['responseCode'], '0001')
         print('should return responseCode 0001')
+
 
 if __name__ == '__main__':
     unittest.main()

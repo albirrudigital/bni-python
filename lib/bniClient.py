@@ -1,7 +1,9 @@
 from lib.net.httpClient import HttpClient
 from lib.util import constants
+
+
 class BNIClient:
-    def __init__(self, options = { 'prod': False, 'appName':'', 'clientId':'', 'clientSecret':'', 'apiKey':'', 'apiSecret':'' }):
+    def __init__(self, options={'prod': False, 'appName': '', 'clientId': '', 'clientSecret': '', 'apiKey': '', 'apiSecret': ''}):
         self.config = options
         self.httpClient = HttpClient()
 
@@ -22,5 +24,3 @@ class BNIClient:
             'password': self.config['clientSecret']
         })
         return token['access_token']
-
-

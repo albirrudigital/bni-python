@@ -2,8 +2,9 @@ from lib.net.httpClient import HttpClient
 from lib.util.response import responseSnapBI
 from lib.util.utils import getTimestamp, generateSignatureServiceSnapBI, randomNumber
 
+
 class SnapBI():
-    def __init__(self, client, options = { 'privateKeyPath', 'channelId', 'ipAddress', 'latitude', 'longitude'}):
+    def __init__(self, client, options={'privateKeyPath', 'channelId', 'ipAddress', 'latitude', 'longitude'}):
         self.client = client
         self.baseUrl = client.getBaseUrl()
         self.config = client.getConfig()
@@ -12,7 +13,7 @@ class SnapBI():
         self.configSnap['ipAddress'] = ''
         self.configSnap['latitude'] = ''
         self.configSnap['longitude'] = ''
-    
+
     def getTokenSnapBI(self):
         token = self.httpClient.tokenRequestSnapBI({
             'url': f'{self.baseUrl}/snap/v1/access-token/b2b',
@@ -20,11 +21,11 @@ class SnapBI():
             'privateKeyPath': self.configSnap['privateKeyPath']
         })
         return token['accessToken']
-    
-    def balanceInquiry(self, params = {
-            'partnerReferenceNo,'
-            'accountNo'
-        }):
+
+    def balanceInquiry(self, params={
+        'partnerReferenceNo,'
+        'accountNo'
+    }):
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
@@ -57,15 +58,15 @@ class SnapBI():
                 'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
             }
         })
-        return responseSnapBI(params = { 'res': res })
+        return responseSnapBI(params={'res': res})
 
-    def bankStatement(self,  params = {
-            'partnerReferenceNo',
-            'accountNo',
-            'fromDateTime',
-            'toDateTime'
-        }):
-        
+    def bankStatement(self,  params={
+        'partnerReferenceNo',
+        'accountNo',
+        'fromDateTime',
+        'toDateTime'
+    }):
+
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
@@ -73,7 +74,7 @@ class SnapBI():
             'fromDateTime': params['fromDateTime'],
             'toDateTime': params['toDateTime']
         }
-        
+
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
@@ -99,20 +100,20 @@ class SnapBI():
                 'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
                 'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
                 'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
-                }
+            }
         })
-        return responseSnapBI(params = { 'res': res })
+        return responseSnapBI(params={'res': res})
 
-    def internalAccountInquiry(self, params = {
-            'partnerReferenceNo',
-            'beneficiaryAccountNo'
-        }):
+    def internalAccountInquiry(self, params={
+        'partnerReferenceNo',
+        'beneficiaryAccountNo'
+    }):
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
             'beneficiaryAccountNo': params['beneficiaryAccountNo'],
         }
-        
+
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
@@ -140,18 +141,18 @@ class SnapBI():
                 'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
             }
         })
-        return responseSnapBI(params = { 'res': res })
+        return responseSnapBI(params={'res': res})
 
-    def transactionStatusInquiry(self, params = {
-            'originalPartnerReferenceNo',
-            'originalReferenceNo',
-            'originalExternalId',
-            'serviceCode',
-            'transactionDate',
-            'amount',
-            'additionalInfo'
-        }):
-        
+    def transactionStatusInquiry(self, params={
+        'originalPartnerReferenceNo',
+        'originalReferenceNo',
+        'originalExternalId',
+        'serviceCode',
+        'transactionDate',
+        'amount',
+        'additionalInfo'
+    }):
+
         token = self.getTokenSnapBI()
         body = {
             'originalPartnerReferenceNo': params['originalPartnerReferenceNo'],
@@ -160,15 +161,15 @@ class SnapBI():
             'serviceCode': params['serviceCode'],
             'transactionDate': params['transactionDate'],
             'amount': {
-                    'value': params['amount']['value'],
-                    'currency': params['amount']['currency']
-                },
+                'value': params['amount']['value'],
+                'currency': params['amount']['currency']
+            },
             'additionalInfo': {
-                    'deviceId': params['additionalInfo']['deviceId'],
-                    'channel': params['additionalInfo']['channel']
-                }
+                'deviceId': params['additionalInfo']['deviceId'],
+                'channel': params['additionalInfo']['channel']
+            }
         }
-        
+
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
@@ -196,30 +197,30 @@ class SnapBI():
                 'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
             }
         })
-        return responseSnapBI(params = { 'res': res })
+        return responseSnapBI(params={'res': res})
 
-    def transferIntraBank(self, params = {
-                'partnerReferenceNo',
-                'amount',
-                'beneficiaryAccountNo',
-                'beneficiaryEmail',
-                'currency',
-                'customerReference',
-                'feeType',
-                'remark',
-                'sourceAccountNo',
-                'transactionDate',
-                'additionalInfo'
-            }
-        ):
-        
+    def transferIntraBank(self, params={
+        'partnerReferenceNo',
+        'amount',
+        'beneficiaryAccountNo',
+        'beneficiaryEmail',
+        'currency',
+        'customerReference',
+        'feeType',
+        'remark',
+        'sourceAccountNo',
+        'transactionDate',
+        'additionalInfo'
+    }
+    ):
+
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
             'amount': {
-                    'value': params['amount']['value'],
-                    'currency': params['amount']['currency']
-                },
+                'value': params['amount']['value'],
+                'currency': params['amount']['currency']
+            },
             'beneficiaryAccountNo': params['beneficiaryAccountNo'],
             'beneficiaryEmail': params['beneficiaryEmail'] if params['beneficiaryEmail'] != '' else '',
             'currency': params['currency'] if params['currency'] != '' else '',
@@ -233,7 +234,7 @@ class SnapBI():
                 'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
             }
         }
-        
+
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
@@ -261,33 +262,33 @@ class SnapBI():
                 'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
             }
         })
-        return responseSnapBI(params = { 'res': res })
+        return responseSnapBI(params={'res': res})
 
-    def transferRTGS(self, params = {
-            'partnerReferenceNo',
-            'amount',
-            'beneficiaryAccountName',
-            'beneficiaryAccountNo',
-            'beneficiaryAccountAddress',
-            'beneficiaryBankCode',
-            'beneficiaryBankName',
-            'beneficiaryCustomerResidence',
-            'beneficiaryCustomerType',
-            'beneficiaryEmail',
-            'currency',
-            'customerReference',
-            'feeType',
-            'kodePos',
-            'recieverPhone',
-            'remark',
-            'senderCustomerResidence',
-            'senderCustomerType',
-            'senderPhone',
-            'sourceAccountNo',
-            'transactionDate',
-            'additionalInfo'
-        }):
-        
+    def transferRTGS(self, params={
+        'partnerReferenceNo',
+        'amount',
+        'beneficiaryAccountName',
+        'beneficiaryAccountNo',
+        'beneficiaryAccountAddress',
+        'beneficiaryBankCode',
+        'beneficiaryBankName',
+        'beneficiaryCustomerResidence',
+        'beneficiaryCustomerType',
+        'beneficiaryEmail',
+        'currency',
+        'customerReference',
+        'feeType',
+        'kodePos',
+        'recieverPhone',
+        'remark',
+        'senderCustomerResidence',
+        'senderCustomerType',
+        'senderPhone',
+        'sourceAccountNo',
+        'transactionDate',
+        'additionalInfo'
+    }):
+
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
@@ -319,7 +320,7 @@ class SnapBI():
                 'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
             }
         }
-        
+
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
@@ -347,32 +348,32 @@ class SnapBI():
                 'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
             }
         })
-        return responseSnapBI(params = { 'res': res })
-    
-    def transferSKNBI(self, params = {
-            'partnerReferenceNo',
-            'amount',
-            'beneficiaryAccountName',
-            'beneficiaryAccountNo',
-            'beneficiaryAddress',
-            'beneficiaryBankCode',
-            'beneficiaryBankName',
-            'beneficiaryCustomerResidence',
-            'beneficiaryCustomerType',
-            'beneficiaryEmail',
-            'currency',
-            'customerReference',
-            'feeType',
-            'kodePos',
-            'recieverPhone',
-            'remark',
-            'senderCustomerResidence',
-            'senderCustomerType',
-            'senderPhone',
-            'sourceAccountNo',
-            'transactionDate',
-            'additionalInfo'
-        }):
+        return responseSnapBI(params={'res': res})
+
+    def transferSKNBI(self, params={
+        'partnerReferenceNo',
+        'amount',
+        'beneficiaryAccountName',
+        'beneficiaryAccountNo',
+        'beneficiaryAddress',
+        'beneficiaryBankCode',
+        'beneficiaryBankName',
+        'beneficiaryCustomerResidence',
+        'beneficiaryCustomerType',
+        'beneficiaryEmail',
+        'currency',
+        'customerReference',
+        'feeType',
+        'kodePos',
+        'recieverPhone',
+        'remark',
+        'senderCustomerResidence',
+        'senderCustomerType',
+        'senderPhone',
+        'sourceAccountNo',
+        'transactionDate',
+        'additionalInfo'
+    }):
 
         token = self.getTokenSnapBI()
         body = {
@@ -405,7 +406,7 @@ class SnapBI():
                 'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
             }
         }
-        
+
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
@@ -433,16 +434,15 @@ class SnapBI():
                 'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
             }
         })
-        return responseSnapBI(params = { 'res': res })
+        return responseSnapBI(params={'res': res})
 
-    def externalAccountInquiry(self, params = {
-            'beneficiaryBankCode',
-            'beneficiaryAccountNo',
-            'partnerReferenceNo',
-            'additionalInfo'
-        }):
+    def externalAccountInquiry(self, params={
+        'beneficiaryBankCode',
+        'beneficiaryAccountNo',
+        'partnerReferenceNo',
+        'additionalInfo'
+    }):
 
-        
         token = self.getTokenSnapBI()
         body = {
             'beneficiaryBankCode': params['beneficiaryBankCode'],
@@ -453,7 +453,7 @@ class SnapBI():
                 'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
             }
         }
-        
+
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
@@ -481,26 +481,25 @@ class SnapBI():
                 'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
             }
         })
-        return responseSnapBI(params = { 'res': res })
+        return responseSnapBI(params={'res': res})
 
-    def transferInterBank(self, params = {
-            'partnerReferenceNo',
-            'amount',
-            'beneficiaryAccountName',
-            'beneficiaryAccountNo',
-            'beneficiaryAddress',
-            'beneficiaryBankCode',
-            'beneficiaryBankName',
-            'beneficiaryEmail',
-            'currency',
-            'customerReference',
-            'sourceAccountNo',
-            'transactionDate',
-            'feeType',
-            'additionalInfo'
-        }):
+    def transferInterBank(self, params={
+        'partnerReferenceNo',
+        'amount',
+        'beneficiaryAccountName',
+        'beneficiaryAccountNo',
+        'beneficiaryAddress',
+        'beneficiaryBankCode',
+        'beneficiaryBankName',
+        'beneficiaryEmail',
+        'currency',
+        'customerReference',
+        'sourceAccountNo',
+        'transactionDate',
+        'feeType',
+        'additionalInfo'
+    }):
 
-        
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
@@ -524,7 +523,7 @@ class SnapBI():
                 'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
             }
         }
-        
+
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
@@ -552,4 +551,4 @@ class SnapBI():
                 'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
             }
         })
-        return responseSnapBI(params = { 'res': res })
+        return responseSnapBI(params={'res': res})
