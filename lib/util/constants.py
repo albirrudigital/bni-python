@@ -19,7 +19,6 @@ API_KEY_ENCRYPT = '98c4277f-866d-46b0-ba83-d3e0e37e667e'
 API_SECRET_ENCRYPT = 'b3b58219-8a88-401f-89c0-f2dc5bb7ce21'
 
 # running unit test
-# python -W ignore -m unittest discover lib "test*.py" -v
-# python -W ignore -m unittest discover lib "test_snapBI.py" -v
+# python -W ignore -m unittest discover test -v
 # 134 005 768
 # diznnhsy
