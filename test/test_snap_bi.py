@@ -22,8 +22,8 @@ class TestSnapBI(unittest.TestCase):
             'accountNo': '0115476117'
         })
         data = res['responseCode']
-        self.assertEqual(data, '2000000')
-        print('should return responseCode 2000000')
+        self.assertEqual(data, '2001100')
+        print('should return responseCode 2001100')
 
     def testBankStatement(self):
         print('\n==============================================')
@@ -48,28 +48,6 @@ class TestSnapBI(unittest.TestCase):
         data = res['responseCode']
         self.assertEqual(data, '2001500')
         print('should return responseCode 2001500')
-
-    def testGetInternalAccountInquiry(self):
-        print('\n==============================================')
-        snap = SnapBI(self.client,  { 'privateKeyPath': './private.key', 'channelId': '95221' })
-        res = snap.internalAccountInquiry({
-            'originalPartnerReferenceNo': '202201911020000121',
-            'originalReferenceNo': '220531103343739748',
-            'originalExternalId': '20220531103340',
-            'serviceCode': '17',
-            'transactionDate': '2022-05-31',
-            'amount': {
-                'value': '15000.00',
-                'currency': 'IDR'
-                },
-            'additionalInfo': {
-                'deviceId': '123456',
-                'channel': 'mobilephone'
-            }
-        })
-        data = res['responseCode']
-        self.assertEqual(data, '2003600')
-        print('should return responseCode 2003600')
 
     def testGetTransactionStatusInquiry(self):
         print('\n==============================================')
@@ -116,8 +94,8 @@ class TestSnapBI(unittest.TestCase):
             }
         })
         data = res['responseCode']
-        self.assertEqual(data, '2003600')
-        print('should return responseCode 2003600')
+        self.assertEqual(data, '2001700')
+        print('should return responseCode 2001700')
 
     def testGetTransferRTGS(self):
         print('\n==============================================')
@@ -153,8 +131,8 @@ class TestSnapBI(unittest.TestCase):
             }
         })
         data = res['responseCode']
-        self.assertEqual(data, '2003600')
-        print('should return responseCode 2003600')
+        self.assertEqual(data, '2002200')
+        print('should return responseCode 2002200')
 
     def testGetTransferSKNBI(self):
         print('\n==============================================')
@@ -190,8 +168,8 @@ class TestSnapBI(unittest.TestCase):
             }
         })
         data = res['responseCode']
-        self.assertEqual(data, '2003600')
-        print('should return responseCode 2003600')
+        self.assertEqual(data, '2002300')
+        print('should return responseCode 2002300')
 
     def testGetExternalAccountInquiry(self):
         print('\n==============================================')
@@ -206,8 +184,8 @@ class TestSnapBI(unittest.TestCase):
             }
         })
         data = res['responseCode']
-        self.assertEqual(data, '2003600')
-        print('should return responseCode 2003600')
+        self.assertEqual(data, '2001600')
+        print('should return responseCode 2001600')
 
     def testGetTransferInterBank(self):
         print('\n==============================================')
@@ -235,8 +213,8 @@ class TestSnapBI(unittest.TestCase):
             }
         })
         data = res['responseCode']
-        self.assertEqual(data, '2003600')
-        print('should return responseCode 2003600')
+        self.assertEqual(data, '2001800')
+        print('should return responseCode 2001800')
 
 if __name__ == '__main__':
     unittest.main()

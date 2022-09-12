@@ -70,6 +70,7 @@ class HttpClient():
         }
         headers = header.update(options['additionalHeader'])
         payload = json.dumps(options['data'])
+        print(payload)
         response = requests.request("POST", options['url'], headers=headers, data=payload)
         return json.loads(response.text.encode('utf8'))
 

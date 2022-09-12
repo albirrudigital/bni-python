@@ -108,13 +108,10 @@ class SnapBI():
             'partnerReferenceNo',
             'beneficiaryAccountNo'
         }):
-        
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
-            'accountNo': params['accountNo'],
-            'fromDateTime': params['fromDateTime'],
-            'toDateTime': params['toDateTime']
+            'beneficiaryAccountNo': params['beneficiaryAccountNo'],
         }
         
         timeStamp = getTimestamp()
@@ -273,7 +270,7 @@ class SnapBI():
             'amount',
             'beneficiaryAccountName',
             'beneficiaryAccountNo',
-            'beneficiaryAddress',
+            'beneficiaryAccountAddress',
             'beneficiaryBankCode',
             'beneficiaryBankName',
             'beneficiaryCustomerResidence',
@@ -302,7 +299,7 @@ class SnapBI():
                 },
             'beneficiaryAccountName': params['beneficiaryAccountName'],
             'beneficiaryAccountNo': params['beneficiaryAccountNo'],
-            'beneficiaryAddress': params['beneficiaryAddress'] if params['beneficiaryAddress'] != '' else '',
+            'beneficiaryAccountAddress': params['beneficiaryAccountAddress'] if params['beneficiaryAccountAddress'] != '' else '',
             'beneficiaryBankCode': params['beneficiaryBankCode'],
             'beneficiaryBankName': params['beneficiaryBankName'] if params['beneficiaryBankName'] != '' else '',
             'beneficiaryCustomerResidence': params['beneficiaryCustomerResidence'],

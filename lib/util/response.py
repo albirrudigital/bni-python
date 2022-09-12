@@ -25,5 +25,5 @@ def responseSnapBI(params = { 'res' }):
         '2007300'
     ]
     if not params['res']['responseCode'] in statusCodeSuccess:
-        raise ValueError(f"{params['res']['responseCode']} : {params['res']['responseCode']}")
+        raise ValueError(f"{params['res']['responseCode']} : {params['res']['responseMessage']}")
     return params['res']
