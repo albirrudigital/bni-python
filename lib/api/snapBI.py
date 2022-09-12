@@ -65,7 +65,7 @@ class SnapBI():
             'fromDateTime',
             'toDateTime'
         }):
-        payload = {}
+        
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
@@ -73,9 +73,9 @@ class SnapBI():
             'fromDateTime': params['fromDateTime'],
             'toDateTime': params['toDateTime']
         }
-        payload = body
+        
         timeStamp = getTimestamp()
-        payload['signature'] = generateSignatureServiceSnapBI({
+        signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',
             'url': '/snap-service/v1/bank-statement',
@@ -90,7 +90,7 @@ class SnapBI():
             'url': f'{self.baseUrl}/snap-service/v1/bank-statement',
             'data': body,
             'additionalHeader': {
-                'X-SIGNATURE': payload['signature'],
+                'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
                 'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
@@ -108,7 +108,7 @@ class SnapBI():
             'partnerReferenceNo',
             'beneficiaryAccountNo'
         }):
-        payload = {}
+        
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
@@ -116,9 +116,9 @@ class SnapBI():
             'fromDateTime': params['fromDateTime'],
             'toDateTime': params['toDateTime']
         }
-        payload = body
+        
         timeStamp = getTimestamp()
-        payload['signature'] = generateSignatureServiceSnapBI({
+        signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',
             'url': '/snap-service/v1/account-inquiry-internal',
@@ -133,7 +133,7 @@ class SnapBI():
             'url': f'{self.baseUrl}/snap-service/v1/account-inquiry-internal',
             'data': body,
             'additionalHeader': {
-                'X-SIGNATURE': payload['signature'],
+                'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
                 'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
@@ -155,7 +155,7 @@ class SnapBI():
             'amount',
             'additionalInfo'
         }):
-        payload = {}
+        
         token = self.getTokenSnapBI()
         body = {
             'originalPartnerReferenceNo': params['originalPartnerReferenceNo'],
@@ -172,9 +172,9 @@ class SnapBI():
                     'channel': params['additionalInfo']['channel']
                 }
         }
-        payload = body
+        
         timeStamp = getTimestamp()
-        payload['signature'] = generateSignatureServiceSnapBI({
+        signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',
             'url': '/snap-service/v1/transfer/status',
@@ -189,7 +189,7 @@ class SnapBI():
             'url': f'{self.baseUrl}/snap-service/v1/transfer/status',
             'data': body,
             'additionalHeader': {
-                'X-SIGNATURE': payload['signature'],
+                'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
                 'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
@@ -217,7 +217,7 @@ class SnapBI():
                 'additionalInfo'
             }
         ):
-        payload = {}
+        
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
@@ -238,9 +238,9 @@ class SnapBI():
                     'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
                 }
         }
-        payload = body
+        
         timeStamp = getTimestamp()
-        payload['signature'] = generateSignatureServiceSnapBI({
+        signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',
             'url': '/snap-service/v1/transfer-intrabank',
@@ -255,7 +255,7 @@ class SnapBI():
             'url': f'{self.baseUrl}/snap-service/v1/transfer-intrabank',
             'data': body,
             'additionalHeader': {
-                'X-SIGNATURE': payload['signature'],
+                'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
                 'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
@@ -292,7 +292,7 @@ class SnapBI():
             'transactionDate',
             'additionalInfo'
         }):
-        payload = {}
+        
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
@@ -324,9 +324,9 @@ class SnapBI():
                     'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
                 }
         }
-        payload = body
+        
         timeStamp = getTimestamp()
-        payload['signature'] = generateSignatureServiceSnapBI({
+        signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',
             'url': '/snap-service/v1/transfer-rtgs',
@@ -341,7 +341,7 @@ class SnapBI():
             'url': f'{self.baseUrl}/snap-service/v1/transfer-rtgs',
             'data': body,
             'additionalHeader': {
-                'X-SIGNATURE': payload['signature'],
+                'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
                 'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
@@ -379,7 +379,7 @@ class SnapBI():
             'additionalInfo'
         }):
 
-        payload = {}
+        
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
@@ -411,9 +411,9 @@ class SnapBI():
                     'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
                 }
         }
-        payload = body
+        
         timeStamp = getTimestamp()
-        payload['signature'] = generateSignatureServiceSnapBI({
+        signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',
             'url': '/snap-service/v1/transfer-skn',
@@ -428,7 +428,7 @@ class SnapBI():
             'url': f'{self.baseUrl}/snap-service/v1/transfer-skn',
             'data': body,
             'additionalHeader': {
-                'X-SIGNATURE': payload['signature'],
+                'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
                 'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
@@ -448,7 +448,7 @@ class SnapBI():
             'additionalInfo'
         }):
 
-        payload = {}
+        
         token = self.getTokenSnapBI()
         body = {
             'beneficiaryBankCode': params['beneficiaryBankCode'],
@@ -459,9 +459,9 @@ class SnapBI():
                     'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
                 }
         }
-        payload = body
+        
         timeStamp = getTimestamp()
-        payload['signature'] = generateSignatureServiceSnapBI({
+        signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',
             'url': '/snap-service/v1/account-inquiry-external',
@@ -476,7 +476,7 @@ class SnapBI():
             'url': f'{self.baseUrl}/snap-service/v1/account-inquiry-external',
             'data': body,
             'additionalHeader': {
-                'X-SIGNATURE': payload['signature'],
+                'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
                 'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
@@ -506,7 +506,7 @@ class SnapBI():
             'additionalInfo'
         }):
 
-        payload = {}
+        
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
@@ -530,9 +530,9 @@ class SnapBI():
                     'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
                 }
         }
-        payload = body
+        
         timeStamp = getTimestamp()
-        payload['signature'] = generateSignatureServiceSnapBI({
+        signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',
             'url': '/snap-service/v1/transfer-interbank',
@@ -547,7 +547,7 @@ class SnapBI():
             'url': f'{self.baseUrl}/snap-service/v1/transfer-interbank',
             'data': body,
             'additionalHeader': {
-                'X-SIGNATURE': payload['signature'],
+                'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
                 'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
