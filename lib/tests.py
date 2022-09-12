@@ -51,13 +51,11 @@ class Test(unittest.TestCase):
         res = one_gate_payment.getBalance({
             'accountNo': '115471119'
         })
-        try:
-            data = res['getBalanceResponse']['parameters']['responseCode']
-            self.assertEqual(data, '0001')
-        except AssertionError:
-            logging.error(res, exc_info=True)
+        data = res['getBalanceResponse']['parameters']['responseCode']
+        self.assertEqual(data, '0001')
+        print('should return responseCode 0001')
 
-    # def testGetInHouseInquiry(self):
+    def testGetInHouseInquiry(self):
         print('\n==============================================')
         one_gate_payment = OneGatePayment(self.client)
         res = one_gate_payment.getInHouseInquiry({

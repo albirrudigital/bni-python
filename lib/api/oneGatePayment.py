@@ -1,6 +1,6 @@
 from lib.net.httpClient import HttpClient
 from lib.util.utils import generateClientId, generateSignature
-from lib.util.response import responseOGPGetBalance
+from lib.util.response import responseOGP
 
 class OneGatePayment():
     def __init__(self, client):
@@ -27,7 +27,7 @@ class OneGatePayment():
                 'path': '/H2H/v2/getbalance',
                 'data': payload
                 })
-        return responseOGPGetBalance(res)
+        return responseOGP(params = { 'res': res, 'resObj': 'getBalanceResponse'})
         
 
     def getInHouseInquiry(self, params = { 'accountNo' }):
@@ -47,7 +47,7 @@ class OneGatePayment():
                 'path': '/H2H/v2/getinhouseinquiry',
                 'data': payload
             })
-        return res
+        return responseOGP(params = { 'res': res, 'resObj': 'getInHouseInquiryResponse'})
 
     def doPayment(self,
         params = {
@@ -96,7 +96,7 @@ class OneGatePayment():
                     'path': '/H2H/v2/dopayment',
                     'data': payload
                 })
-        return res
+        return responseOGP(params = { 'res': res, 'resObj': 'doPaymentResponse'})
 
     def getPaymentStatus(self, params = { 'customerReferenceNumber' }):
         payload = {}
@@ -116,7 +116,7 @@ class OneGatePayment():
                     'data': payload
                 })
         
-        return res
+        return responseOGP(params = { 'res': res, 'resObj': 'getPaymentStatusResponse'})
 
     def getInterBankInquiry(self,  params = {
             'customerReferenceNumber',
@@ -142,7 +142,7 @@ class OneGatePayment():
                     'path': '/H2H/v2/getinterbankinquiry',
                     'data': payload
                 })
-        return res
+        return responseOGP(params = { 'res': res, 'resObj': 'getInterbankInquiryResponse'})
 
     def getInterBankPayment(self, params = {
             'customerReferenceNumber',
@@ -176,7 +176,7 @@ class OneGatePayment():
                 'path': '/H2H/v2/getinterbankpayment',
                 'data': payload
             })
-        return res
+        return responseOGP(params = { 'res': res, 'resObj': 'getInterbankPaymentResponse'})
         
     def holdAmount(self, params = {
             'customerReferenceNumber',
@@ -203,7 +203,7 @@ class OneGatePayment():
                 'data': payload
             })
         
-        return res
+        return responseOGP(params = { 'res': res, 'resObj': 'holdAmountResponse'})
     
     def holdAmountRelease(self, params = {
             'customerReferenceNumber',
@@ -232,4 +232,4 @@ class OneGatePayment():
                 'data': payload
             })
         
-        return res
+        return responseOGP(params = { 'res': res, 'resObj': 'holdAmountReleaseResponse'})

@@ -72,7 +72,7 @@ Available methods for `One Gate Payment` class
 ```python
 # return as Object
 res = ogp.getBalance({
-    'accountNo': '113183203'
+  'accountNo': '113183203'
 })
 ```
 

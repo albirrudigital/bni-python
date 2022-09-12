@@ -1,6 +1,7 @@
 PRODUCTION_BASE_URL = 'https://api.bni.co.id'
 # SANDBOX_BASE_URL = 'https://newapidev.bni.co.id'
-SANDBOX_BASE_URL = 'https:/dev.harismawan.com'
+# SANDBOX_BASE_URL = 'https:/dev.harismawan.com'
+SANDBOX_BASE_URL = 'https://4039-182-23-91-250.ap.ngrok.io'
 TOKEN_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnRJZCI6IklEQk5JVkdWemRDQkJVRkE9IiwiYWNjb3VudE5vIjoiMDExNTQ3NjExNyJ9.ljWtFHL0dHhLPw97U8SVWsFV3fRIJItHlQ-HPqCRUwc'
 APP_NAME = 'Test APP'
 APP_NAME_TEST = 'Test Wawat'

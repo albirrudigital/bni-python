@@ -10,7 +10,8 @@ class HttpClient():
         self.httpClient = http.client.HTTPSConnection('')
 
     def tokenRequest(self, options = { 'url', 'path', 'username', 'password' }):
-        httpClient = http.client.HTTPSConnection(options['url'], context = ssl._create_unverified_context())
+        url = str(options['url']).replace('http://','').replace('https://','')
+        httpClient = http.client.HTTPSConnection(url, context = ssl._create_unverified_context())
         username = options['username']
         password = options['password']
         authorize = base64.b64encode(f'{username}:{password}'.encode('utf-8'))
@@ -27,7 +28,8 @@ class HttpClient():
         return json.loads(str(data.decode('utf-8')))
 
     def request(self, options = { 'method', 'apiKey', 'accessToken', 'url', 'path', 'data' }):
-        httpClient = http.client.HTTPSConnection(options['url'], context = ssl._create_unverified_context())
+        url = str(options['url']).replace('http://','').replace('https://','')
+        httpClient = http.client.HTTPSConnection(url, context = ssl._create_unverified_context())
         accessToken = options['accessToken']
         path = options['path']
         url = f'{path}?access_token={accessToken}'
