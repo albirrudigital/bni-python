@@ -14,8 +14,8 @@ test_req = pkg_req + [
 ]
 
 setup(
-    name="bnipython",
-    version="0.1.0",
+    name="bnipythonclient",
+    version="0.0.5",
     author="BNI API",
     author_email="",
     license='MIT',
@@ -23,7 +23,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/bni-api/bni-python/",
-    packages=find_packages(),
+    packages=['bnipythonclient','bnipythonclient.api','bnipythonclient.net','bnipythonclient.util'],
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
@@ -38,5 +38,4 @@ setup(
     ],
     python_requires='>=3.5',
     install_requires=pkg_req,
-    tests_requires=test_req
 )
