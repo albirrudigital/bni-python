@@ -1,6 +1,6 @@
-from lib.net.httpClient import HttpClient
-from lib.util.utils import generateClientId, generateSignature
-from lib.util.response import responseOGP
+from bnipython.lib.net.httpClient import HttpClient
+from bnipython.lib.util.utils import generateClientId, generateSignature
+from bnipython.lib.util.response import responseOGP
 
 
 class OneGatePayment():

@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 import pathlib
 
 here = pathlib.Path(__file__).parent.resolve()
@@ -15,7 +15,7 @@ test_req = pkg_req + [
 
 setup(
     name="bnipython",
-    version="0.1.0",
+    version="0.0.8",
     author="BNI API",
     author_email="",
     license='MIT',
@@ -23,7 +23,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/bni-api/bni-python/",
-    packages=find_packages(),
+    packages=['bnipython','bnipython.lib','bnipython.lib.api','bnipython.lib.net','bnipython.lib.util'],
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
@@ -38,5 +38,4 @@ setup(
     ],
     python_requires='>=3.5',
     install_requires=pkg_req,
-    tests_requires=test_req
 )

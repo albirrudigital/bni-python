@@ -1,7 +1,7 @@
 
-from lib.util import constants
+from bnipython.lib.util import constants
 import unittest
-from lib.bniClient import BNIClient
+from bnipython.lib.bniClient import BNIClient
 
 
 class TestUtil(unittest.TestCase):

@@ -1,6 +1,6 @@
-from lib.util import constants
-from lib.bniClient import BNIClient
-from lib.api.snapBI import SnapBI
+from bnipython.lib.util import constants
+from bnipython.lib.bniClient import BNIClient
+from bnipython.lib.api.snapBI import SnapBI
 import unittest
 
 
