@@ -1,5 +1,5 @@
-from bnipython.net.httpClient import HttpClient
-from bnipython.util import constants
+from bnipython.lib.net.httpClient import HttpClient
+from bnipython.lib.util import constants
 
 
 class BNIClient:

@@ -1,7 +1,7 @@
-from bnipythonclient.api.oneGatePayment import OneGatePayment
-from bnipythonclient.util import constants
+from bnipython.lib.api.oneGatePayment import OneGatePayment
+from bnipython.lib.util import constants
 import unittest
-from bnipythonclient.bniClient import BNIClient
+from bnipython.lib.bniClient import BNIClient
 
 
 class Test(unittest.TestCase):

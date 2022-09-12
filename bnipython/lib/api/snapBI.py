@@ -1,6 +1,6 @@
-from bnipython.net.httpClient import HttpClient
-from bnipython.util.response import responseSnapBI
-from bnipython.util.utils import getTimestamp, generateSignatureServiceSnapBI, randomNumber
+from bnipython.lib.net.httpClient import HttpClient
+from bnipython.lib.util.response import responseSnapBI
+from bnipython.lib.util.utils import getTimestamp, generateSignatureServiceSnapBI, randomNumber
 
 
 class SnapBI():

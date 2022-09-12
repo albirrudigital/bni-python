@@ -3,7 +3,7 @@ import json
 import ssl
 import base64
 import requests
-from bnipython.util.utils import getTimestamp, generateTokenSignature
+from bnipython.lib.util.utils import getTimestamp, generateTokenSignature
 
 
 class HttpClient():
