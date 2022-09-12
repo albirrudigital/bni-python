@@ -15,15 +15,15 @@ class SnapBI():
     
     def getTokenSnapBI(self):
         token = self.httpClient.tokenRequestSnapBI({
-                'url': f'{self.baseUrl}/snap/v1/access-token/b2b',
-                'clientId': self.config['clientId'],
-                'privateKeyPath': self.configSnap['privateKeyPath']
-            })
+            'url': f'{self.baseUrl}/snap/v1/access-token/b2b',
+            'clientId': self.config['clientId'],
+            'privateKeyPath': self.configSnap['privateKeyPath']
+        })
         return token['accessToken']
     
     def balanceInquiry(self, params = {
-        'partnerReferenceNo,'
-        'accountNo'
+            'partnerReferenceNo,'
+            'accountNo'
         }):
         token = self.getTokenSnapBI()
         body = {
@@ -32,31 +32,31 @@ class SnapBI():
         }
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
-                'body': body,
-                'method': 'POST',
-                'url': '/snap-service/v1/balance-inquiry',
-                'accessToken': token,
-                'timeStamp': timeStamp,
-                'apiSecret': self.config['apiSecret']
-            })
+            'body': body,
+            'method': 'POST',
+            'url': '/snap-service/v1/balance-inquiry',
+            'accessToken': token,
+            'timeStamp': timeStamp,
+            'apiSecret': self.config['apiSecret']
+        })
         res = self.httpClient.requestSnapBI({
-                'method': 'POST',
-                'apiKey': self.config['apiKey'],
-                'accessToken': token,
-                'url': f'{self.baseUrl}/snap-service/v1/balance-inquiry',
-                'data': body,
-                'additionalHeader': {
-                    'X-SIGNATURE': signature,
-                    'X-TIMESTAMP': timeStamp,
-                    'X-PARTNER-ID': self.config['apiKey'],
-                    'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
-                    'X-DEVICE-ID': 'bni-python/0.1.0',
-                    'X-EXTERNAL-ID': randomNumber(),
-                    'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
-                    'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                    'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
-                    }
-            })
+            'method': 'POST',
+            'apiKey': self.config['apiKey'],
+            'accessToken': token,
+            'url': f'{self.baseUrl}/snap-service/v1/balance-inquiry',
+            'data': body,
+            'additionalHeader': {
+                'X-SIGNATURE': signature,
+                'X-TIMESTAMP': timeStamp,
+                'X-PARTNER-ID': self.config['apiKey'],
+                'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
+                'X-DEVICE-ID': 'bni-python/0.1.0',
+                'X-EXTERNAL-ID': randomNumber(),
+                'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
+                'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
+                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+            }
+        })
         return responseSnapBI(params = { 'res': res })
 
     def bankStatement(self,  params = {
@@ -103,8 +103,7 @@ class SnapBI():
         })
         return responseSnapBI(params = { 'res': res })
 
-    def internalAccountInquiry(self, 
-            params = {
+    def internalAccountInquiry(self, params = {
             'partnerReferenceNo',
             'beneficiaryAccountNo'
         }):
@@ -139,7 +138,7 @@ class SnapBI():
                 'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
                 'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
                 'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
-                }
+            }
         })
         return responseSnapBI(params = { 'res': res })
 
@@ -195,12 +194,11 @@ class SnapBI():
                 'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
                 'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
                 'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
-                }
+            }
         })
         return responseSnapBI(params = { 'res': res })
 
-    def transferIntraBank(self, 
-            params = {
+    def transferIntraBank(self, params = {
                 'partnerReferenceNo',
                 'amount',
                 'beneficiaryAccountNo',
@@ -219,8 +217,8 @@ class SnapBI():
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
             'amount': {
-                'value': params['amount']['value'],
-                'currency': params['amount']['currency']
+                    'value': params['amount']['value'],
+                    'currency': params['amount']['currency']
                 },
             'beneficiaryAccountNo': params['beneficiaryAccountNo'],
             'beneficiaryEmail': params['beneficiaryEmail'] if params['beneficiaryEmail'] != '' else '',
@@ -231,9 +229,9 @@ class SnapBI():
             'sourceAccountNo': params['sourceAccountNo'],
             'transactionDate': timeStamp if params['transactionDate'] == '' else params['transactionDate'],
             'additionalInfo': {
-                    'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
-                    'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
-                }
+                'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
+                'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
+            }
         }
         
         timeStamp = getTimestamp()
@@ -260,8 +258,8 @@ class SnapBI():
                 'X-EXTERNAL-ID': randomNumber(),
                 'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
                 'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                    'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
-                }
+                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+            }
         })
         return responseSnapBI(params = { 'res': res })
 
@@ -296,7 +294,7 @@ class SnapBI():
             'amount': {
                 'value': params['amount']['value'],
                 'currency': params['amount']['currency']
-                },
+            },
             'beneficiaryAccountName': params['beneficiaryAccountName'],
             'beneficiaryAccountNo': params['beneficiaryAccountNo'],
             'beneficiaryAccountAddress': params['beneficiaryAccountAddress'] if params['beneficiaryAccountAddress'] != '' else '',
@@ -317,9 +315,9 @@ class SnapBI():
             'sourceAccountNo': params['sourceAccountNo'],
             'transactionDate': timeStamp if params['transactionDate'] == '' else params['transactionDate'],
             'additionalInfo': {
-                    'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
-                    'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
-                }
+                'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
+                'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
+            }
         }
         
         timeStamp = getTimestamp()
@@ -346,8 +344,8 @@ class SnapBI():
                 'X-EXTERNAL-ID': randomNumber(),
                 'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
                 'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                    'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
-                }
+                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+            }
         })
         return responseSnapBI(params = { 'res': res })
     
@@ -376,14 +374,13 @@ class SnapBI():
             'additionalInfo'
         }):
 
-        
         token = self.getTokenSnapBI()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
             'amount': {
                 'value': params['amount']['value'],
                 'currency': params['amount']['currency']
-                },
+            },
             'beneficiaryAccountName': params['beneficiaryAccountName'],
             'beneficiaryAccountNo': params['beneficiaryAccountNo'],
             'beneficiaryAddress': params['beneficiaryAddress'] if params['beneficiaryAddress'] != '' else '',
@@ -404,9 +401,9 @@ class SnapBI():
             'sourceAccountNo': params['sourceAccountNo'],
             'transactionDate': timeStamp if params['transactionDate'] == '' else params['transactionDate'],
             'additionalInfo': {
-                    'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
-                    'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
-                }
+                'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
+                'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
+            }
         }
         
         timeStamp = getTimestamp()
@@ -433,8 +430,8 @@ class SnapBI():
                 'X-EXTERNAL-ID': randomNumber(),
                 'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
                 'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                    'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
-                }
+                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+            }
         })
         return responseSnapBI(params = { 'res': res })
 
@@ -452,9 +449,9 @@ class SnapBI():
             'beneficiaryAccountNo': params['beneficiaryAccountNo'],
             'partnerReferenceNo': params['partnerReferenceNo'] if params['partnerReferenceNo'] != '' else '',
             'additionalInfo': {
-                    'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
-                    'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
-                }
+                'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
+                'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
+            }
         }
         
         timeStamp = getTimestamp()
@@ -481,8 +478,8 @@ class SnapBI():
                 'X-EXTERNAL-ID': randomNumber(),
                 'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
                 'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                    'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
-                }
+                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+            }
         })
         return responseSnapBI(params = { 'res': res })
 
@@ -510,7 +507,7 @@ class SnapBI():
             'amount': {
                 'value': params['amount']['value'],
                 'currency': params['amount']['currency']
-                },
+            },
             'beneficiaryAccountName': params['beneficiaryAccountName'],
             'beneficiaryAccountNo': params['beneficiaryAccountNo'],
             'beneficiaryAddress': params['beneficiaryAddress'] if params['beneficiaryAddress'] != '' else '',
@@ -523,9 +520,9 @@ class SnapBI():
             'sourceAccountNo': params['sourceAccountNo'],
             'transactionDate': timeStamp if params['transactionDate'] == '' else params['transactionDate'],
             'additionalInfo': {
-                    'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
-                    'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
-                }
+                'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
+                'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
+            }
         }
         
         timeStamp = getTimestamp()
@@ -552,7 +549,7 @@ class SnapBI():
                 'X-EXTERNAL-ID': randomNumber(),
                 'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
                 'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                    'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
-                }
+                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+            }
         })
         return responseSnapBI(params = { 'res': res })

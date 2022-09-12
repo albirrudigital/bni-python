@@ -20,13 +20,13 @@ class OneGatePayment():
         payload['signature'] = generateSignature({ 'body': body, 'apiSecret': self.client['apiSecret'] })
         
         res = self.httpClient.request({
-                'method': 'POST',
-                'apiKey': self.client['apiKey'],
-                'accessToken': self.token,
-                'url': f'{self.baseUrl}',
-                'path': '/H2H/v2/getbalance',
-                'data': payload
-                })
+            'method': 'POST',
+            'apiKey': self.client['apiKey'],
+            'accessToken': self.token,
+            'url': f'{self.baseUrl}',
+            'path': '/H2H/v2/getbalance',
+            'data': payload
+        })
         return responseOGP(params = { 'res': res, 'resObj': 'getBalanceResponse'})
         
 
@@ -40,13 +40,13 @@ class OneGatePayment():
         payload['signature'] = generateSignature({ 'body': body, 'apiSecret': self.client['apiSecret'] })
 
         res = self.httpClient.request({
-                'method': 'POST',
-                'apiKey': self.client['apiKey'],
-                'accessToken': self.token,
-                'url': f'{self.baseUrl}',
-                'path': '/H2H/v2/getinhouseinquiry',
-                'data': payload
-            })
+            'method': 'POST',
+            'apiKey': self.client['apiKey'],
+            'accessToken': self.token,
+            'url': f'{self.baseUrl}',
+            'path': '/H2H/v2/getinhouseinquiry',
+            'data': payload
+        })
         return responseOGP(params = { 'res': res, 'resObj': 'getInHouseInquiryResponse'})
 
     def doPayment(self,
@@ -89,13 +89,13 @@ class OneGatePayment():
         payload['signature'] = generateSignature({ 'body': body, 'apiSecret': self.client['apiSecret'] })
 
         res = self.httpClient.request({
-                    'method': 'POST',
-                    'apiKey': self.client['apiKey'],
-                    'accessToken': self.token,
-                    'url': f'{self.baseUrl}',
-                    'path': '/H2H/v2/dopayment',
-                    'data': payload
-                })
+            'method': 'POST',
+            'apiKey': self.client['apiKey'],
+            'accessToken': self.token,
+            'url': f'{self.baseUrl}',
+            'path': '/H2H/v2/dopayment',
+            'data': payload
+        })
         return responseOGP(params = { 'res': res, 'resObj': 'doPaymentResponse'})
 
     def getPaymentStatus(self, params = { 'customerReferenceNumber' }):
@@ -108,14 +108,13 @@ class OneGatePayment():
         payload = body
         payload['signature'] = generateSignature({ 'body': body, 'apiSecret': self.client['apiSecret'] })
         res = self.httpClient.request({
-                    'method': 'POST',
-                    'apiKey': self.client['apiKey'],
-                    'accessToken': self.token,
-                    'url': f'{self.baseUrl}',
-                    'path': '/H2H/v2/getpaymentstatus',
-                    'data': payload
-                })
-        
+            'method': 'POST',
+            'apiKey': self.client['apiKey'],
+            'accessToken': self.token,
+            'url': f'{self.baseUrl}',
+            'path': '/H2H/v2/getpaymentstatus',
+            'data': payload
+        })
         return responseOGP(params = { 'res': res, 'resObj': 'getPaymentStatusResponse'})
 
     def getInterBankInquiry(self,  params = {
@@ -126,22 +125,22 @@ class OneGatePayment():
         }):
         payload = {}
         body = {
-                'clientId': generateClientId(self.client['appName']),
-                'customerReferenceNumber': params['customerReferenceNumber'],
-                'accountNum': params['accountNum'],
-                'destinationBankCode': params['destinationBankCode'],
-                'destinationAccountNum': params['destinationAccountNum']
-                }
+            'clientId': generateClientId(self.client['appName']),
+            'customerReferenceNumber': params['customerReferenceNumber'],
+            'accountNum': params['accountNum'],
+            'destinationBankCode': params['destinationBankCode'],
+            'destinationAccountNum': params['destinationAccountNum']
+        }
         payload = body
         payload['signature'] = generateSignature({ 'body': body, 'apiSecret': self.client['apiSecret'] })
         res = self.httpClient.request({
-                    'method': 'POST',
-                    'apiKey': self.client['apiKey'],
-                    'accessToken': self.token,
-                    'url': f'{self.baseUrl}',
-                    'path': '/H2H/v2/getinterbankinquiry',
-                    'data': payload
-                })
+            'method': 'POST',
+            'apiKey': self.client['apiKey'],
+            'accessToken': self.token,
+            'url': f'{self.baseUrl}',
+            'path': '/H2H/v2/getinterbankinquiry',
+            'data': payload
+        })
         return responseOGP(params = { 'res': res, 'resObj': 'getInterbankInquiryResponse'})
 
     def getInterBankPayment(self, params = {
@@ -165,17 +164,17 @@ class OneGatePayment():
             'destinationBankName': params['destinationBankName'],
             'accountNum': params['accountNum'],
             'retrievalReffNum': params['retrievalReffNum']
-            }
+        }
         payload = body
         payload['signature'] = generateSignature({ 'body': body, 'apiSecret': self.client['apiSecret'] })
         res = self.httpClient.request({
-                'method': 'POST',
-                'apiKey': self.client['apiKey'],
-                'accessToken': self.token,
-                'url': f'{self.baseUrl}',
-                'path': '/H2H/v2/getinterbankpayment',
-                'data': payload
-            })
+            'method': 'POST',
+            'apiKey': self.client['apiKey'],
+            'accessToken': self.token,
+            'url': f'{self.baseUrl}',
+            'path': '/H2H/v2/getinterbankpayment',
+            'data': payload
+        })
         return responseOGP(params = { 'res': res, 'resObj': 'getInterbankPaymentResponse'})
         
     def holdAmount(self, params = {
@@ -195,14 +194,13 @@ class OneGatePayment():
         payload = body
         payload['signature'] = generateSignature({ 'body': body, 'apiSecret': self.client['apiSecret'] })
         res = self.httpClient.request({
-                'method': 'POST',
-                'apiKey': self.client['apiKey'],
-                'accessToken': self.token,
-                'url': f'{self.baseUrl}',
-                'path': '/H2H/v2/holdamount',
-                'data': payload
-            })
-        
+            'method': 'POST',
+            'apiKey': self.client['apiKey'],
+            'accessToken': self.token,
+            'url': f'{self.baseUrl}',
+            'path': '/H2H/v2/holdamount',
+            'data': payload
+        })
         return responseOGP(params = { 'res': res, 'resObj': 'holdAmountResponse'})
     
     def holdAmountRelease(self, params = {
@@ -224,12 +222,11 @@ class OneGatePayment():
         payload = body
         payload['signature'] = generateSignature({ 'body': body, 'apiSecret': self.client['apiSecret'] })
         res = self.httpClient.request({
-                'method': 'POST',
-                'apiKey': self.client['apiKey'],
-                'accessToken': self.token,
-                'url': f'{self.baseUrl}',
-                'path': '/H2H/v2/holdamountrelease',
-                'data': payload
-            })
-        
+            'method': 'POST',
+            'apiKey': self.client['apiKey'],
+            'accessToken': self.token,
+            'url': f'{self.baseUrl}',
+            'path': '/H2H/v2/holdamountrelease',
+            'data': payload
+        })
         return responseOGP(params = { 'res': res, 'resObj': 'holdAmountReleaseResponse'})

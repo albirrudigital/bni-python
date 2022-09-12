@@ -16,11 +16,11 @@ class BNIClient:
 
     def getToken(self):
         token = self.httpClient.tokenRequest({
-                    'url': self.getBaseUrl(),
-                    'path': '/api/oauth/token',
-                    'username': self.config['clientId'],
-                    'password': self.config['clientSecret']
-                })
+            'url': self.getBaseUrl(),
+            'path': '/api/oauth/token',
+            'username': self.config['clientId'],
+            'password': self.config['clientSecret']
+        })
         return token['access_token']
 
 

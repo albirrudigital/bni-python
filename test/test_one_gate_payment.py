@@ -6,13 +6,13 @@ from lib.bniClient import BNIClient
 class Test(unittest.TestCase):
     
     client = BNIClient({
-            'prod': False,
-            'appName': constants.APP_NAME_TEST,
-            'clientId': constants.CLIENT_ID_ENCRYPT,
-            'clientSecret': constants.CLIENT_SECRET_ENCRYPT,
-            'apiKey': constants.API_KEY_ENCRYPT,
-            'apiSecret': constants.API_SECRET_ENCRYPT
-        })
+        'prod': False,
+        'appName': constants.APP_NAME_TEST,
+        'clientId': constants.CLIENT_ID_ENCRYPT,
+        'clientSecret': constants.CLIENT_SECRET_ENCRYPT,
+        'apiKey': constants.API_KEY_ENCRYPT,
+        'apiSecret': constants.API_SECRET_ENCRYPT
+    })
     def testGetBalance(self):
         print('\n==============================================')
         one_gate_payment = OneGatePayment(self.client)
