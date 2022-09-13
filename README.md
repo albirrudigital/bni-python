@@ -164,7 +164,7 @@ holdAmountRelease = ogp.holdAmountRelease({
 
 ### 2.2.B Snap BI
 
-Create `One Gate Payment` class object
+Create `Snap BI` class object
 ```python
 from bnipython import BNIClient, SnapBI
 
