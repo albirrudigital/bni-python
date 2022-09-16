@@ -9,10 +9,10 @@ class TestSnapBI(unittest.TestCase):
     client = BNIClient({
         'prod': False,
         'appName': constants.APP_NAME_TEST,
-        'clientId': '0bed55cb-c25d-4f07-9c5f-78f7c8aac9da',
-        'clientSecret': '46987047-6d56-410d-b43c-abdd247abac2',
-        'apiKey': '91ea86f6-387a-49f9-bc55-670e4d2ef67b',
-        'apiSecret': 'cc914c89-6b65-475d-a450-58ee4199a1b2',
+        'clientId': constants.CLIENT_ID,
+        'clientSecret': constants.CLIENT_SECRET,
+        'apiKey': constants.API_KEY,
+        'apiSecret': constants.API_SECRET,
     })
 
     def testGetBalance(self):

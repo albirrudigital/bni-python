@@ -8,10 +8,8 @@ import math
 from OpenSSL import crypto
 from datetime import datetime
 
-
 def generateSignature(params):
     # generate JWT header
-
     header = escape(base64.b64encode(
         '{"alg":"HS256","typ":"JWT"}'.encode('utf-8')).decode())
     # generate JWT payload
@@ -31,7 +29,6 @@ def generateClientId(appName):
 
 def escape(string):
     return string.replace('+', '-').replace('/', '_').replace('=', '')
-
 
 def getTimestamp():
     return datetime.now(pytz.timezone('Asia/Jakarta')).strftime('%Y-%m-%dT%H:%M:%S+07:00')
