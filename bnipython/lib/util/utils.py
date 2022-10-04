@@ -37,7 +37,7 @@ def getTimestamp():
 def generateTokenSignature(params={'privateKeyPath', 'clientId', 'timeStamp'}):
     privateKeyPath = params['privateKeyPath']
     rsaPrivate = privateKeyPath.replace('./', '')
-    keyFile = open(f'./lib/{rsaPrivate}', 'rb')
+    keyFile = open(f'./bnipython/lib/{rsaPrivate}', 'rb')
     key = keyFile.read()
     keyFile.close()
 

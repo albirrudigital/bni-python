@@ -13,8 +13,7 @@ class TestUtil(unittest.TestCase):
         print(f'should return {constants.SANDBOX_BASE_URL}')
         clientProd = BNIClient(
             {'prod': True, 'clientId': '', 'clientSecret': '', 'apiKey': ''})
-        self.assertEqual(clientProd.getBaseUrl(),
-                         constants.PRODUCTION_BASE_URL)
+        self.assertEqual(clientProd.getBaseUrl(), constants.PRODUCTION_BASE_URL)
         print(f'should return {constants.PRODUCTION_BASE_URL}')
 
     def testConfig(self):
