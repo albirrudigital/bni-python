@@ -7,7 +7,7 @@ from bnipython.lib.bniClient import BNIClient
 class Test(unittest.TestCase):
 
     client = BNIClient({
-        'prod': False,
+        'env': 'sandbox',
         'appName': constants.APP_NAME_TEST,
         'clientId': constants.CLIENT_ID_ENCRYPT,
         'clientSecret': constants.CLIENT_SECRET_ENCRYPT,

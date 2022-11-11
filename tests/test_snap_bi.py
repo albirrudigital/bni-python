@@ -7,7 +7,7 @@ import unittest
 class TestSnapBI(unittest.TestCase):
 
     client = BNIClient({
-        'prod': False,
+        'env': 'dev',
         'appName': constants.APP_NAME_TEST,
         'clientId': constants.CLIENT_ID_ENCRYPT_SNAP_BI,
         'clientSecret': constants.CLIENT_SECRET_ENCRYPT_SNAP_BI,
