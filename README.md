@@ -39,7 +39,7 @@ Create API client object
 from bnipython import BNIClient
 # Create Core API instance
 client = BNIClient({
-  'prod': False,
+  'env': False,
   'clientId': '{your-client-id}',
   'clientSecret': '{your-client-secret}',
   'apiKey': '{your-api-key}',
@@ -56,7 +56,7 @@ from bnipython import BNIClient, OneGatePayment
 
 # Create Client instance
 client = BNIClient({
-  'prod': False,
+  'env': False,
   'clientId': '{your-client-id}',
   'clientSecret': '{your-client-secret}',
   'apiKey': '{your-api-key}',
@@ -170,7 +170,7 @@ from bnipython import BNIClient, SnapBI
 
 # Create Client instance
 client = BNIClient({
-  'prod': False,
+  'env': False,
   'clientId': '{your-client-id}',
   'clientSecret': '{your-client-secret}',
   'apiKey': '{your-api-key}',
