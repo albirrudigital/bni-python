@@ -8,7 +8,7 @@ class Test(unittest.TestCase):
 
     client = BNIClient({
         'env': 'sandbox',
-        'appName': constants.APP_NAME_TEST,
+        'appName': constants.APP_NAME,
         'clientId': constants.CLIENT_ID_ENCRYPT,
         'clientSecret': constants.CLIENT_SECRET_ENCRYPT,
         'apiKey': constants.API_KEY_ENCRYPT,
