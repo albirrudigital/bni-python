@@ -4,4 +4,4 @@ bnivenv
 __pycache__
 .DS_Store
 dist
-.bnipython.egg-info
+bnipython.egg-info

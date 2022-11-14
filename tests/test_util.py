@@ -1,5 +1,5 @@
 from bnipython.lib.util import constants
-from bnipython.lib.util  import generateClientId, generateSignature
+from bnipython.lib.util.utils import generateClientId, generateSignature
 import unittest
 
 class TestUtil(unittest.TestCase):

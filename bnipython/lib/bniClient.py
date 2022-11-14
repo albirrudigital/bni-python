@@ -3,7 +3,7 @@ from bnipython.lib.util import constants
 
 
 class BNIClient:
-    def __init__(self, options={'prod': False, 'appName': '', 'clientId': '', 'clientSecret': '', 'apiKey': '', 'apiSecret': ''}):
+    def __init__(self, options={'env': False, 'appName': '', 'clientId': '', 'clientSecret': '', 'apiKey': '', 'apiSecret': ''}):
         self.config = options
         self.httpClient = HttpClient()
 
@@ -11,10 +11,12 @@ class BNIClient:
         return self.config
 
     def getBaseUrl(self):
-        if self.config['prod']:
-            return constants.PRODUCTION_BASE_URL
-        else:
+        if self.config['env'] == 'dev':
+            return constants.DEV_BASE_URL
+        elif self.config['env'] == 'sandbox':
             return constants.SANDBOX_BASE_URL
+        elif self.config['env'] == 'prod':
+            return constants.PRODUCTION_BASE_URL
 
     def getToken(self):
         token = self.httpClient.tokenRequest({
