@@ -9,8 +9,12 @@ class TestUtil(unittest.TestCase):
         print('\n==============================================')
         clientDev = BNIClient(
             {'env': 'sandbox', 'clientId': '', 'clientSecret': '', 'apiKey': ''})
-        self.assertEqual(clientDev.getBaseUrl(), constants.SANDBOX_BASE_URL)
-        print(f'should return {constants.SANDBOX_BASE_URL}')
+        self.assertEqual(clientDev.getBaseUrl(), constants.DEV_BASE_URL)
+        print(f'should return {constants.DEV_BASE_URL}')
+        clientDev = BNIClient(
+            {'env': 'sandbox', 'clientId': '', 'clientSecret': '', 'apiKey': ''})
+        self.assertEqual(clientDev.getBaseUrl(), constants.SANDBOX_DEV_BASE_URL)
+        print(f'should return {constants.SANDBOX_DEV_BASE_URL}')
         clientSandbox = BNIClient(
             {'env': 'sandbox', 'clientId': '', 'clientSecret': '', 'apiKey': ''})
         self.assertEqual(clientSandbox.getBaseUrl(), constants.SANDBOX_BASE_URL)
