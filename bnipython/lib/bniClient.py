@@ -15,6 +15,8 @@ class BNIClient:
             return constants.DEV_BASE_URL
         elif self.config['env'] == 'sandbox':
             return constants.SANDBOX_BASE_URL
+        elif self.config['sandbox-dev']:
+            return constants.SANDBOX_DEV_BASE_URL
         elif self.config['env'] == 'prod':
             return constants.PRODUCTION_BASE_URL
 
