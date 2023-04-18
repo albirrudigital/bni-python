@@ -13,9 +13,11 @@ class BNIClient:
     def getBaseUrl(self):
         if self.config['env'] == 'dev':
             return constants.DEV_BASE_URL
+        elif self.config['env'] == 'uat':
+            return constants.UAT_BASE_URL
         elif self.config['env'] == 'sandbox':
             return constants.SANDBOX_BASE_URL
-        elif self.config['sandbox-dev']:
+        elif self.config['env'] == 'sandbox-dev':
             return constants.SANDBOX_DEV_BASE_URL
         elif self.config['env'] == 'prod':
             return constants.PRODUCTION_BASE_URL

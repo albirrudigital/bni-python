@@ -1,3 +1,4 @@
+LICENSE
 README.md
 setup.py
 bnipython/__init__.py
@@ -13,3 +14,7 @@ bnipython/lib/net/httpClient.py
 bnipython/lib/util/constants.py
 bnipython/lib/util/response.py
 bnipython/lib/util/utils.py
+tests/test_bni_client.py
+tests/test_one_gate_payment.py
+tests/test_snap_bi.py
+tests/test_util.py
