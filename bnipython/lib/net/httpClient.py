@@ -28,7 +28,6 @@ class HttpClient():
         httpClient.request('POST', options['path'], payload, headers)
         res = httpClient.getresponse()
         data = res.read()
-        print(data)
         return json.loads(str(data.decode('utf-8')))
 
     def request(self, options={'method', 'apiKey', 'accessToken', 'url', 'path', 'data'}):

@@ -125,10 +125,10 @@ getPaymentStatus = ogp.getPaymentStatus({
 ```python
 # return as Object
 getInterBankInquiry = ogp.getInterBankInquiry({
-  'customerReferenceNumber': '20170227000000000021', # max 20 char client defined reference number
-  'accountNum': '113183203',
+  'customerReferenceNumber': '20180930112233003', # max 20 char client defined reference number
+  'accountNum': '0115476117',
   'destinationBankCode': '014',
-  'destinationAccountNum': '3333333333'
+  'destinationAccountNum': '01400000'
 })
 ```
 
