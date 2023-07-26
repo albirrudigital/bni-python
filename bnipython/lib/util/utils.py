@@ -5,6 +5,8 @@ import json
 import pytz
 import random
 import math
+import string
+import random
 from OpenSSL import crypto
 from datetime import datetime
 
@@ -68,3 +70,8 @@ def randomNumber():
     randomNumber = random.randint(100000000, 999999999)
     unixTimeStamp = math.floor(datetime.timestamp((datetime.now())))
     return f'{randomNumber}{unixTimeStamp}'
+
+def generateUUID(length=16):
+    characters = string.ascii_uppercase + string.digits
+    uuid = ''.join(random.choice(characters) for _ in range(length))
+    return uuid
