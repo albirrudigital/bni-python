@@ -1,5 +1,6 @@
 from bnipython.lib.net.httpClient import HttpClient
 from bnipython.lib.util.utils import generateUUID, generateSignature, getTimestamp
+from bnipython.lib.util.response import responseRDN
 
 class RDN():
     def __init__(self, client):
@@ -11,8 +12,8 @@ class RDN():
 
     def registerInvestor(self, params={
         'companyId',
-        'parenCompanyId',
-        'uuidFaceRecog',
+        # 'parenCompanyId',
+        # 'uuidFaceRecog',
         'title',
         'firstName',
         'middleName',
@@ -91,6 +92,8 @@ class RDN():
             'homePhone2': params['homePhone2'],
             'officePhone1': params['officePhone1'],
             'officePhone2': params['officePhone2'],
+            'mobilePhone1': params['mobilePhone1'],
+            'mobilePhone2': params['mobilePhone2'],
             'faxNum1': params['faxNum1'],
             'faxNum2': params['faxNum2'],
             'email': params['email'],
@@ -118,4 +121,5 @@ class RDN():
             'timestamp': timeStamp,
             'data': payload
         })
-        return res
+        return responseRDN(params={'res': res, 'resObj': 'registerInvestorResponse'})
+    

@@ -21,6 +21,7 @@ class Test(unittest.TestCase):
         res = one_gate_payment.getBalance({
             'accountNo': '115471119'
         })
+        print(res)
         data = res['getBalanceResponse']['parameters']['responseCode']
         self.assertEqual(data, '0001')
         print('should return responseCode 0001')

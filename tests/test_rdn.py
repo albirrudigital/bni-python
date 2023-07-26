@@ -65,3 +65,6 @@ class TestRDN(unittest.TestCase):
             'ownedBankAccNo': '0337109074',
             'idIssuingDate': '10122008'
         })
+        # data = res['response']['responseCode']
+        # self.assertEqual(data, '0001')
+        print('should return responseCode 0001')

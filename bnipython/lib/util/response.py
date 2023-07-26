@@ -34,14 +34,14 @@ def responseSnapBI(params={'res'}):
 
 def responseRDN(params={'res'}):
     try:
-        if (params['res'][params['resObj']]['parameters']['responseCode'] != '0001'):
-            code = params['res'][params['resObj']]['parameters']['responseCode']
-            responseMessage = params['res'][params['resObj']]['parameters']['responseMessage']
-            errorMessage = params['res'][params['resObj']]['parameters']['errorMessage']
+        if (params['res']['response']['responseCode'] != '0001'):
+            code = params['res']['response']['responseCode']
+            responseMessage = params['res']['response']['responseMessage']
+            errorMessage = params['res'][params['resObj']]['response']['errorMessage']
             raise ValueError(f'errorMessage: {errorMessage}, responseMessage: {responseMessage}, code: {code}')
         else:
             return params['res']
     except Exception:
-        code = params['res']['Response']['parameters']['responseCode']
-        message = params['res']['Response']['parameters']['responseMessage']
+        code = params['res']['response']['responseCode']
+        message = params['res']['response']['responseMessage']
         raise ValueError(f'{code}:{message}') 
