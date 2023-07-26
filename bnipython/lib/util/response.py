@@ -4,14 +4,13 @@ def responseOGP(params={'res', 'resObj'}):
             code = params['res'][params['resObj']]['parameters']['responseCode']
             responseMessage = params['res'][params['resObj']]['parameters']['responseMessage']
             errorMessage = params['res'][params['resObj']]['parameters']['errorMessage']
-            raise ValueError(f'errorMessage: {errorMessage}, responseMessage: {responseMessage}, code: {code}')
+            raise ValueError(f'\033[91m errorMessage: {errorMessage}, responseMessage: {responseMessage}, code: {code} \033[0m')
         else:
             return params['res']
     except Exception:
         code = params['res']['Response']['parameters']['responseCode']
         message = params['res']['Response']['parameters']['responseMessage']
-        raise ValueError(f'{code}:{message}')
-
+        raise ValueError(f'\033[91m {code}:{message} \033[0m')
 
 def responseSnapBI(params={'res'}):
     statusCodeSuccess = [
@@ -29,7 +28,7 @@ def responseSnapBI(params={'res'}):
     ]
     if not params['res']['responseCode'] in statusCodeSuccess:
         raise ValueError(
-            f"{params['res']['responseCode']} : {params['res']['responseMessage']}")
+            f"\033[91m {params['res']['responseCode']} : {params['res']['responseMessage']} \033[0m")
     return params['res']
 
 def responseRDN(params={'res'}):
@@ -37,11 +36,11 @@ def responseRDN(params={'res'}):
         if (params['res']['response']['responseCode'] != '0001'):
             code = params['res']['response']['responseCode']
             responseMessage = params['res']['response']['responseMessage']
-            errorMessage = params['res'][params['resObj']]['response']['errorMessage']
-            raise ValueError(f'errorMessage: {errorMessage}, responseMessage: {responseMessage}, code: {code}')
+            errorMessage = params['res']['response']['errorMessage']
+            raise ValueError(f'\033[91m errorMessage: {errorMessage}, responseMessage: {responseMessage}, code: {code} \033[0m')
         else:
             return params['res']
-    except Exception:
-        code = params['res']['response']['responseCode']
-        message = params['res']['response']['responseMessage']
-        raise ValueError(f'{code}:{message}') 
+    except Exception as e:
+        code = params['res']['Response']['parameters']['responseCode']
+        message = params['res']['Response']['parameters']['responseMessage']
+        raise ValueError(f'\033[91m {code}:{message} \033[0m')

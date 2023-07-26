@@ -10,15 +10,78 @@ class RDN():
         self.token = client.getToken()
         self.httpClient = HttpClient()
 
+    def faceRecognition(self, params={
+        'companyId',
+        'parentCompanyId',
+        'requestUuid',
+        'firstName',
+        'middleName',
+        'lastName',
+        'idNumber',
+        'birthDate',
+        'birthPlace',
+        'gender',
+        'cityAddress',
+        'stateProcAddress',
+        'addressCountry',
+        'streetAddress1',
+        'streetAddress2',
+        'postAddress',
+        'country',
+        'selfiePhoto'
+    }):
+        timeStamp = getTimestamp()
+        payload = {}
+        payload['request'] = {}
+        payload['request'] = {
+            'header': {
+                'companyId': params['companyId'],
+                'parentCompanyId': params['parentCompanyId'],
+                'requestUuid': generateUUID()
+            },
+            'firstName': params['firstName'],
+            'middleName': params['middleName'],
+            'lastName': params['lastName'],
+            'idNumber': params['idNumber'], 
+            'birthDate': params['birthDate'], 
+            'birthPlace': params['birthPlace'], 
+            'birthDate': params['birthDate'],
+            'birthPlace': params['birthPlace'],
+            'gender': params['gender'],
+            'cityAddress': params['cityAddress'],
+            'stateProvAddress': params['stateProvAddress'],
+            'addressCountry': params['addressCountry'],
+            'streetAddress1': params['streetAddress1'],
+            'streetAddress2': params['streetAddress2'],
+            'postCodeAddress': params['postCodeAddress'],
+            'country': params['country'],
+            'selfiePhoto': params['selfiePhoto']
+        }
+        payload = {**payload, **{ 'timestamp': timeStamp }}
+        signature = generateSignature(
+            {'body': payload, 'apiSecret': self.client['apiSecret']})
+        res = self.httpClient.requestV2({
+            'method': 'POST',
+            'apiKey': self.client['apiKey'],
+            'accessToken': self.token,
+            'url': f'{self.baseUrl}',
+            'path': '/rekdana/v1.1/face/recog',
+            'signature': signature.split('.')[2],
+            'timestamp': timeStamp,
+            'data': payload
+        })
+        return responseRDN(params={'res': res, 'resObj': 'faceRecognitionResponse'})
+        
     def registerInvestor(self, params={
         'companyId',
-        # 'parenCompanyId',
-        # 'uuidFaceRecog',
+        'parenCompanyId',
+        'uuidFaceRecog',
         'title',
         'firstName',
         'middleName',
         'lastName',
         'optNPWP',
+        'npwpNum',
         'nationality',
         'domicileCountry',
         'religion',
@@ -29,6 +92,7 @@ class RDN():
         'motherMaidenName',
         'jobCode',
         'education',
+        'idType',
         'idNumber',
         'idIssuingCity',
         'idExpiryDate',
@@ -70,6 +134,7 @@ class RDN():
             'middleName': params['middleName'],
             'lastName': params['lastName'],
             'optNPWP': params['optNPWP'],
+            'npwpNum': params['npwpNum'],
             'nationality': params['nationality'],
             'domicileCountry': params['domicileCountry'],
             'religion': params['religion'],
@@ -80,6 +145,7 @@ class RDN():
             'motherMaidenName': params['motherMaidenName'],
             'jobCode': params['jobCode'],
             'education': params['education'],
+            'idType': params['idType'],
             'idNumber': params['idNumber'],
             'idIssuingCity': params['idIssuingCity'],
             'idExpiryDate': params['idExpiryDate'],
@@ -122,4 +188,6 @@ class RDN():
             'data': payload
         })
         return responseRDN(params={'res': res, 'resObj': 'registerInvestorResponse'})
+    
+
     
