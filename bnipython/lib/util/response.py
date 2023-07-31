@@ -31,9 +31,11 @@ def responseSnapBI(params={'res'}):
             f"\033[91m {params['res']['responseCode']} : {params['res']['responseMessage']} \033[0m")
     return params['res']
 
-def responseRDN(params={'res'}):
+def responseRDN(params={'res', 'resObj'}):
     try:
-        if (params['res']['response']['responseCode'] != '0001'):
+        if (params['resObj'] == 'checkSIDResponse'):
+            return params['res']    
+        elif (params['res']['response']['responseCode'] != '0001'):
             code = params['res']['response']['responseCode']
             responseMessage = params['res']['response']['responseMessage']
             errorMessage = params['res']['response']['errorMessage']
