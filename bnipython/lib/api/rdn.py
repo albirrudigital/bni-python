@@ -68,7 +68,7 @@ class RDN():
             'path': '/rekdana/v1.1/face/recog',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'faceRecognitionResponse'})
         
@@ -185,7 +185,7 @@ class RDN():
             'path': '/rdn/v2.1/register/investor',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'registerInvestorResponse'})
     
@@ -224,7 +224,7 @@ class RDN():
             'path': '/rdn/v2.1/checksid',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'checkSIDResponse'})
     
@@ -266,7 +266,7 @@ class RDN():
             'path': '/rdn/v2.1/register/investor/account',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'registerInvestorAccountResponse'})
     
@@ -311,7 +311,7 @@ class RDN():
             'path': '/rdn/v2.1/senddatastatic',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'sendDataStaticResponse'})
     
@@ -342,7 +342,7 @@ class RDN():
             'path': '/rdn/v2.1/inquiry/account/info',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'inquiryAccountInfoResponse'})
     
@@ -373,7 +373,7 @@ class RDN():
             'path': '/rdn/v2.1/inquiry/account/balance',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'inquiryAccountBalanceResponse'})
     
@@ -404,7 +404,7 @@ class RDN():
             'path': '/rdn/v2.1/inquiry/account/history',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'inquiryAccountHistoryResponse'})
     
@@ -443,7 +443,7 @@ class RDN():
             'path': '/rdn/v2.1/payment/transfer',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'paymentUsingTransferResponse'})
     
@@ -474,7 +474,7 @@ class RDN():
             'path': '/rdn/v2.1/inquiry/payment/status',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'inquiryPaymentStatusResponse'})
     
@@ -523,7 +523,7 @@ class RDN():
             'path': '/rdn/v2.1/payment/clearing',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'paymentUsingClearingResponse'})
     
@@ -572,7 +572,7 @@ class RDN():
             'path': '/rdn/v2.1/payment/rtgs',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'paymentUsingRTGSResponse'})
         
@@ -607,7 +607,7 @@ class RDN():
             'path': '/rdn/v2.1/inquiry/interbank/account',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'inquiryInterbankAccountResponse'})
     
@@ -648,6 +648,6 @@ class RDN():
             'path': '/rdn/v2.1/payment/interbank',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
-            'data': payload
+            'data': {'request': payload['request']}
         })
         return responseRDN(params={'res': res, 'resObj': 'paymentUsingInterbankResponse'})
