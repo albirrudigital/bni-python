@@ -13,19 +13,45 @@ class TestRDL(unittest.TestCase):
         'apiSecret': constants.API_SECRET_ENCRYPT
     })
 
+    # def testFaceRecog(self):
+    #     print('\n==============================================')
+    #     rekening_dana_nasabah = RDL(self.client)
+    #     res = rekening_dana_nasabah.faceRecognition({
+    #         'companyId': 'SANDBOX',
+    #         'parentCompanyId': 'STI_CHS',
+    #         'firstName': 'MOHAMMAD',  
+    #         'middleName': 'BAQER',  
+    #         'lastName': 'ZALQAD', 
+    #         'idNumber': '0141111121260118', 
+    #         'birthDate': '29-09-2021', 
+    #         'birthPlace': 'BANDUNG', 
+    #         'gender': 'M', 
+    #         'cityAddress': 'Bandung', 
+    #         'stateProvAddress': 'Jawa Barat', 
+    #         'addressCountry': 'ID', 
+    #         'streetAddress1': 'bandung', 
+    #         'streetAddress2': 'bandung', 
+    #         'postCodeAddress': '40914', 
+    #         'country': 'ID',
+    #         'selfiePhoto': '29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuP'
+    #     })
+    #     data = res['response']['responseCode']
+    #     self.assertEqual(data, '0001')
+    #     print('\033[92m should return responseCode 0001 \033[0m')
+        
     def testRegisterInvestor(self):
         print('\n==============================================')
         rekening_dana_nasabah = RDL(self.client)
         res = rekening_dana_nasabah.registerInvestor({
             'companyId': 'SANDBOX',
             'parentCompanyId': 'STI_CHS',
-            'uuidFaceRecog': '40FCB72E71D35C81',
+            'uuidFaceRecog': '492F33851D634CFB',
             'title': '01',
             'firstName': 'Agus',
             'middleName': '',
             'lastName': 'Saputra',
             'optNPWP': '1',
-            'npwpNum': '001058893408123',
+            'NPWPNum': '001058893408123',
             'nationality': 'ID',
             'domicileCountry': 'ID',
             'religion': '2',
@@ -33,7 +59,7 @@ class TestRDL(unittest.TestCase):
             'birthDate': '14081982',
             'gender': 'M',
             'isMarried': 'S',
-            'motherMaidenName': 'Dina Maryti',
+            'motherMaidenName': 'Dina Maryati',
             'jobCode': '01',
             'education': '07',
             'idType': '01',
@@ -56,10 +82,169 @@ class TestRDL(unittest.TestCase):
             'email': 'agus.saputra@gmail.com',
             'monthlyIncome': '8000000',
             'branchOpening': '0259',
+            'institutionName': 'PT. BNI SECURITIES',
+            'sid': 'IDD280436215354',
             'employerName': 'Salman',
             'employerAddDet': 'St Baker',
             'employerAddCity': 'Arrandelle',
-            'jobDesc': '13',
+            'jobDesc': 'Pedagang',
+            'ownedBankAccNo': '0337109074',
+            'idIssuingDate': '10122008'
+        })
+        data = res['response']['responseCode']
+        self.assertEqual(data, '0001')
+        print('\033[92m should return responseCode 0001 \033[0m')
+    
+    def testRegisterInvestorAccount(self):
+        print('\n==============================================')
+        rekening_dana_nasabah = RDL(self.client)
+        res = rekening_dana_nasabah.registerInvestorAccount({
+            'companyId': 'SANDBOX',
+            'parentCompanyId': 'STI_CHS',
+            'cifNumber': '9100749959', 
+            'currency': 'IDR', 
+            'openAccountReason': '2', 
+            'sourceOfFund': '1', 
+            'branchId': '0259',
+            'bnisId': '19050813401', 
+            'sre': 'NI001CX5U00109'
+        })
+        data = res['response']['responseCode']
+        self.assertEqual(data, '0001')
+        print('\033[92m should return responseCode 0001 \033[0m')
+
+    def testInquiryAccountInfo(self):
+        print('\n==============================================')
+        rekening_dana_nasabah = RDL(self.client)
+        res = rekening_dana_nasabah.inquiryAccountInfo({
+            'companyId': 'SANDBOX', 
+            'parentCompanyId': 'STI_CHS',
+            'accountNumber': '0115476117'
+        })
+        data = res['response']['responseCode']
+        self.assertEqual(data, '0001')
+        print('\033[92m should return responseCode 0001 \033[0m')
+
+    def testInquiryAccountBalance(self):
+        print('\n==============================================')
+        rekening_dana_nasabah = RDL(self.client)
+        res = rekening_dana_nasabah.inquiryAccountBalance({
+            'companyId': 'SANDBOX', 
+            'parentCompanyId': 'STI_CHS',
+            'accountNumber': '0115476117'
+        })
+        data = res['response']['responseCode']
+        self.assertEqual(data, '0001')
+        print('\033[92m should return responseCode 0001 \033[0m')
+
+    def testInquiryAccountHistory(self):
+        print('\n==============================================')
+        rekening_dana_nasabah = RDL(self.client)
+        res = rekening_dana_nasabah.inquiryAccountHistory({
+            'companyId': 'SANDBOX', 
+            'parentCompanyId': 'STI_CHS',
+            'accountNumber': '0115476117'
+        })
+        data = res['response']['responseCode']
+        self.assertEqual(data, '0001')
+        print('\033[92m should return responseCode 0001 \033[0m')
+
+    def testPaymentUsingTransfer(self):
+        print('\n==============================================')
+        rekening_dana_nasabah = RDL(self.client)
+        res = rekening_dana_nasabah.paymentUsingTransfer({
+            'companyId': 'SANDBOX', 
+            'parentCompanyId': 'STI_CHS',
+            'accountNumber': '0115476117', 
+            'beneficiaryAccountNumber': '0115471119', 
+            'currency': 'IDR',
+            'amount': '11500',
+            'remark': 'Test RDL'
+        })
+        data = res['response']['responseCode']
+        self.assertEqual(data, '0001')
+        print('\033[92m should return responseCode 0001 \033[0m')
+
+    def testInquiryPaymentStatus(self):
+        print('\n==============================================')
+        rekening_dana_nasabah = RDL(self.client)
+        res = rekening_dana_nasabah.inquiryPaymentStatus({
+            'companyId': 'SANDBOX', 
+            'parentCompanyId': 'STI_CHS',
+            'requestedUuid': 'E8C6E0027F6E429F'
+        })
+        data = res['response']['responseCode']
+        self.assertEqual(data, '0001')
+        print('\033[92m should return responseCode 0001 \033[0m')
+
+    def testPaymentUsingClearing(self):
+        print('\n==============================================')
+        rekening_dana_nasabah = RDL(self.client)
+        res = rekening_dana_nasabah.paymentUsingClearing({
+            'companyId': 'SANDBOX', 
+            'parentCompanyId': 'STI_CHS',
+            'accountNumber': '0115476117', 
+            'beneficiaryAccountNumber': '3333333333', 
+            'beneficiaryAddress1': 'Jakarta', 
+            'beneficiaryAddress2': '', 
+            'beneficiaryBankCode': '140397', 
+            'beneficiaryName': 'Panji Samudra', 
+            'currency': 'IDR',
+            'amount': '15000',
+            'remark': 'Test kliring',
+            'chargingType': 'OUR'
+        })
+        data = res['response']['responseCode']
+        self.assertEqual(data, '0001')
+        print('\033[92m should return responseCode 0001 \033[0m')
+
+    def testPaymentUsingRTGS(self):
+        print('\n==============================================')
+        rekening_dana_nasabah = RDL(self.client)
+        res = rekening_dana_nasabah.paymentUsingRTGS({
+            'companyId': 'NI001', 
+            'parentCompanyId': 'KSEI',
+            'accountNumber': '0115476117',
+            'beneficiaryAccountNumber': '3333333333',
+            'beneficiaryAddress1': 'Jakarta',
+            'beneficiaryAddress2': '',
+            'beneficiaryBankCode': 'CENAIDJA',
+            'beneficiaryName': 'Panji Samudra',
+            'currency': 'IDR',
+            'amount': '150000000',
+            'remark': 'Test rtgs',
+            'chargingType': 'OUR'
+        })
+        data = res['response']['responseCode']
+        self.assertEqual(data, '0001')
+        print('\033[92m should return responseCode 0001 \033[0m')
+
+    def testInquiryInterbankAccount(self):
+        print('\n==============================================')
+        rekening_dana_nasabah = RDL(self.client)
+        res = rekening_dana_nasabah.inquiryInterbankAccount({
+            'companyId': 'NI001', 
+            'parentCompanyId': 'KSEI',
+            'accountNumber': '0115476117',
+            'beneficiaryBankCode': '013',
+            'beneficiaryAccountNumber': '01300000'
+        })
+        data = res['response']['responseCode']
+        self.assertEqual(data, '0001')
+        print('\033[92m should return responseCode 0001 \033[0m')
+
+    def testPaymentUsingInterbank(self):
+        print('\n==============================================')
+        rekening_dana_nasabah = RDL(self.client)
+        res = rekening_dana_nasabah.paymentUsingInterbank({
+            'companyId': 'SANDBOX', 
+            'parentCompanyId': 'STI_CHS',
+            'accountNumber': '0115476117', 
+            'beneficiaryAccountNumber': '3333333333', 
+            'beneficiaryAccountName': 'KEN AROK', 
+            'beneficiaryBankCode': '014', 
+            'beneficiaryBankName': 'BANK BCA', 
+            'amount': '15000'
         })
         data = res['response']['responseCode']
         self.assertEqual(data, '0001')

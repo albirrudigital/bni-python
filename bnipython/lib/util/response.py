@@ -53,6 +53,8 @@ def responseRDL(params={'res', 'resObj'}):
     try:
         if (params['resObj'] == 'checkSIDResponse'):
             return params['res']    
+        elif (params['resObj'] == 'sendDataStaticResponse'):
+            return params['res'] 
         elif (params['res']['response']['responseCode'] != '0001'):
             code = params['res']['response']['responseCode']
             responseMessage = params['res']['response']['responseMessage']
