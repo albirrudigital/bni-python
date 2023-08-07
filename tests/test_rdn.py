@@ -13,31 +13,30 @@ class TestRDN(unittest.TestCase):
         'apiSecret': constants.API_SECRET_ENCRYPT
     })
 
-    # def testFaceRecog(self):
-    #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDN(self.client)
-    #     res = rekening_dana_nasabah.faceRecognition({
-    #         'companyId': 'SANDBOX',
-    #         'parentCompanyId': 'STI_CHS',
-    #         'firstName': 'MOHAMMAD',  
-    #         'middleName': 'BAQER',  
-    #         'lastName': 'ZALQAD', 
-    #         'idNumber': '0141111121260118', 
-    #         'birthDate': '29-09-2021', 
-    #         'birthPlace': 'BANDUNG', 
-    #         'gender': 'M', 
-    #         'cityAddress': 'Bandung', 
-    #         'stateProvAddress': 'Jawa Barat', 
-    #         'addressCountry': 'ID', 
-    #         'streetAddress1': 'bandung', 
-    #         'streetAddress2': 'bandung', 
-    #         'postCodeAddress': '40914', 
-    #         'country': 'ID',
-    #         'selfiePhoto': '29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuP'
-    #     })
-    #     data = res['response']['responseCode']
-    #     self.assertEqual(data, '0001')
-    #     print('\033[92m should return responseCode 0001 \033[0m')
+    def testFaceRecog(self):
+        print('\n==============================================')
+        rekening_dana_nasabah = RDN(self.client)
+        res = rekening_dana_nasabah.faceRecognition({
+            'companyId': 'SANDBOX',
+            'parentCompanyId': 'STI_CHS',
+            'firstName': 'MOHAMMAD',
+            'middleName': 'BAQER',
+            'lastName': 'ZALQAD',
+            'idNumber': '0141111121260118',
+            'birthDate': '29-09-2021',
+            'birthPlace': 'BANDUNG',
+            'gender': 'M',
+            'cityAddress': 'Bandung',
+            'stateProvAddress': 'Jawa Barat',
+            'addressCountry': 'ID',
+            'streetAddress1': 'bandung',
+            'streetAddress2': 'bandung',
+            'postCodeAddress': '40914',
+            'country': 'ID',
+            'selfiePhoto': '29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuP'})  
+        data = res['response']['responseCode']
+        self.assertEqual(data, '0001')
+        print('\033[92m should return responseCode 0001 \033[0m')
         
     def testRegisterInvestor(self):
         print('\n==============================================')
