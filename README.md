@@ -378,7 +378,7 @@ transferInterBank = snap.transferInterBank({
 
 ```
 
-### 2.2.B RDN
+### 2.3.C RDN
 Create `RDN` class object
 ```python
 from bnipython import BNIClient, RDN
