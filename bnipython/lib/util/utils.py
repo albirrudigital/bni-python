@@ -7,6 +7,7 @@ import random
 import math
 import string
 import random
+import time
 from OpenSSL import crypto
 from datetime import datetime
 
@@ -75,3 +76,76 @@ def generateUUID(length=16):
     characters = string.ascii_uppercase + string.digits
     uuid = ''.join(random.choice(characters) for _ in range(length))
     return uuid
+
+TIME_DIFF_LIMIT = 480
+
+def encrypt(json_data, cid, secret):
+    t = str(int(time.time()))[::-1]
+    return doubleEncrypt(t + "." + json.dumps(json_data), cid, secret)
+
+def decrypt(hased_string, cid, secret):
+    parseStr = doubleDecrypt(hased_string, cid, secret)
+    data = parseStr.split(".", 1)
+    if len(data) == 2:
+        strrevtime = data[0][::-1]
+        if tsDiff(int(strrevtime)):
+            return data[1]
+    return None
+
+def tsDiff(ts):
+    return math.fabs(ts - time.time()) <= TIME_DIFF_LIMIT
+
+def doubleEncrypt(stringObj, cid, secret):
+    result = ''
+    result = enc(stringObj, cid)
+    result = enc(result, secret)
+    # result = result.encode('base64')
+    # result = base64.b64encode(result)
+    result = base64.b64encode(bytes(result, 'utf-8'))
+    result = str(result, "utf-8")
+    result = result.rstrip('=')
+    # result = result.replace(b'=',b'')
+    result = result.translate(str.maketrans('+/', '-_'))
+    # result = result.replace(b'+/',b'-_')
+    return result
+
+def enc(string, key):
+    result = ""
+    strls = len(string)
+    strlk = len(key)
+    for i in range(0, strls):
+        char = string[i:i+1]
+        st = (i % strlk) - 1
+        xlen = None if st < 0 else st+1
+        keychar = key[st:xlen]
+        char = chr((ord(char) + ord(keychar)) % 128)
+        result += char
+
+    return result
+
+def doubleDecrypt(string, cid, secret):
+    ceils = math.ceil(len(string) / 4.0) * 4
+    while (len(string) < ceils):
+        string += "="
+
+    string = string.replace('-', '+').replace('_', '/')
+    result = base64.b64decode(bytes(string, 'utf-8'))
+    # result = string.decode('base64')
+    result = dec(result, cid)
+    result = dec(result, secret)
+    return result
+
+@staticmethod
+def dec(string, key):
+    result = ''
+    strls = len(string)
+    strlk = len(key)
+    for i in range(0, strls):
+        char = string[i:i+1]
+        st = (i % strlk) - 1
+        xlen = None if st < 0 else st+1
+        keychar = key[st:xlen]
+        char = chr((ord(char) - ord(keychar) + 256) % 128)
+        result += char
+
+    return result

@@ -378,6 +378,257 @@ transferInterBank = snap.transferInterBank({
 
 ```
 
+### 2.2.B RDN
+Create `RDN` class object
+```python
+from bnipython import BNIClient, RDN
+
+# Create Client instance
+client = BNIClient({
+  'env': False,
+  'clientId': '{your-client-id}',
+  'clientSecret': '{your-client-secret}',
+  'apiKey': '{your-api-key}',
+  'apiSecret': '{your-api-secret}',
+  'appName': '{your-app-name}'
+})
+```
+
+Available methods for `RDN` class
+
+#### Face Recog
+```python
+# return as Object
+faceRecognition = RDN.faceRecognition({
+  'companyId': 'SANDBOX',
+  'parentCompanyId': 'STI_CHS',
+  'firstName': 'MOHAMMAD',
+  'middleName': 'BAQER',
+  'lastName': 'ZALQAD',
+  'idNumber': '0141111121260118',
+  'birthDate': '29-09-2021',
+  'birthPlace': 'BANDUNG',
+  'gender': 'M',
+  'cityAddress': 'Bandung',
+  'stateProvAddress': 'Jawa Barat',
+  'addressCountry': 'ID',
+  'streetAddress1': 'bandung',
+  'streetAddress2': 'bandung',
+  'postCodeAddress': '40914',
+  'country': 'ID',
+  'selfiePhoto': '29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuP'
+})
+```
+
+#### Register Investor
+```python
+# return as Object
+registerInvestor = RDN.registerInvestor({
+  'companyId': 'SANDBOX',
+  'parentCompanyId': 'STI_CHS',
+  'uuidFaceRecog': '492F33851D634CFB',
+  'title': '01',
+  'firstName': 'Agus',
+  'middleName': '',
+  'lastName': 'Saputra',
+  'optNPWP': '1',
+  'NPWPNum': '001058893408123',
+  'nationality': 'ID',
+  'domicileCountry': 'ID',
+  'religion': '2',
+  'birthPlace': 'Semarang',
+  'birthDate': '14081982',
+  'gender': 'M',
+  'isMarried': 'S',
+  'motherMaidenName': 'Dina Maryati',
+  'jobCode': '01',
+  'education': '7',
+  'idType': '01',
+  'idNumber': '4147016201959998',
+  'idIssuingCity': 'Jakarta Barat',
+  'idExpiryDate': '26102099',
+  'addressStreet': 'Jalan Mawar Melati',
+  'addressRtRwPerum': '003009Sentosa',
+  'addressKel': 'Cengkareng Barat',
+  'addressKec': 'Cengkareng/Jakarta Barat',
+  'zipCode': '11730',
+  'homePhone1': '0214',
+  'homePhone2': '7459',
+  'officePhone1': '',
+  'officePhone2': '',
+  'mobilePhone1': '0812',
+  'mobilePhone2': '12348331',
+  'faxNum1': '',
+  'faxNum2': '',
+  'email': 'agus.saputra@gmail.com',
+  'monthlyIncome': '8000000',
+  'branchOpening': '0259',
+  'institutionName': 'PT. BNI SECURITIES',
+  'sid': 'IDD280436215354',
+  'employerName': 'Salman',
+  'employerAddDet': 'St Baker',
+  'employerAddCity': 'Arrandelle',
+  'jobDesc': 'Pedagang',
+  'ownedBankAccNo': '0337109074',
+  'idIssuingDate': '10122008'
+})
+```
+
+#### CheckSID
+```python
+# return as Object
+checkSID = RDN.checkSID({
+  'companyId': 'SANDBOX',
+  'parentCompanyId': 'STI_CHS',
+  'participantId': 'NI001',
+  'sidNumber': 'IDD1206M9527805', 
+  'accountNumberOnKsei': 'NI001CRKG00146', 
+  'branchCode': '0259',
+  'ack': 'Y'
+})
+```
+
+#### Register Investor Account
+```python
+# return as Object
+registerInvestorAccount = RDN.registerInvestorAccount({
+  'companyId': 'SANDBOX',
+  'parentCompanyId': 'STI_CHS',
+  'cifNumber': '9100749959', 
+  'currency': 'IDR', 
+  'openAccountReason': '2', 
+  'sourceOfFund': '1', 
+  'branchId': '0259',
+  'bnisId': '19050813401', 
+  'sre': 'NI001CX5U00109'
+})
+```
+
+#### Send Data Static
+```python
+# return as Object
+sendDataStatic = RDN.sendDataStatic({
+  'companyId': 'SPS App', 
+  'parentCompanyId': 'KSEI',
+  'participantCode': 'NI001', 
+  'participantName': 'PT. BNI SECURITIES', 
+  'investorName': 'SUMARNO',
+  'investorCode': 'IDD250436742277', 
+  'investorAccountNumber': 'NI001042300155',
+  'bankAccountNumber': '242345393', 
+  'activityDate': '20180511',
+  'activity': 'O'
+})
+```
+
+#### Inquiry Account Info
+```python
+# return as Object
+inquiryAccountInfo = RDN.inquiryAccountInfo({
+  'companyId': 'SANDBOX', 
+  'parentCompanyId': 'STI_CHS',
+  'accountNumber': '0115476117'
+})
+```
+
+#### Inquiry Account Balance
+```python
+# return as Object
+inquiryAccountInfo = RDN.inquiryAccountInfo({
+  'companyId': 'SANDBOX', 
+  'parentCompanyId': 'STI_CHS',
+  'accountNumber': '0115476117'
+})
+```
+
+#### Payment Using Transfer
+```python
+# return as Object
+paymentUsingTransfer = RDN.paymentUsingTransfer({
+  'companyId': 'SANDBOX', 
+  'parentCompanyId': 'STI_CHS',
+  'accountNumber': '0115476117', 
+  'beneficiaryAccountNumber': '0115471119', 
+  'currency': 'IDR',
+  'amount': '11500',
+  'remark': 'Test RDN'
+})
+```
+
+#### Inquiry Payment Status
+```python
+# return as Object
+inquiryPaymentStatus = RDN.inquiryPaymentStatus({
+ 'companyId': 'SANDBOX', 
+            'parentCompanyId': 'STI_CHS',
+            'requestedUuid': 'E8C6E0027F6E429F'
+})
+```
+
+#### Payment Using Clearing
+```python
+# return as Object
+paymentUsingClearing = RDN.paymentUsingClearing({
+  'companyId': 'SANDBOX', 
+  'parentCompanyId': 'STI_CHS',
+  'accountNumber': '0115476117', 
+  'beneficiaryAccountNumber': '3333333333', 
+  'beneficiaryAddress1': 'Jakarta', 
+  'beneficiaryAddress2': '', 
+  'beneficiaryBankCode': '140397', 
+  'beneficiaryName': 'Panji Samudra', 
+  'currency': 'IDR',
+  'amount': '15000',
+  'remark': 'Test kliring',
+  'chargingType': 'OUR'
+})
+```
+
+#### Payment Using RTGS
+```python
+# return as Object
+paymentUsingRTGS = RDN.paymentUsingRTGS({
+  'companyId': 'NI001', 
+  'parentCompanyId': 'KSEI',
+  'accountNumber': '0115476117',
+  'beneficiaryAccountNumber': '3333333333',
+  'beneficiaryAddress1': 'Jakarta',
+  'beneficiaryAddress2': '',
+  'beneficiaryBankCode': 'CENAIDJA',
+  'beneficiaryName': 'Panji Samudra',
+  'currency': 'IDR',
+  'amount': '150000000',
+  'remark': 'Test rtgs',
+  'chargingType': 'OUR'
+})
+```
+
+#### Inquiry Inter Bank Account
+```python
+# return as Object
+inquiryInterbankAccount = RDN.inquiryInterbankAccount({
+  'companyId': 'NI001', 
+  'parentCompanyId': 'KSEI',
+  'accountNumber': '0115476117',
+  'beneficiaryBankCode': '013',
+  'beneficiaryAccountNumber': '01300000'
+})
+```
+
+#### Payment Using Inter Bank
+```python
+# return as Object
+paymentUsingInterbank = RDN.paymentUsingInterbank({
+  'companyId': 'SANDBOX', 
+  'parentCompanyId': 'STI_CHS',
+  'accountNumber': '0115476117', 
+  'beneficiaryAccountNumber': '3333333333', 
+  'beneficiaryAccountName': 'KEN AROK', 
+  'beneficiaryBankCode': '014', 
+  'beneficiaryBankName': 'BANK BCA', 
+  'amount': '15000'
+})
+```
 ## Get help
 
 * [Digital Services](https://digitalservices.bni.co.id/en/)
