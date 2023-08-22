@@ -242,19 +242,20 @@ class RDN():
         'sre'
     }):
         timeStamp = getTimestamp()
+        uuid = generateUUID()
         payload = {}
         payload['request'] = {}
         payload['request'] = {
             'header': {
                 'companyId': params['companyId'],
                 'parentCompanyId': params['parentCompanyId'],
-                'requestUuid': generateUUID()
+                'requestUuid': uuid
             },
             'cifNumber': params['cifNumber'],
             'currency': params['currency'],
             'openAccountReason': params['openAccountReason'],
             'sourceOfFund': params['sourceOfFund'],
-            'branchId': params['branchId'],        
+            'branchId': uuid,        
             'sre': params['sre'],
         }
         payload = {**payload, **{ 'timestamp': timeStamp }}
