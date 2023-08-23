@@ -18,22 +18,23 @@ class TestRDL(unittest.TestCase):
         rekening_dana_nasabah = RDL(self.client)
         res = rekening_dana_nasabah.faceRecognition({
             'companyId': 'SANDBOX',
-            'parentCompanyId': 'STI_CHS',
-            'firstName': 'MOHAMMAD',
-            'middleName': 'BAQER',
+            'parentCompanyId': 'STI_CHS', # optional
+            'firstName': 'MOHAMMAD', # optional
+            'middleName': 'BAQER', # optional
             'lastName': 'ZALQAD',
-            'idNumber': '0141111121260118',
-            'birthDate': '29-09-2021',
+            'idNumber': '0141111121260118', # Identity Number (KTP only)
+            'birthDate': '29-09-2021', # dd-MM-yyyy
             'birthPlace': 'BANDUNG',
-            'gender': 'M',
+            'gender': 'M', # "M" or "F"
             'cityAddress': 'Bandung',
             'stateProvAddress': 'Jawa Barat',
-            'addressCountry': 'ID',
+            'addressCountry': 'ID', # e.g.: “ID”
             'streetAddress1': 'bandung',
             'streetAddress2': 'bandung',
             'postCodeAddress': '40914',
-            'country': 'ID',
-            'selfiePhoto': '29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuP'})  
+            'country': 'ID', # e.g.: “ID”
+            'selfiePhoto': '29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuP' # Base64 encoded selfie photo
+        })  
         data = res['response']['responseCode']
         self.assertEqual(data, '0001')
         print('\033[92m should return responseCode 0001 \033[0m')
