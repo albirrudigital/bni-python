@@ -18,22 +18,22 @@ class TestRDL(unittest.TestCase):
         rekening_dana_nasabah = RDL(self.client)
         res = rekening_dana_nasabah.faceRecognition({
             'companyId': 'SANDBOX',
-            'parentCompanyId': 'STI_CHS', # optional
-            'firstName': 'MOHAMMAD', # optional
-            'middleName': 'BAQER', # optional
+            'parentCompanyId': 'STI_CHS',
+            'firstName': 'MOHAMMAD', 
+            'middleName': 'BAQER', 
             'lastName': 'ZALQAD',
-            'idNumber': '0141111121260118', # Identity Number (KTP only)
-            'birthDate': '29-09-2021', # dd-MM-yyyy
+            'idNumber': '0141111121260118',
+            'birthDate': '29-09-2021', 
             'birthPlace': 'BANDUNG',
-            'gender': 'M', # "M" or "F"
+            'gender': 'M',
             'cityAddress': 'Bandung',
             'stateProvAddress': 'Jawa Barat',
-            'addressCountry': 'ID', # e.g.: “ID”
+            'addressCountry': 'ID', 
             'streetAddress1': 'bandung',
             'streetAddress2': 'bandung',
             'postCodeAddress': '40914',
-            'country': 'ID', # e.g.: “ID”
-            'selfiePhoto': '29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuP' # Base64 encoded selfie photo
+            'country': 'ID', 
+            'selfiePhoto': '29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuP' 
         })  
         data = res['response']['responseCode']
         self.assertEqual(data, '0001')

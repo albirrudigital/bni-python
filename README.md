@@ -396,7 +396,7 @@ client = BNIClient({
 
 Available methods for `RDN` class
 
-#### Face Recog
+#### Face Recognition
 ```python
 # return as Object
 faceRecognition = RDN.faceRecognition({
@@ -431,7 +431,7 @@ registerInvestor = RDN.registerInvestor({
   'firstName': 'Agus', # e.g.: "Iko"
   'middleName': '', # optional
   'lastName': 'Saputra', # e.g.: "Wirya"
-  'optNPWP': '1', # "1"
+  'optNPWP': '1', # “1” or “0” (Default “1”)
   'NPWPNum': '001058893408123', # e.g.: "475519484101000"
   'nationality': 'ID', # e.g.: "ID"
   'domicileCountry': 'ID', # e.g.: "ID"
@@ -629,6 +629,239 @@ paymentUsingInterbank = RDN.paymentUsingInterbank({
   'amount': '15000' # Total payment/transfer
 })
 ```
+
+### 2.4.C RDL
+Create `RDL` class object
+```python
+from bnipython import BNIClient, RDL
+
+# Create Client instance
+client = BNIClient({
+  'env': False,
+  'clientId': '{your-client-id}',
+  'clientSecret': '{your-client-secret}',
+  'apiKey': '{your-api-key}',
+  'apiSecret': '{your-api-secret}',
+  'appName': '{your-app-name}'
+})
+```
+Available methods for `RDL` class
+
+#### Face Recognition
+```python
+# return as Object
+faceRecognition = RDL.faceRecognition({
+  'companyId': 'SANDBOX',
+  'parentCompanyId': 'STI_CHS', # optional
+  'firstName': 'MOHAMMAD', # optional
+  'middleName': 'BAQER', # optional
+  'lastName': 'ZALQAD', 
+  'idNumber': '0141111121260118', # Identity Number (KTP only)
+  'birthDate': '29-09-2021', # dd-mm-yyyy
+  'birthPlace': 'BANDUNG', # e.g. : “Semarang”
+  'gender': 'M', # "M" or "F"
+  'cityAddress': 'Bandung',
+  'stateProvAddress': 'Jawa Barat',
+  'addressCountry': 'ID', # e.g.: “ID”
+  'streetAddress1': 'bandung',
+  'streetAddress2': 'bandung',
+  'postCodeAddress': '40914',
+  'country': 'ID', # e.g.: “ID”
+  'selfiePhoto': '29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuP' # Base64 encoded selfie photo
+})
+```
+
+#### Register Investor
+```python
+# return as Object
+registerInvestor = RDL.registerInvestor({
+  'companyId': 'SANDBOX', # Registered participan id from KSEI
+  'parentCompanyId': 'STI_CHS', # optional
+  'uuidFaceRecog': '492F33851D634CFB', # RequestUuid successed value from Face Recognition API (KYC valid)
+  'title': '01', 
+  'firstName': 'Agus', # e.g.: "Iko"
+  'middleName': '', # optional
+  'lastName': 'Saputra', # e.g.: "Wirya"
+  'optNPWP': '1',  # “1” or “0” (Default “1”)
+  'NPWPNum': '001058893408123', # e.g.: "475519484101000"
+  'nationality': 'ID', # e.g.: "ID"
+  'domicileCountry': 'ID', # e.g.: "ID"
+  'religion': '2', 
+  'birthPlace': 'Semarang', # e.g.: "Semarang"
+  'birthDate': '14081982', # e.g.: "ddMMyyyy"
+  'gender': 'M', # "M" or "F"
+  'isMarried': 'S',
+  'motherMaidenName': 'Dina Maryati', # Mother’s name, e.g.: "Dina Maryati"
+  'jobCode': '01',
+  'education': '07',
+  'idType': '01', # For WNI, fill with "01" (KTP). For WNA, fill with "03" (Passport)
+  'idNumber': '4147016201959998', # Identity Number (KTP for idType 01, Passport Number for idType 03)
+  'idIssuingCity': 'Jakarta Barat', # KTP issued city, e.g.: "Jakarta Barat"
+  'idExpiryDate': '26102099', # e.g.: "ddMMyyyy"
+  'addressStreet': 'Jalan Mawar Melati',
+  'addressRtRwPerum': '003009Sentosa',
+  'addressKel': 'Cengkareng Barat',
+  'addressKec': 'Cengkareng/Jakarta Barat',
+  'zipCode': '11730', # Postal code, e.g.: "11730"
+  'homePhone1': '0214', # Area code, e.g. 021 (3 - 4 digit) If not exist, fill with "9999"
+  'homePhone2': '7459', # Number after area code (min 4 digit) If not exist, fill with "99999999"
+  'officePhone1': '', # Area code, e.g. 021
+  'officePhone2': '', # Number after area code
+  'mobilePhone1': '0812', # Operator code, e.g. 0812 (4 digit) If not exist, fill with "0899"
+  'mobilePhone2': '12348331', # Number after operator code (min 6 digit) If not exist, fill with "999999"
+  'faxNum1': '', # Area code, e.g. 021
+  'faxNum2': '', # Number after area code
+  'email': 'agus.saputra@gmail.com', # Email address
+  'monthlyIncome': '8000000',
+  'branchOpening': '0259',
+  'institutionName': 'PT. BNI SECURITIES', # PT. BNI SECURITIES
+  'sid': 'IDD280436215354',  # Single Investor ID
+  'employerName': 'Salman',  # Employer Name / Company Name
+  'employerAddDet': 'St Baker', # Employer street address / home street address
+  'employerAddCity': 'Arrandelle', # Employer city address / home city address
+  'jobDesc': 'Pedagang',
+  'ownedBankAccNo': '0337109074', # Investor’s owned bank account
+  'idIssuingDate': '10122008'
+})
+```
+
+#### Register Investor Account
+```python
+# return as Object
+registerInvestorAccount = RDL.registerInvestorAccount({
+  'companyId': 'SANDBOX',≈
+  'parentCompanyId': 'STI_CHS', # optional
+  'cifNumber': '9100749959', # CIF number
+  'currency': 'IDR', # "IDR" or "USD"
+  'openAccountReason': '2', 
+  'sourceOfFund': '1', 
+  'branchId': '0259',
+  'bnisId': '19050813401', # Value = requestUuid.
+  'sre': 'NI001CX5U00109' # No. Sub rekening efek, e.g: “NI001CX5U00109”
+})
+```
+
+#### Inquiry Account Info
+```python
+# return as Object
+inquiryAccountInfo = RDL.inquiryAccountInfo({
+  'companyId': 'SANDBOX', # Registered participan id from KSEI
+  'parentCompanyId': 'STI_CHS', # optional
+  'accountNumber': '0115476117' # Account number
+})
+```
+
+
+#### Inquiry Account Balance
+```python
+# return as Object
+inquiryAccountInfo = RDL.inquiryAccountInfo({
+  'companyId': 'SANDBOX', # Registered participan id from KSEI
+  'parentCompanyId': 'STI_CHS', # optional
+  'accountNumber': '0115476117' # Account number
+})
+```
+
+#### Inquiry Account History
+```python
+# return as Object
+inquiryAccountHistory = RDL.inquiryAccountHistory({
+  'companyId': 'SANDBOX', # Registered participan id from KSEI
+  'parentCompanyId': 'STI_CHS', # optional
+  'accountNumber': '0115476117' # Account number
+})
+```
+
+#### Payment Using Transfer
+```python
+# return as Object
+inquiryAccountHistory = RDL.paymentUsingTransfer({
+  'companyId': 'SANDBOX', # Registered participan id from KSEI
+  'parentCompanyId': 'STI_CHS', # optional
+  'accountNumber': '0115476117', # Account number
+  'beneficiaryAccountNumber': '0115471119', # Transfer/payment receiver account number
+  'currency': 'IDR', # e.g.: “IDR”
+  'amount': '11500', # Total payment/transfer
+  'remark': 'Test RDL' # Recommended for the reconciliation purpose
+})
+```
+
+#### Inquiry Payment Status
+```python
+# return as Object
+inquiryPaymentStatus = RDL.inquiryPaymentStatus({
+  'companyId': 'SANDBOX', # Registered participan id from KSEI
+  'parentCompanyId': 'STI_CHS', # optional
+  'requestedUuid': 'E8C6E0027F6E429F'
+})
+```
+
+#### Payment Using Clearing
+```python
+# return as Object
+paymentUsingClearing = RDL.paymentUsingClearing({
+  'companyId': 'SANDBOX', # Registered participan id from KSEI
+  'parentCompanyId': 'STI_CHS', # optional
+  'accountNumber': '0115476117', #  Transfer/payment provider account number
+  'beneficiaryAccountNumber': '3333333333', # Transfer/payment receiver account number
+  'beneficiaryAddress1': 'Jakarta', # Receiver address, e.g.: "Jakarta"
+  'beneficiaryAddress2': '', # optional
+  'beneficiaryBankCode': '140397', 
+  'beneficiaryName': 'Panji Samudra', # Receiver name
+  'currency': 'IDR', # e.g., “IDR”
+  'amount': '15000', # Total payment/transfer
+  'remark': 'Test kliring', # Recommended for the reconciliation purpose
+  'chargingType': 'OUR'
+})
+```
+
+#### Payment Using RTGS
+```python
+# return as Object
+paymentUsingRTGS = RDL.paymentUsingRTGS({
+  'companyId': 'NI001', # Registered participan id from KSEI
+  'parentCompanyId': 'KSEI', # optional
+  'accountNumber': '0115476117', # Transfer/payment provider account number
+  'beneficiaryAccountNumber': '3333333333', # Transfer/payment receiver account number
+  'beneficiaryAddress1': 'Jakarta', # Receiver address, e.g.: "Jakarta"
+  'beneficiaryAddress2': '', # optional
+  'beneficiaryBankCode': 'CENAIDJA',
+  'beneficiaryName': 'Panji Samudra', # Receiver name
+  'currency': 'IDR', # e.g., “IDR”
+  'amount': '150000000', # Total payment/transfer
+  'remark': 'Test rtgs', # Recommended for the reconciliation purpose
+  'chargingType': 'OUR'
+})
+```
+
+
+#### Inquiry Inter Bank Account
+```python
+# return as Object
+inquiryInterbankAccount = RDL.inquiryInterbankAccount({
+  'companyId': 'NI001', # Registered participan id from KSEI
+  'parentCompanyId': 'KSEI', # optional
+  'accountNumber': '0115476117', # Transfer/payment provider account number
+  'beneficiaryBankCode': '013',
+  'beneficiaryAccountNumber': '01300000' # Transfer/payment receiver account number
+})
+```
+
+#### Payment Using Inter Bank
+```python
+# return as Object
+paymentUsingInterbank = RDL.paymentUsingInterbank({
+  'companyId': 'SANDBOX', # Registered participan id from KSEI
+  'parentCompanyId': 'STI_CHS', # optional
+  'accountNumber': '0115476117', # Transfer/payment provider account number
+  'beneficiaryAccountNumber': '3333333333', # Transfer/payment receiver account number
+  'beneficiaryAccountName': 'KEN AROK', # Get from Inquiry Interbank Account
+  'beneficiaryBankCode': '014', 
+  'beneficiaryBankName': 'BANK BCA',  # Get from Inquiry Interbank Account
+  'amount': '15000' # Total payment/transfer
+})
+```
+
 ## Get help
 
 * [Digital Services](https://digitalservices.bni.co.id/en/)
