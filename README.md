@@ -392,14 +392,14 @@ client = BNIClient({
   'apiSecret': '{your-api-secret}',
   'appName': '{your-app-name}'
 })
+rekening_dana_nasabah = RDN(client)
 ```
-
 Available methods for `RDN` class
 
 #### Face Recognition
 ```python
 # return as Object
-faceRecognition = RDN.faceRecognition({
+faceRecognition = rekening_dana_nasabah.faceRecognition({
   'companyId': 'SANDBOX', 
   'parentCompanyId': 'STI_CHS', # optional
   'firstName': 'MOHAMMAD', # optional
@@ -423,7 +423,7 @@ faceRecognition = RDN.faceRecognition({
 #### Register Investor
 ```python
 # return as Object
-registerInvestor = RDN.registerInvestor({
+registerInvestor = rekening_dana_nasabah.registerInvestor({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'uuidFaceRecog': '492F33851D634CFB', # RequestUuid successed value from Face Recognition API (KYC valid)
@@ -477,7 +477,7 @@ registerInvestor = RDN.registerInvestor({
 #### CheckSID
 ```python
 # return as Object
-checkSID = RDN.checkSID({
+checkSID = rekening_dana_nasabah.checkSID({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS',
   'participantId': 'NI001', # Institution code, e.g.: "NI001"
@@ -491,7 +491,7 @@ checkSID = RDN.checkSID({
 #### Register Investor Account
 ```python
 # return as Object
-registerInvestorAccount = RDN.registerInvestorAccount({
+registerInvestorAccount = rekening_dana_nasabah.registerInvestorAccount({
   'companyId': 'SANDBOX',≈
   'parentCompanyId': 'STI_CHS', # optional
   'cifNumber': '9100749959', # CIF number
@@ -507,7 +507,7 @@ registerInvestorAccount = RDN.registerInvestorAccount({
 #### Send Data Static
 ```python
 # return as Object
-sendDataStatic = RDN.sendDataStatic({
+sendDataStatic = rekening_dana_nasabah.sendDataStatic({
   'companyId': 'SPS App', # Registered participan id from KSEI
   'parentCompanyId': 'KSEI', # optional
   'participantCode': 'NI001', # Institution code, e.g: “NI001”
@@ -524,7 +524,7 @@ sendDataStatic = RDN.sendDataStatic({
 #### Inquiry Account Info
 ```python
 # return as Object
-inquiryAccountInfo = RDN.inquiryAccountInfo({
+inquiryAccountInfo = rekening_dana_nasabah.inquiryAccountInfo({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117' # Account number
@@ -534,7 +534,7 @@ inquiryAccountInfo = RDN.inquiryAccountInfo({
 #### Inquiry Account Balance
 ```python
 # return as Object
-inquiryAccountInfo = RDN.inquiryAccountInfo({
+inquiryAccountInfo = rekening_dana_nasabah.inquiryAccountInfo({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117' # Account number
@@ -544,7 +544,7 @@ inquiryAccountInfo = RDN.inquiryAccountInfo({
 #### Payment Using Transfer
 ```python
 # return as Object
-paymentUsingTransfer = RDN.paymentUsingTransfer({
+paymentUsingTransfer = rekening_dana_nasabah.paymentUsingTransfer({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117', # Transfer/payment provider Account number
@@ -558,7 +558,7 @@ paymentUsingTransfer = RDN.paymentUsingTransfer({
 #### Inquiry Payment Status
 ```python
 # return as Object
-inquiryPaymentStatus = RDN.inquiryPaymentStatus({
+inquiryPaymentStatus = rekening_dana_nasabah.inquiryPaymentStatus({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'requestedUuid': 'E8C6E0027F6E429F'
@@ -568,7 +568,7 @@ inquiryPaymentStatus = RDN.inquiryPaymentStatus({
 #### Payment Using Clearing
 ```python
 # return as Object
-paymentUsingClearing = RDN.paymentUsingClearing({
+paymentUsingClearing = rekening_dana_nasabah.paymentUsingClearing({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117', #  Transfer/payment provider account number
@@ -587,7 +587,7 @@ paymentUsingClearing = RDN.paymentUsingClearing({
 #### Payment Using RTGS
 ```python
 # return as Object
-paymentUsingRTGS = RDN.paymentUsingRTGS({
+paymentUsingRTGS = rekening_dana_nasabah.paymentUsingRTGS({
   'companyId': 'NI001', # Registered participan id from KSEI
   'parentCompanyId': 'KSEI', # optional
   'accountNumber': '0115476117', # Transfer/payment provider account number
@@ -606,7 +606,7 @@ paymentUsingRTGS = RDN.paymentUsingRTGS({
 #### Inquiry Inter Bank Account
 ```python
 # return as Object
-inquiryInterbankAccount = RDN.inquiryInterbankAccount({
+inquiryInterbankAccount = rekening_dana_nasabah.inquiryInterbankAccount({
   'companyId': 'NI001', # Registered participan id from KSEI
   'parentCompanyId': 'KSEI', # optional
   'accountNumber': '0115476117', # Transfer/payment provider account number
@@ -618,7 +618,7 @@ inquiryInterbankAccount = RDN.inquiryInterbankAccount({
 #### Payment Using Inter Bank
 ```python
 # return as Object
-paymentUsingInterbank = RDN.paymentUsingInterbank({
+paymentUsingInterbank = rekening_dana_nasabah.paymentUsingInterbank({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117', # Transfer/payment provider account number
@@ -644,13 +644,14 @@ client = BNIClient({
   'apiSecret': '{your-api-secret}',
   'appName': '{your-app-name}'
 })
+p2p_lending = RDL(client)
 ```
 Available methods for `RDL` class
 
 #### Face Recognition
 ```python
 # return as Object
-faceRecognition = RDL.faceRecognition({
+faceRecognition = p2p_lending.faceRecognition({
   'companyId': 'SANDBOX',
   'parentCompanyId': 'STI_CHS', # optional
   'firstName': 'MOHAMMAD', # optional
@@ -674,7 +675,7 @@ faceRecognition = RDL.faceRecognition({
 #### Register Investor
 ```python
 # return as Object
-registerInvestor = RDL.registerInvestor({
+registerInvestor = p2p_lending.registerInvestor({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'uuidFaceRecog': '492F33851D634CFB', # RequestUuid successed value from Face Recognition API (KYC valid)
@@ -728,7 +729,7 @@ registerInvestor = RDL.registerInvestor({
 #### Register Investor Account
 ```python
 # return as Object
-registerInvestorAccount = RDL.registerInvestorAccount({
+registerInvestorAccount = p2p_lending.registerInvestorAccount({
   'companyId': 'SANDBOX',≈
   'parentCompanyId': 'STI_CHS', # optional
   'cifNumber': '9100749959', # CIF number
@@ -744,7 +745,7 @@ registerInvestorAccount = RDL.registerInvestorAccount({
 #### Inquiry Account Info
 ```python
 # return as Object
-inquiryAccountInfo = RDL.inquiryAccountInfo({
+inquiryAccountInfo = p2p_lending.inquiryAccountInfo({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117' # Account number
@@ -755,7 +756,7 @@ inquiryAccountInfo = RDL.inquiryAccountInfo({
 #### Inquiry Account Balance
 ```python
 # return as Object
-inquiryAccountInfo = RDL.inquiryAccountInfo({
+inquiryAccountInfo = p2p_lending.inquiryAccountInfo({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117' # Account number
@@ -765,7 +766,7 @@ inquiryAccountInfo = RDL.inquiryAccountInfo({
 #### Inquiry Account History
 ```python
 # return as Object
-inquiryAccountHistory = RDL.inquiryAccountHistory({
+inquiryAccountHistory = p2p_lending.inquiryAccountHistory({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117' # Account number
@@ -775,7 +776,7 @@ inquiryAccountHistory = RDL.inquiryAccountHistory({
 #### Payment Using Transfer
 ```python
 # return as Object
-inquiryAccountHistory = RDL.paymentUsingTransfer({
+inquiryAccountHistory = p2p_lending.paymentUsingTransfer({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117', # Account number
@@ -789,7 +790,7 @@ inquiryAccountHistory = RDL.paymentUsingTransfer({
 #### Inquiry Payment Status
 ```python
 # return as Object
-inquiryPaymentStatus = RDL.inquiryPaymentStatus({
+inquiryPaymentStatus = p2p_lending.inquiryPaymentStatus({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'requestedUuid': 'E8C6E0027F6E429F'
@@ -799,7 +800,7 @@ inquiryPaymentStatus = RDL.inquiryPaymentStatus({
 #### Payment Using Clearing
 ```python
 # return as Object
-paymentUsingClearing = RDL.paymentUsingClearing({
+paymentUsingClearing = p2p_lending.paymentUsingClearing({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117', #  Transfer/payment provider account number
@@ -818,7 +819,7 @@ paymentUsingClearing = RDL.paymentUsingClearing({
 #### Payment Using RTGS
 ```python
 # return as Object
-paymentUsingRTGS = RDL.paymentUsingRTGS({
+paymentUsingRTGS = p2p_lending.paymentUsingRTGS({
   'companyId': 'NI001', # Registered participan id from KSEI
   'parentCompanyId': 'KSEI', # optional
   'accountNumber': '0115476117', # Transfer/payment provider account number
@@ -838,7 +839,7 @@ paymentUsingRTGS = RDL.paymentUsingRTGS({
 #### Inquiry Inter Bank Account
 ```python
 # return as Object
-inquiryInterbankAccount = RDL.inquiryInterbankAccount({
+inquiryInterbankAccount = p2p_lending.inquiryInterbankAccount({
   'companyId': 'NI001', # Registered participan id from KSEI
   'parentCompanyId': 'KSEI', # optional
   'accountNumber': '0115476117', # Transfer/payment provider account number
@@ -850,7 +851,7 @@ inquiryInterbankAccount = RDL.inquiryInterbankAccount({
 #### Payment Using Inter Bank
 ```python
 # return as Object
-paymentUsingInterbank = RDL.paymentUsingInterbank({
+paymentUsingInterbank = p2p_lending.paymentUsingInterbank({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117', # Transfer/payment provider account number
