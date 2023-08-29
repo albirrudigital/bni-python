@@ -255,7 +255,8 @@ class RDN():
             'currency': params['currency'],
             'openAccountReason': params['openAccountReason'],
             'sourceOfFund': params['sourceOfFund'],
-            'branchId': uuid,        
+            'branchId': params['branchId'],        
+            'bnisId': params['bnisId'],        
             'sre': params['sre'],
         }
         payload = {**payload, **{ 'timestamp': timeStamp }}
