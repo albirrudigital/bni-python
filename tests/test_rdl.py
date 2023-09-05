@@ -1,15 +1,7 @@
 from bnipython.lib.api.rdl import RDL
 from bnipython.lib.util import constants
 import unittest
-from bnipython import BNIClient, RDL
-client = BNIClient({
-    'env': 'sandbox-dev',
-    'appName': constants.APP_NAME,
-    'clientId': constants.CLIENT_ID_ENCRYPT,
-    'clientSecret': constants.CLIENT_SECRET_ENCRYPT,
-    'apiKey': constants.API_KEY_ENCRYPT,
-    'apiSecret': constants.API_SECRET_ENCRYPT
-})
+from bnipython.lib.bniClient import BNIClient
 
 class TestRDL(unittest.TestCase):
     client = BNIClient({
