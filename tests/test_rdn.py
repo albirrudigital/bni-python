@@ -114,8 +114,8 @@ class TestRDN(unittest.TestCase):
         print('\n==============================================')
         rekening_dana_nasabah = RDN(self.client)
         res = rekening_dana_nasabah.registerInvestorAccount({
-            'companyId': 'SANDBOX',
-            'parentCompanyId': 'STI_CHS',
+            'companyId': 'NI001',
+            'parentCompanyId': 'KSEI',
             'cifNumber': '9100749959', 
             'currency': 'IDR', 
             'openAccountReason': '2', 
@@ -143,7 +143,6 @@ class TestRDN(unittest.TestCase):
             'activityDate': '20180511',
             'activity': 'O'
         })
-        
         data = res['sendResponse']
         self.assertEqual(data, '0')
         print('\033[92m should return responseCode 0001 \033[0m')
@@ -152,8 +151,8 @@ class TestRDN(unittest.TestCase):
         print('\n==============================================')
         rekening_dana_nasabah = RDN(self.client)
         res = rekening_dana_nasabah.inquiryAccountInfo({
-            'companyId': 'SANDBOX', 
-            'parentCompanyId': 'STI_CHS',
+            'companyId': 'NI001', 
+            'parentCompanyId': 'KSEI',
             'accountNumber': '0115476117'
         })
         data = res['response']['responseCode']
@@ -164,8 +163,8 @@ class TestRDN(unittest.TestCase):
         print('\n==============================================')
         rekening_dana_nasabah = RDN(self.client)
         res = rekening_dana_nasabah.inquiryAccountBalance({
-            'companyId': 'SANDBOX', 
-            'parentCompanyId': 'STI_CHS',
+            'companyId': 'NI001', 
+            'parentCompanyId': 'KSEI',
             'accountNumber': '0115476117'
         })
         data = res['response']['responseCode']
@@ -176,8 +175,8 @@ class TestRDN(unittest.TestCase):
         print('\n==============================================')
         rekening_dana_nasabah = RDN(self.client)
         res = rekening_dana_nasabah.inquiryAccountHistory({
-            'companyId': 'SANDBOX', 
-            'parentCompanyId': 'STI_CHS',
+            'companyId': 'NI001', 
+            'parentCompanyId': 'KSEI',
             'accountNumber': '0115476117'
         })
         data = res['response']['responseCode']
@@ -188,8 +187,8 @@ class TestRDN(unittest.TestCase):
         print('\n==============================================')
         rekening_dana_nasabah = RDN(self.client)
         res = rekening_dana_nasabah.paymentUsingTransfer({
-            'companyId': 'SANDBOX', 
-            'parentCompanyId': 'STI_CHS',
+            'companyId': 'NI001', 
+            'parentCompanyId': 'KSEI',
             'accountNumber': '0115476117', 
             'beneficiaryAccountNumber': '0115471119', 
             'currency': 'IDR',
@@ -204,8 +203,8 @@ class TestRDN(unittest.TestCase):
         print('\n==============================================')
         rekening_dana_nasabah = RDN(self.client)
         res = rekening_dana_nasabah.inquiryPaymentStatus({
-            'companyId': 'SANDBOX', 
-            'parentCompanyId': 'STI_CHS',
+            'companyId': 'NI001', 
+            'parentCompanyId': 'KSEI',
             'requestedUuid': 'E8C6E0027F6E429F'
         })
         data = res['response']['responseCode']
@@ -216,8 +215,8 @@ class TestRDN(unittest.TestCase):
         print('\n==============================================')
         rekening_dana_nasabah = RDN(self.client)
         res = rekening_dana_nasabah.paymentUsingClearing({
-            'companyId': 'SANDBOX', 
-            'parentCompanyId': 'STI_CHS',
+            'companyId': 'NI001', 
+            'parentCompanyId': 'KSEI',
             'accountNumber': '0115476117', 
             'beneficiaryAccountNumber': '3333333333', 
             'beneficiaryAddress1': 'Jakarta', 
@@ -225,7 +224,7 @@ class TestRDN(unittest.TestCase):
             'beneficiaryBankCode': '140397', 
             'beneficiaryName': 'Panji Samudra', 
             'currency': 'IDR',
-            'amount': '15000',
+            'amount': '900000000',
             'remark': 'Test kliring',
             'chargingType': 'OUR'
         })
@@ -272,8 +271,8 @@ class TestRDN(unittest.TestCase):
         print('\n==============================================')
         rekening_dana_nasabah = RDN(self.client)
         res = rekening_dana_nasabah.paymentUsingInterbank({
-            'companyId': 'SANDBOX', 
-            'parentCompanyId': 'STI_CHS',
+            'companyId': 'NI001', 
+            'parentCompanyId': 'KSEI',
             'accountNumber': '0115476117', 
             'beneficiaryAccountNumber': '3333333333', 
             'beneficiaryAccountName': 'KEN AROK', 
@@ -284,9 +283,11 @@ class TestRDN(unittest.TestCase):
         data = res['response']['responseCode']
         self.assertEqual(data, '0001')
         print('\033[92m should return responseCode 0001 \033[0m')
-        # Invalid account
 
-        ##################### CASES NEGATIVE #####################
+
+    # Invalid account
+
+    ##################### CASES NEGATIVE #####################
 
     # def testFaceRecog(self):
     #     print('\n==============================================')
@@ -318,53 +319,71 @@ class TestRDN(unittest.TestCase):
     #     print('\n==============================================')
     #     rekening_dana_nasabah = RDN(self.client)
     #     res = rekening_dana_nasabah.registerInvestor({
-    #         'companyId': 'SANDBOX',
-    #         'parentCompanyId': 'STI_CHS',
-    #         'uuidFaceRecog': '40FCB72E71D35C81',
-    #         'title': '01',
-    #         'firstName': 'Agus',
-    #         'middleName': '',
-    #         'lastName': 'Saputra',
-    #         'optNPWP': '1',
-    #         'npwpNum': '001058893408123',
-    #         'nationality': 'ID',
-    #         'domicileCountry': 'ID',
-    #         'religion': '2',
-    #         'birthPlace': 'Semarang',
-    #         'birthDate': '14081982',
-    #         'gender': 'M',
-    #         'isMarried': 'S',
-    #         'motherMaidenName': 'Dina Maryti',
-    #         'jobCode': '01',
-    #         'education': '07',
-    #         'idType': '01',
-    #         'idNumber': '4147016201959998',
-    #         'idIssuingCity': 'Jakarta Barat',
-    #         'idExpiryDate': '26102099',
-    #         'addressStreet': 'Jalan Mawar Melati',
-    #         'addressRtRwPerum': '003009Sentosa',
-    #         'addressKel': 'Cengkareng Barat',
-    #         'addressKec': 'Cengkareng/Jakarta Barat',
-    #         'zipCode': '11730',
-    #         'homePhone1': '0214',
-    #         'homePhone2': '7459',
-    #         'officePhone1': '',
-    #         'officePhone2': '',
-    #         'mobilePhone1': '0812',
-    #         'mobilePhone2': '12348331',
-    #         'faxNum1': '',
-    #         'faxNum2': '',
-    #         'email': 'agus.saputra@gmail.com',
-    #         'monthlyIncome': '8000000',
-    #         'branchOpening': '0259',
-    #         'institutionName': 'PT. BNI SECURITIES',
-    #         'sid': 'IDD280436215354',
-    #         'employerName': 'Salman',
-    #         'employerAddDet': 'St Baker',
-    #         'employerAddCity': 'Arrandelle',
-    #         'jobDesc': '13',
-    #         'ownedBankAccNo': '0337109074',
-    #         'idIssuingDate': '10122008'
+    #     'companyId': 'SANDBOX',
+    #     'parentCompanyId': 'STI_CHS',
+    #     'uuidFaceRecog': '492F33851D634CFB',
+    #     'title': '01',
+    #     'firstName': 'Agus',
+    #     'middleName': '',
+    #     'lastName': 'Saputra',
+    #     'optNPWP': '1',
+    #     'NPWPNum': '001058893408123',
+    #     'nationality': 'ID',
+    #     'domicileCountry': 'ID',
+    #     'religion': '2',
+    #     'birthPlace': 'Semarang',
+    #     'birthDate': '14081982',
+    #     'gender': 'M',
+    #     'isMarried': 'S',
+    #     'motherMaidenName': 'Dina Maryati',
+    #     'jobCode': '01',
+    #     'education': '7',
+    #     'idType': '01',
+    #     'idNumber': '4147016201959999',
+    #     'idIssuingCity': 'Jakarta Barat',
+    #     'idExpiryDate': '26102099',
+    #     'addressStreet': 'Jalan Mawar Melati',
+    #     'addressRtRwPerum': '003009Sentosa',
+    #     'addressKel': 'Cengkareng Barat',
+    #     'addressKec': 'Cengkareng/Jakarta Barat',
+    #     'zipCode': '11730',
+    #     'homePhone1': '0214',
+    #     'homePhone2': '7459',
+    #     'officePhone1': '',
+    #     'officePhone2': '',
+    #     'mobilePhone1': '0812',
+    #     'mobilePhone2': '12348331',
+    #     'faxNum1': '',
+    #     'faxNum2': '',
+    #     'email': 'agus.saputra@gmail.com',
+    #     'monthlyIncome': '8000000',
+    #     'branchOpening': '0259',
+    #     'institutionName': 'PT. BNI SECURITIES',
+    #     'sid': 'IDD280436215354',
+    #     'employerName': 'Salman',
+    #     'employerAddDet': 'St Baker',
+    #     'employerAddCity': 'Arrandelle',
+    #     'jobDesc': 'Pedagang',
+    #     'ownedBankAccNo': '0337109074',
+    #     'idIssuingDate': '10122008'
+    #     })
+    #     data = res['response']['responseCode']
+    #     self.assertEqual(data, '0001')
+    #     print('\033[92m should return responseCode 0001 \033[0m')
+
+    # def testRegisterInvestorAccount(self):
+    #     print('\n==============================================')
+    #     rekening_dana_nasabah = RDN(self.client)
+    #     res = rekening_dana_nasabah.registerInvestorAccount({
+    #         'companyId': ' NI001',
+    #         'parentCompanyId': 'KSEI',
+    #         'cifNumber': '9100749959',
+    #         'currency': 'AUD',
+    #         'openAccountReason': '2',
+    #         'sourceOfFund': '1',
+    #         'branchId': '0259',
+    #         'bnisId': '19050813401',
+    #         'sre': 'NI001CX5U00109'
     #     })
     #     data = res['response']['responseCode']
     #     self.assertEqual(data, '0001')
@@ -412,9 +431,9 @@ class TestRDN(unittest.TestCase):
     #     print('\n==============================================')
     #     rekening_dana_nasabah = RDN(self.client)
     #     res = rekening_dana_nasabah.inquiryAccountInfo({
-    #         'companyId': 'SANDBOX', 
-    #         'parentCompanyId': 'STI_CHS',
-    #         'accountNumber': '0115476197'
+    #         'companyId': 'NI001', 
+    #         'parentCompanyId': 'KSEI',
+    #         'accountNumber': '1122334455'
     #     })
     #     data = res['response']['responseCode']
     #     self.assertEqual(data, '0001')
@@ -424,9 +443,9 @@ class TestRDN(unittest.TestCase):
     #     print('\n==============================================')
     #     rekening_dana_nasabah = RDN(self.client)
     #     res = rekening_dana_nasabah.inquiryAccountBalance({
-    #         'companyId': 'SANDBOX', 
-    #         'parentCompanyId': 'STI_CHS',
-    #         'accountNumber': '0115476197'
+    #         'companyId': 'NI001', 
+    #         'parentCompanyId': 'KSEI',
+    #         'accountNumber': '0221869561'
     #     })
     #     data = res['response']['responseCode']
     #     self.assertEqual(data, '0001')
@@ -436,9 +455,9 @@ class TestRDN(unittest.TestCase):
     #     print('\n==============================================')
     #     rekening_dana_nasabah = RDN(self.client)
     #     res = rekening_dana_nasabah.inquiryAccountHistory({
-    #         'companyId': 'SANDBOX', 
-    #         'parentCompanyId': 'STI_CHS',
-    #         'accountNumber': '0115476117'
+    #         'companyId': 'NI001', 
+    #         'parentCompanyId': 'KSEI',
+    #         'accountNumber': '0315617904'
     #     })
     #     data = res['response']['responseCode']
     #     self.assertEqual(data, '0001')
@@ -448,12 +467,12 @@ class TestRDN(unittest.TestCase):
     #     print('\n==============================================')
     #     rekening_dana_nasabah = RDN(self.client)
     #     res = rekening_dana_nasabah.paymentUsingTransfer({
-    #         'companyId': 'SANDBOX', 
-    #         'parentCompanyId': 'STI_CHS',
-    #         'accountNumber': '0115476117', 
-    #         'beneficiaryAccountNumber': '0115471119', 
+    #         'companyId': 'NI001', 
+    #         'parentCompanyId': 'KSEI',
+    #         'accountNumber': '1000152671', 
+    #         'beneficiaryAccountNumber': '0316031099', 
     #         'currency': 'IDR',
-    #         'amount': '11500',
+    #         'amount': '30000000',
     #         'remark': 'Test RDN'
     #     })
     #     data = res['response']['responseCode']
@@ -464,9 +483,9 @@ class TestRDN(unittest.TestCase):
     #     print('\n==============================================')
     #     rekening_dana_nasabah = RDN(self.client)
     #     res = rekening_dana_nasabah.inquiryPaymentStatus({
-    #         'companyId': 'SANDB', 
-    #         'parentCompanyId': 'STI_CHS',
-    #         'requestedUuid': 'E8C6E0027F6E429H'
+    #         'companyId': 'NI001', 
+    #         'parentCompanyId': 'KSEI',
+    #         'requestedUuid': '123456AAAAAABBB0'
     #     })
     #     data = res['response']['responseCode']
     #     self.assertEqual(data, '0001')
@@ -476,16 +495,16 @@ class TestRDN(unittest.TestCase):
     #     print('\n==============================================')
     #     rekening_dana_nasabah = RDN(self.client)
     #     res = rekening_dana_nasabah.paymentUsingClearing({
-    #         'companyId': 'SANDBOX', 
-    #         'parentCompanyId': 'STI_CHS',
-    #         'accountNumber': '0115476117', 
+    #         'companyId': 'NI001', 
+    #         'parentCompanyId': 'KSEI',
+    #         'accountNumber': '1122334455', 
     #         'beneficiaryAccountNumber': '3333333333', 
     #         'beneficiaryAddress1': 'Jakarta', 
     #         'beneficiaryAddress2': '', 
     #         'beneficiaryBankCode': '140397', 
     #         'beneficiaryName': 'Panji Samudra', 
     #         'currency': 'IDR',
-    #         'amount': '15000',
+    #         'amount': '900000000',
     #         'remark': 'Test kliring',
     #         'chargingType': 'OUR'
     #     })
@@ -497,45 +516,46 @@ class TestRDN(unittest.TestCase):
     #     print('\n==============================================')
     #     rekening_dana_nasabah = RDN(self.client)
     #     res = rekening_dana_nasabah.paymentUsingRTGS({
-    #         'companyId': 'SANDBOX', 
-    #         'parentCompanyId': 'STI_CHS',
-    #         'accountNumber': '0115476117', 
+    #         'companyId': 'NI001', 
+    #         'parentCompanyId': 'KSEI',
+    #         'accountNumber': '1122334455', 
     #         'beneficiaryAccountNumber': '3333333333', 
     #         'beneficiaryAddress1': 'Jakarta', 
     #         'beneficiaryAddress2': '', 
-    #         'beneficiaryBankCode': '140397', 
+    #         'beneficiaryBankCode': 'CENAIDJA', 
     #         'beneficiaryName': 'Panji Samudra', 
     #         'currency': 'IDR',
-    #         'amount': '15000',
-    #         'remark': 'Test kliring',
+    #         'amount': '150000000',
+    #         'remark': 'Test rtgs',
     #         'chargingType': 'OUR'
     #     })
     #     data = res['response']['responseCode']
     #     self.assertEqual(data, '0001')
     #     print('\033[92m should return responseCode 0001 \033[0m')
+    
         # TRANSACTION ONLY DAY ENABLED
 
     # def testInquiryInterbankAccount(self):
     #     print('\n==============================================')
     #     rekening_dana_nasabah = RDN(self.client)
     #     res = rekening_dana_nasabah.inquiryInterbankAccount({
-    #         'companyId': 'SANDBOX', 
-    #         'parentCompanyId': 'STI_CHS',
-    #         'accountNumber': '0115476188', 
-    #         'beneficiaryBankCode': '014', 
-    #         'beneficiaryAccountNumber': '3333333333'
+    #         'companyId': 'NI001', 
+    #         'parentCompanyId': 'KSEI',
+    #         'accountNumber': '0115476117', 
+    #         'beneficiaryBankCode': '019', 
+    #         'beneficiaryAccountNumber': '01900000'
     #     })
     #     data = res['response']['responseCode']
     #     self.assertEqual(data, '0001')
-    #     print('\033[92m should return responseCode 0001 \033[0m')s
+    #     print('\033[92m should return responseCode 0001 \033[0m')
 
     # def testPaymentUsingInterbank(self):
     #     print('\n==============================================')
     #     rekening_dana_nasabah = RDN(self.client)
     #     res = rekening_dana_nasabah.paymentUsingInterbank({
-    #         'companyId': 'SANDBOX', 
-    #         'parentCompanyId': 'STI_CHS',
-    #         'accountNumber': '0115476117', 
+    #         'companyId': 'NI001', 
+    #         'parentCompanyId': 'KSEI',
+    #         'accountNumber': '0315617904', 
     #         'beneficiaryAccountNumber': '3333333333', 
     #         'beneficiaryAccountName': 'KEN AROK', 
     #         'beneficiaryBankCode': '014', 

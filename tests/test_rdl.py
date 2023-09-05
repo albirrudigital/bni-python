@@ -258,7 +258,7 @@ class TestRDL(unittest.TestCase):
         self.assertEqual(data, '0001')
         print('\033[92m should return responseCode 0001 \033[0m')
 
-    ##################### CASES NEGATIVE #####################
+    #################### CASES NEGATIVE #####################
 
     # def testFaceRecog(self):
     #     print('\n==============================================')
