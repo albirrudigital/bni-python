@@ -1,7 +1,15 @@
 from bnipython.lib.api.rdl import RDL
 from bnipython.lib.util import constants
 import unittest
-from bnipython.lib.bniClient import BNIClient
+from bnipython import BNIClient, RDL
+client = BNIClient({
+    'env': 'sandbox-dev',
+    'appName': constants.APP_NAME,
+    'clientId': constants.CLIENT_ID_ENCRYPT,
+    'clientSecret': constants.CLIENT_SECRET_ENCRYPT,
+    'apiKey': constants.API_KEY_ENCRYPT,
+    'apiSecret': constants.API_SECRET_ENCRYPT
+})
 
 class TestRDL(unittest.TestCase):
     client = BNIClient({
@@ -15,8 +23,8 @@ class TestRDL(unittest.TestCase):
 
     def testFaceRecog(self):
         print('\n==============================================')
-        rekening_dana_nasabah = RDL(self.client)
-        res = rekening_dana_nasabah.faceRecognition({
+        p2pl = RDL(self.client)
+        res = p2pl.faceRecognition({
             'companyId': 'SANDBOX',
             'parentCompanyId': 'STI_CHS',
             'firstName': 'MOHAMMAD', 
@@ -41,8 +49,8 @@ class TestRDL(unittest.TestCase):
         
     def testRegisterInvestor(self):
         print('\n==============================================')
-        rekening_dana_nasabah = RDL(self.client)
-        res = rekening_dana_nasabah.registerInvestor({
+        p2pl = RDL(self.client)
+        res = p2pl.registerInvestor({
             'companyId': 'SANDBOX',
             'parentCompanyId': 'STI_CHS',
             'uuidFaceRecog': '492F33851D634CFB',
@@ -97,8 +105,8 @@ class TestRDL(unittest.TestCase):
     
     def testRegisterInvestorAccount(self):
         print('\n==============================================')
-        rekening_dana_nasabah = RDL(self.client)
-        res = rekening_dana_nasabah.registerInvestorAccount({
+        p2pl = RDL(self.client)
+        res = p2pl.registerInvestorAccount({
             'companyId': 'SANDBOX',
             'parentCompanyId': 'STI_CHS',
             'cifNumber': '9100749959', 
@@ -115,8 +123,8 @@ class TestRDL(unittest.TestCase):
 
     def testInquiryAccountInfo(self):
         print('\n==============================================')
-        rekening_dana_nasabah = RDL(self.client)
-        res = rekening_dana_nasabah.inquiryAccountInfo({
+        p2pl = RDL(self.client)
+        res = p2pl.inquiryAccountInfo({
             'companyId': 'SANDBOX', 
             'parentCompanyId': 'STI_CHS',
             'accountNumber': '0115476117'
@@ -127,8 +135,8 @@ class TestRDL(unittest.TestCase):
 
     def testInquiryAccountBalance(self):
         print('\n==============================================')
-        rekening_dana_nasabah = RDL(self.client)
-        res = rekening_dana_nasabah.inquiryAccountBalance({
+        p2pl = RDL(self.client)
+        res = p2pl.inquiryAccountBalance({
             'companyId': 'SANDBOX', 
             'parentCompanyId': 'STI_CHS',
             'accountNumber': '0115476117'
@@ -139,8 +147,8 @@ class TestRDL(unittest.TestCase):
 
     def testInquiryAccountHistory(self):
         print('\n==============================================')
-        rekening_dana_nasabah = RDL(self.client)
-        res = rekening_dana_nasabah.inquiryAccountHistory({
+        p2pl = RDL(self.client)
+        res = p2pl.inquiryAccountHistory({
             'companyId': 'SANDBOX', 
             'parentCompanyId': 'STI_CHS',
             'accountNumber': '0115476117'
@@ -151,8 +159,8 @@ class TestRDL(unittest.TestCase):
 
     def testPaymentUsingTransfer(self):
         print('\n==============================================')
-        rekening_dana_nasabah = RDL(self.client)
-        res = rekening_dana_nasabah.paymentUsingTransfer({
+        p2pl = RDL(self.client)
+        res = p2pl.paymentUsingTransfer({
             'companyId': 'SANDBOX', 
             'parentCompanyId': 'STI_CHS',
             'accountNumber': '0115476117', 
@@ -167,8 +175,8 @@ class TestRDL(unittest.TestCase):
 
     def testInquiryPaymentStatus(self):
         print('\n==============================================')
-        rekening_dana_nasabah = RDL(self.client)
-        res = rekening_dana_nasabah.inquiryPaymentStatus({
+        p2pl = RDL(self.client)
+        res = p2pl.inquiryPaymentStatus({
             'companyId': 'SANDBOX', 
             'parentCompanyId': 'STI_CHS',
             'requestedUuid': 'E8C6E0027F6E429F'
@@ -179,8 +187,8 @@ class TestRDL(unittest.TestCase):
 
     def testPaymentUsingClearing(self):
         print('\n==============================================')
-        rekening_dana_nasabah = RDL(self.client)
-        res = rekening_dana_nasabah.paymentUsingClearing({
+        p2pl = RDL(self.client)
+        res = p2pl.paymentUsingClearing({
             'companyId': 'SANDBOX', 
             'parentCompanyId': 'STI_CHS',
             'accountNumber': '0115476117', 
@@ -200,8 +208,8 @@ class TestRDL(unittest.TestCase):
 
     def testPaymentUsingRTGS(self):
         print('\n==============================================')
-        rekening_dana_nasabah = RDL(self.client)
-        res = rekening_dana_nasabah.paymentUsingRTGS({
+        p2pl = RDL(self.client)
+        res = p2pl.paymentUsingRTGS({
             'companyId': 'NI001', 
             'parentCompanyId': 'KSEI',
             'accountNumber': '0115476117',
@@ -221,8 +229,8 @@ class TestRDL(unittest.TestCase):
 
     def testInquiryInterbankAccount(self):
         print('\n==============================================')
-        rekening_dana_nasabah = RDL(self.client)
-        res = rekening_dana_nasabah.inquiryInterbankAccount({
+        p2pl = RDL(self.client)
+        res = p2pl.inquiryInterbankAccount({
             'companyId': 'NI001', 
             'parentCompanyId': 'KSEI',
             'accountNumber': '0115476117',
@@ -235,8 +243,8 @@ class TestRDL(unittest.TestCase):
 
     def testPaymentUsingInterbank(self):
         print('\n==============================================')
-        rekening_dana_nasabah = RDL(self.client)
-        res = rekening_dana_nasabah.paymentUsingInterbank({
+        p2pl = RDL(self.client)
+        res = p2pl.paymentUsingInterbank({
             'companyId': 'SANDBOX', 
             'parentCompanyId': 'STI_CHS',
             'accountNumber': '0115476117', 
@@ -254,8 +262,8 @@ class TestRDL(unittest.TestCase):
 
     # def testFaceRecog(self):
     #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDL(self.client)
-    #     res = rekening_dana_nasabah.faceRecognition({
+    #     p2pl = RDL(self.client)
+    #     res = p2pl.faceRecognition({
     #         'companyId': 'SANDBOX',
     #         'parentCompanyId': 'STI_CHS',
     #         'firstName': 'MOHAMMAD',
@@ -279,8 +287,8 @@ class TestRDL(unittest.TestCase):
         
     # def testRegisterInvestor(self):
     #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDL(self.client)
-    #     res = rekening_dana_nasabah.registerInvestor({
+    #     p2pl = RDL(self.client)
+    #     res = p2pl.registerInvestor({
     #         'companyId': 'SANDBOX',
     #         'parentCompanyId': 'STI_CHS',
     #         'uuidFaceRecog': '492F33851D634CFB',
@@ -335,8 +343,8 @@ class TestRDL(unittest.TestCase):
     
     # def testRegisterInvestorAccount(self):
     #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDL(self.client)
-    #     res = rekening_dana_nasabah.registerInvestorAccount({
+    #     p2pl = RDL(self.client)
+    #     res = p2pl.registerInvestorAccount({
     #         'companyId': 'SANDBOX',
     #         'parentCompanyId': 'STI_CHS',
     #         'cifNumber': '9100749645262456959', 
@@ -353,8 +361,8 @@ class TestRDL(unittest.TestCase):
 
     # def testInquiryAccountInfo(self):
     #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDL(self.client)
-    #     res = rekening_dana_nasabah.inquiryAccountInfo({
+    #     p2pl = RDL(self.client)
+    #     res = p2pl.inquiryAccountInfo({
     #         'companyId': 'SANDBOX', 
     #         'parentCompanyId': 'STI_CHS',
     #         'accountNumber': '64567652'
@@ -365,8 +373,8 @@ class TestRDL(unittest.TestCase):
 
     # def testInquiryAccountBalance(self):
     #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDL(self.client)
-    #     res = rekening_dana_nasabah.inquiryAccountBalance({
+    #     p2pl = RDL(self.client)
+    #     res = p2pl.inquiryAccountBalance({
     #         'companyId': 'SANDBOX', 
     #         'parentCompanyId': 'STI_CHS',
     #         'accountNumber': '4526756'
@@ -377,8 +385,8 @@ class TestRDL(unittest.TestCase):
 
     # def testInquiryAccountHistory(self):
     #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDL(self.client)
-    #     res = rekening_dana_nasabah.inquiryAccountHistory({
+    #     p2pl = RDL(self.client)
+    #     res = p2pl.inquiryAccountHistory({
     #         'companyId': 'SANDBOX', 
     #         'parentCompanyId': 'STI_CHS',
     #         'accountNumber': '24565427'
@@ -389,8 +397,8 @@ class TestRDL(unittest.TestCase):
 
     # def testPaymentUsingTransfer(self):
     #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDL(self.client)
-    #     res = rekening_dana_nasabah.paymentUsingTransfer({
+    #     p2pl = RDL(self.client)
+    #     res = p2pl.paymentUsingTransfer({
     #         'companyId': 'SANDBOX', 
     #         'parentCompanyId': 'STI_CHS',
     #         'accountNumber': '6245775', 
@@ -405,8 +413,8 @@ class TestRDL(unittest.TestCase):
 
     # def testInquiryPaymentStatus(self):
     #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDL(self.client)
-    #     res = rekening_dana_nasabah.inquiryPaymentStatus({
+    #     p2pl = RDL(self.client)
+    #     res = p2pl.inquiryPaymentStatus({
     #         'companyId': 'SANDBOX4', 
     #         'parentCompanyId': 'STI_CHS4',
     #         'requestedUuid': 'E8C6E0027F6E429F'
@@ -417,8 +425,8 @@ class TestRDL(unittest.TestCase):
 
     # def testPaymentUsingClearing(self):
     #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDL(self.client)
-    #     res = rekening_dana_nasabah.paymentUsingClearing({
+    #     p2pl = RDL(self.client)
+    #     res = p2pl.paymentUsingClearing({
     #         'companyId': 'SANDBOX', 
     #         'parentCompanyId': 'STI_CHS',
     #         'accountNumber': '67347634', 
@@ -438,8 +446,8 @@ class TestRDL(unittest.TestCase):
 
     # def testPaymentUsingRTGS(self):
     #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDL(self.client)
-    #     res = rekening_dana_nasabah.paymentUsingRTGS({
+    #     p2pl = RDL(self.client)
+    #     res = p2pl.paymentUsingRTGS({
     #         'companyId': 'NI001', 
     #         'parentCompanyId': 'KSEI',
     #         'accountNumber': '4537646376',
@@ -459,8 +467,8 @@ class TestRDL(unittest.TestCase):
 
     # def testInquiryInterbankAccount(self):
     #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDL(self.client)
-    #     res = rekening_dana_nasabah.inquiryInterbankAccount({
+    #     p2pl = RDL(self.client)
+    #     res = p2pl.inquiryInterbankAccount({
     #         'companyId': 'NI001', 
     #         'parentCompanyId': 'KSEI',
     #         'accountNumber': '5625762w45',
@@ -473,8 +481,8 @@ class TestRDL(unittest.TestCase):
 
     # def testPaymentUsingInterbank(self):
     #     print('\n==============================================')
-    #     rekening_dana_nasabah = RDL(self.client)
-    #     res = rekening_dana_nasabah.paymentUsingInterbank({
+    #     p2pl = RDL(self.client)
+    #     res = p2pl.paymentUsingInterbank({
     #         'companyId': 'SANDBOX', 
     #         'parentCompanyId': 'STI_CHS',
     #         'accountNumber': '542576536', 
