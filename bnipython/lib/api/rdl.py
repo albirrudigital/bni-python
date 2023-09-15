@@ -1,8 +1,8 @@
 from bnipython.lib.net.httpClient import HttpClient
 from bnipython.lib.util.utils import generateUUID, generateSignature, getTimestamp
-from bnipython.lib.util.response import responseRDN
+from bnipython.lib.util.response import responseRDL
 
-class RDN():
+class RDL():
     def __init__(self, client):
         self.client = client.config
         self.baseUrl = client.getBaseUrl()
@@ -70,7 +70,7 @@ class RDN():
             'timestamp': timeStamp,
             'data': {'request': payload['request']}
         })
-        return responseRDN(params={'res': res, 'resObj': 'faceRecognitionResponse'})
+        return responseRDL(params={'res': res, 'resObj': 'faceRecognitionResponse'})
         
     def registerInvestor(self, params={
         'companyId',
@@ -184,51 +184,12 @@ class RDN():
             'apiKey': self.client['apiKey'],
             'accessToken': self.token,
             'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/register/investor',
+            'path': '/p2pl/v2.1/register/investor',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
             'data': {'request': payload['request']}
         })
-        return responseRDN(params={'res': res, 'resObj': 'registerInvestorResponse'})
-    
-    def checkSID(self, params={
-        'companyId',
-        'parentCompanyId',
-        'participantId',
-        'sidNumber',
-        'accountNumberOnKsei',
-        'branchCode',
-        'ack'
-    }):
-        timeStamp = getTimestamp()
-        payload = {}
-        payload['request'] = {}
-        payload['request'] = {
-            'header': {
-                'companyId': params['companyId'],
-                'parentCompanyId': params['parentCompanyId'],
-                'requestUuid': generateUUID()
-            },
-            'participantId': params['participantId'],
-            'sidNumber': params['sidNumber'],
-            'accountNumberOnKsei': params['accountNumberOnKsei'],
-            'branchCode': params['branchCode'],
-            'ack': params['ack']        
-        }
-        payload = {**payload, **{ 'timestamp': timeStamp }}
-        signature = generateSignature(
-            {'body': payload, 'apiSecret': self.client['apiSecret']})
-        res = self.httpClient.requestV2({
-            'method': 'POST',
-            'apiKey': self.client['apiKey'],
-            'accessToken': self.token,
-            'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/checksid',
-            'signature': signature.split('.')[2],
-            'timestamp': timeStamp,
-            'data': {'request': payload['request']}
-        })
-        return responseRDN(params={'res': res, 'resObj': 'checkSIDResponse'})
+        return responseRDL(params={'res': res, 'resObj': 'registerInvestorResponse'})
     
     def registerInvestorAccount(self, params={
         'companyId',
@@ -242,21 +203,19 @@ class RDN():
         'sre'
     }):
         timeStamp = getTimestamp()
-        uuid = generateUUID()
         payload = {}
         payload['request'] = {}
         payload['request'] = {
             'header': {
                 'companyId': params['companyId'],
                 'parentCompanyId': params['parentCompanyId'],
-                'requestUuid': uuid
+                'requestUuid': generateUUID()
             },
             'cifNumber': params['cifNumber'],
             'currency': params['currency'],
             'openAccountReason': params['openAccountReason'],
             'sourceOfFund': params['sourceOfFund'],
             'branchId': params['branchId'],        
-            'bnisId': params['bnisId'],        
             'sre': params['sre'],
         }
         payload = {**payload, **{ 'timestamp': timeStamp }}
@@ -267,58 +226,14 @@ class RDN():
             'apiKey': self.client['apiKey'],
             'accessToken': self.token,
             'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/register/investor/account',
+            'path': '/p2pl/v2.1/register/investor/account',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
             'data': {'request': payload['request']}
         })
-        return responseRDN(params={'res': res, 'resObj': 'registerInvestorAccountResponse'})
+        return responseRDL(params={'res': res, 'resObj': 'registerInvestorAccountResponse'})
     
-    def sendDataStatic(self, params={
-        'companyId',
-        'parentCompanyId',
-        'participantCode',
-        'participantName',
-        'investorName',
-        'investorCode',
-        'investorAccountNumber',
-        'bankAccountNumber',
-        'activityDate',
-        'activity'
-    }):
-        timeStamp = getTimestamp()
-        payload = {}
-        payload['request'] = {}
-        payload['request'] = {
-            'header': {
-                'companyId': params['companyId'],
-                'parentCompanyId': params['parentCompanyId'],
-                'requestUuid': generateUUID()
-            },
-            'participantCode': params['participantCode'],
-            'participantName': params['participantName'],
-            'investorName': params['investorName'],
-            'investorCode': params['investorCode'],
-            'investorAccountNumber': params['investorAccountNumber'],        
-            'bankAccountNumber': params['bankAccountNumber'],
-            'activityDate': params['activityDate'],        
-            'activity': params['activity']
-        }
-        payload = {**payload, **{ 'timestamp': timeStamp }}
-        signature = generateSignature(
-            {'body': payload, 'apiSecret': self.client['apiSecret']})
-        res = self.httpClient.requestV2({
-            'method': 'POST',
-            'apiKey': self.client['apiKey'],
-            'accessToken': self.token,
-            'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/senddatastatic',
-            'signature': signature.split('.')[2],
-            'timestamp': timeStamp,
-            'data': {'request': payload['request']}
-        })
-        return responseRDN(params={'res': res, 'resObj': 'sendDataStaticResponse'})
-    
+
     def inquiryAccountInfo(self, params={
         'companyId',
         'parentCompanyId',
@@ -343,12 +258,12 @@ class RDN():
             'apiKey': self.client['apiKey'],
             'accessToken': self.token,
             'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/inquiry/account/info',
+            'path': '/p2pl/v2.1/inquiry/account/info',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
             'data': {'request': payload['request']}
         })
-        return responseRDN(params={'res': res, 'resObj': 'inquiryAccountInfoResponse'})
+        return responseRDL(params={'res': res, 'resObj': 'inquiryAccountInfoResponse'})
     
     def inquiryAccountBalance(self, params={
         'companyId',
@@ -374,12 +289,12 @@ class RDN():
             'apiKey': self.client['apiKey'],
             'accessToken': self.token,
             'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/inquiry/account/balance',
+            'path': '/p2pl/v2.1/inquiry/account/balance',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
             'data': {'request': payload['request']}
         })
-        return responseRDN(params={'res': res, 'resObj': 'inquiryAccountBalanceResponse'})
+        return responseRDL(params={'res': res, 'resObj': 'inquiryAccountBalanceResponse'})
     
     def inquiryAccountHistory(self, params={
         'companyId',
@@ -405,12 +320,12 @@ class RDN():
             'apiKey': self.client['apiKey'],
             'accessToken': self.token,
             'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/inquiry/account/history',
+            'path': '/p2pl/v2.1/inquiry/account/history',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
             'data': {'request': payload['request']}
         })
-        return responseRDN(params={'res': res, 'resObj': 'inquiryAccountHistoryResponse'})
+        return responseRDL(params={'res': res, 'resObj': 'inquiryAccountHistoryResponse'})
     
     def paymentUsingTransfer(self, params={
         'companyId',
@@ -444,12 +359,12 @@ class RDN():
             'apiKey': self.client['apiKey'],
             'accessToken': self.token,
             'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/payment/transfer',
+            'path': '/p2pl/v2.1/payment/transfer',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
             'data': {'request': payload['request']}
         })
-        return responseRDN(params={'res': res, 'resObj': 'paymentUsingTransferResponse'})
+        return responseRDL(params={'res': res, 'resObj': 'paymentUsingTransferResponse'})
     
     def inquiryPaymentStatus(self, params={
         'companyId',
@@ -475,12 +390,12 @@ class RDN():
             'apiKey': self.client['apiKey'],
             'accessToken': self.token,
             'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/inquiry/payment/status',
+            'path': '/p2pl/v2.1/inquiry/payment/status',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
             'data': {'request': payload['request']}
         })
-        return responseRDN(params={'res': res, 'resObj': 'inquiryPaymentStatusResponse'})
+        return responseRDL(params={'res': res, 'resObj': 'inquiryPaymentStatusResponse'})
     
     def paymentUsingClearing(self, params={
         'companyId',
@@ -524,12 +439,12 @@ class RDN():
             'apiKey': self.client['apiKey'],
             'accessToken': self.token,
             'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/payment/clearing',
+            'path': '/p2pl/v2.1/payment/clearing',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
             'data': {'request': payload['request']}
         })
-        return responseRDN(params={'res': res, 'resObj': 'paymentUsingClearingResponse'})
+        return responseRDL(params={'res': res, 'resObj': 'paymentUsingClearingResponse'})
     
     def paymentUsingRTGS(self, params={
         'companyId',
@@ -573,13 +488,13 @@ class RDN():
             'apiKey': self.client['apiKey'],
             'accessToken': self.token,
             'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/payment/rtgs',
+            'path': '/p2pl/v2.1/payment/rtgs',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
             'data': {'request': payload['request']}
         })
-        return responseRDN(params={'res': res, 'resObj': 'paymentUsingRTGSResponse'})
-        
+        return responseRDL(params={'res': res, 'resObj': 'paymentUsingRTGSResponse'})
+    
     def inquiryInterbankAccount(self, params={
         'companyId',
         'parentCompanyId',
@@ -608,12 +523,12 @@ class RDN():
             'apiKey': self.client['apiKey'],
             'accessToken': self.token,
             'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/inquiry/interbank/account',
+            'path': '/p2pl/v2.1/inquiry/interbank/account',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
             'data': {'request': payload['request']}
         })
-        return responseRDN(params={'res': res, 'resObj': 'inquiryInterbankAccountResponse'})
+        return responseRDL(params={'res': res, 'resObj': 'inquiryInterbankAccountResponse'})
     
     def paymentUsingInterbank(self, params={
         'companyId',
@@ -649,9 +564,9 @@ class RDN():
             'apiKey': self.client['apiKey'],
             'accessToken': self.token,
             'url': f'{self.baseUrl}',
-            'path': '/rdn/v2.1/payment/interbank',
+            'path': '/p2pl/v2.1/payment/interbank',
             'signature': signature.split('.')[2],
             'timestamp': timeStamp,
             'data': {'request': payload['request']}
         })
-        return responseRDN(params={'res': res, 'resObj': 'paymentUsingInterbankResponse'})
+        return responseRDL(params={'res': res, 'resObj': 'paymentUsingInterbankResponse'})

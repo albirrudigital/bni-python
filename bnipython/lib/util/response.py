@@ -31,9 +31,31 @@ def responseSnapBI(params={'res'}):
             f"\033[91m {params['res']['responseCode']} : {params['res']['responseMessage']} \033[0m")
     return params['res']
 
-def responseRDN(params={'res'}):
+def responseRDN(params={'res', 'resObj'}):
     try:
-        if (params['res']['response']['responseCode'] != '0001'):
+        if (params['resObj'] == 'checkSIDResponse'):
+            return params['res']   
+        elif (params['resObj'] == 'sendDataStaticResponse'):
+            return params['res'] 
+        elif (params['res']['response']['responseCode'] != '0001'):
+            code = params['res']['response']['responseCode']
+            responseMessage = params['res']['response']['responseMessage']
+            errorMessage = params['res']['response']['errorMessage']
+            raise ValueError(f'\033[91m errorMessage: {errorMessage}, responseMessage: {responseMessage}, code: {code} \033[0m')
+        else:
+            return params['res']
+    except Exception as e:
+        code = params['res']['Response']['parameters']['responseCode']
+        message = params['res']['Response']['parameters']['responseMessage']
+        raise ValueError(f'\033[91m {code}:{message} \033[0m')
+    
+def responseRDL(params={'res', 'resObj'}):
+    try:
+        if (params['resObj'] == 'checkSIDResponse'):
+            return params['res']    
+        elif (params['resObj'] == 'sendDataStaticResponse'):
+            return params['res'] 
+        elif (params['res']['response']['responseCode'] != '0001'):
             code = params['res']['response']['responseCode']
             responseMessage = params['res']['response']['responseMessage']
             errorMessage = params['res']['response']['errorMessage']
