@@ -6,7 +6,7 @@ from bnipython.lib.bniClient import BNIClient
 class TestRDN(unittest.TestCase):
     client = BNIClient({
         'env': 'sandbox-dev',
-        'appName': constants.APP_NAME,
+        # 'appName': constants.APP_NAME,
         'clientId': constants.CLIENT_ID_ENCRYPT,
         'clientSecret': constants.CLIENT_SECRET_ENCRYPT,
         'apiKey': constants.API_KEY_ENCRYPT,
