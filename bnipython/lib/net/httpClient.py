@@ -28,7 +28,6 @@ class HttpClient():
         httpClient.request('POST', options['path'], payload, headers)
         res = httpClient.getresponse()
         data = res.read()
-        print(data)
         return json.loads(str(data.decode('utf-8')))
 
     def request(self, options={'method', 'apiKey', 'accessToken', 'url', 'path', 'data'}):
@@ -80,3 +79,24 @@ class HttpClient():
         response = requests.request(
             "POST", options['url'], headers=header, data=payload)
         return json.loads(response.text.encode('utf8'))
+    
+    def requestV2(self, options={'method', 'apiKey', 'accessToken', 'url', 'path', 'data', 'signature', 'timestamp'}):
+        url = str(options['url']).replace(
+            'http://', '').replace('https://', '')
+        httpClient = http.client.HTTPSConnection(
+            url, context=ssl._create_unverified_context())
+        accessToken = options['accessToken']
+        path = options['path']
+        url = f'{path}?access_token={accessToken}'
+        payload = json.dumps(options['data'])
+        headers = {
+            'User-Agent': 'bni-python/0.1.0',
+            'x-api-key': options['apiKey'],
+            'x-signature': options['signature'],
+            'x-timestamp': options['timestamp'],
+            'Content-Type': 'application/json'
+        }
+        httpClient.request(options['method'], url, payload, headers)
+        res = httpClient.getresponse()
+        data = res.read()
+        return json.loads(str(data.decode('utf-8')))

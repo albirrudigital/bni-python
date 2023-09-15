@@ -3,8 +3,6 @@ import hmac
 import hashlib
 import json
 import pytz
-import random
-import math
 from OpenSSL import crypto
 from datetime import datetime
 
@@ -37,7 +35,7 @@ def getTimestamp():
 def generateTokenSignature(params={'privateKeyPath', 'clientId', 'timeStamp'}):
     privateKeyPath = params['privateKeyPath']
     rsaPrivate = privateKeyPath.replace('./', '')
-    keyFile = open(f'./bnipython/lib/{rsaPrivate}', 'rb')
+    keyFile = open(f'{rsaPrivate}', 'rb')
     key = keyFile.read()
     keyFile.close()
 
@@ -62,9 +60,3 @@ def generateSignatureServiceSnapBI(params={'body', 'method', 'url', 'accessToken
         'utf-8'), stringToSign.encode('utf-8'), hashlib.sha512)
     data = base64.b64encode(gen_hmac.digest())
     return data.decode()
-
-
-def randomNumber():
-    randomNumber = random.randint(100000000, 999999999)
-    unixTimeStamp = math.floor(datetime.timestamp((datetime.now())))
-    return f'{randomNumber}{unixTimeStamp}'

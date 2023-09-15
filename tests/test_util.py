@@ -1,5 +1,5 @@
 from bnipython.lib.util import constants
-from bnipython.lib.util.utils import generateClientId, generateSignature
+from bnipython.lib.util.utils import generateClientId, generateSignature, generateUUID
 import unittest
 
 class TestUtil(unittest.TestCase):
@@ -18,3 +18,8 @@ class TestUtil(unittest.TestCase):
         token = generateSignature(payload)
         self.assertEqual(token, constants.TOKEN_JWT)
         print(f'should return {constants.TOKEN_JWT}')
+    
+    def testUUID(self):
+        print('\n==============================================')
+        uuid = generateUUID()
+        print(f'should return {uuid}')
