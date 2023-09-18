@@ -14,7 +14,7 @@ class BNIClient:
         if self.config['env'] == 'dev':
             return constants.DEV_BASE_URL
         elif self.config['env'] == 'dev-2':
-            return constants.UAT_BASE_URL
+            return constants.DEV_TUNNELING_BASE_URL
         elif self.config['env'] == 'uat':
             return constants.UAT_BASE_URL
         elif self.config['env'] == 'sandbox':
