@@ -119,14 +119,15 @@ class TestRDF(unittest.TestCase):
         print('\n==============================================')
         rekening_dana_funder = RDF(self.client)
         res = rekening_dana_funder.registerInvestorAccount({
-            "companyId": "SANDBOX",
-            "parentCompanyId": "STI_CHS",
-            "cifNumber": "9100749959",
-            "accountType": "RDF",
-            "currency": "IDR",
-            "openAccountReason": "2",
-            "sourceOfFund": "1",
-            "branchId": "0259"
+            'companyId': 'NI001',
+            'parentCompanyId': 'KSEI',
+            'cifNumber': '9100749959', 
+            'currency': 'IDR', 
+            'openAccountReason': '2', 
+            'sourceOfFund': '1', 
+            'branchId': '0259',
+            'bnisId': '19050813401', 
+            'sre': 'NI001CX5U00109'
         })
         data = res['response']['responseCode']
         # print(json.dumps(res['response'], indent=2))

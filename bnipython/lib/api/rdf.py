@@ -237,14 +237,15 @@ class RDF():
         return responseRDF(params={'res': res})
 
     def registerInvestorAccount(self, params={
-        'companyId', 
-        'parentCompanyId', 
+        'companyId',
+        'parentCompanyId',
         'cifNumber',
-        'accountType',
         'currency',
         'openAccountReason',
         'sourceOfFund',
         'branchId',
+        'bnisId',
+        'sre'
     }):
         timeStamp = getTimestamp()
         payload = {}
@@ -256,11 +257,11 @@ class RDF():
                 'requestUuid': generateUUID()
             },
             'cifNumber': params['cifNumber'],
-            'accountType': params['accountType'],
             'currency': params['currency'],
             'openAccountReason': params['openAccountReason'],
             'sourceOfFund': params['sourceOfFund'],
-            'branchId': params['branchId'],
+            'branchId': params['branchId'],        
+            'sre': params['sre'],
         }
         payload = {**payload, **{ 'timestamp': timeStamp}}
         signature = generateSignature(
