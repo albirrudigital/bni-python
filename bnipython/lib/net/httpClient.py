@@ -100,3 +100,25 @@ class HttpClient():
         res = httpClient.getresponse()
         data = res.read()
         return json.loads(str(data.decode('utf-8')))
+    
+    def requestV2BniDirect(self, options={'method', 'apiKey', 'accessToken', 'url', 'path', 'data', 'signature', 'timestamp', 'bniDirectKey'}):
+        url = str(options['url']).replace(
+            'http://', '').replace('https://', '')
+        httpClient = http.client.HTTPSConnection(
+            url, context=ssl._create_unverified_context())
+        accessToken = options['accessToken']
+        path = options['path']
+        url = f'{path}?access_token={accessToken}'
+        payload = json.dumps(options['data'])
+        headers = {
+            'User-Agent': 'bni-python/0.1.0',
+            'x-api-key': options['apiKey'],
+            'x-signature': options['signature'],
+            'x-timestamp': options['timestamp'],
+            'Content-Type': 'application/json',
+            'bnidirect-api-key': options['bniDirectKey']
+        }
+        httpClient.request(options['method'], url, payload, headers)
+        res = httpClient.getresponse()
+        data = res.read()
+        return json.loads(str(data.decode('utf-8')))

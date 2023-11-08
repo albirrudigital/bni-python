@@ -73,3 +73,7 @@ def generateUUID(length=16):
     characters = string.ascii_uppercase + string.digits
     uuid = ''.join(random.choice(characters) for _ in range(length))
     return uuid
+
+def bniDirectApiKey(params):
+    header = escape(base64.b64encode(
+        '{"alg":"HS256","typ":"JWT"}'.encode('utf-8')).decode())

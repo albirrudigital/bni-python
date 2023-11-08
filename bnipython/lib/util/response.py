@@ -80,3 +80,17 @@ def responseRDF(params={'res'}):
         code = params['res']['Response']['parameters']['responseCode']
         message = params['res']['Response']['parameters']['responseMessage']
         raise ValueError(f'\033[91m {code}:{message} \033[0m')
+
+def responseBniDirect(params={'res'}):
+    try:
+        if (params['res']['requestStatus'] != '0'):
+            code = params['res']['requestStatus']
+            responseMessage = params['res']['errorReason']
+            errorMessage = params['res']['errorReason']
+            raise ValueError(f'\033[91m errorMessage: {errorMessage}, responseMessage: {responseMessage}, code: {code} \033[0m')
+        else:
+            return params['res']
+    except Exception as e:
+        code = params['res']['requestStatus']
+        message = params['res']['errorReason']
+        raise ValueError(f'\033[91m {code}:{message} \033[0m')
