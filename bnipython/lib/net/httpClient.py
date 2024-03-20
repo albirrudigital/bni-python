@@ -64,7 +64,7 @@ class HttpClient():
         }
 
         response = requests.request(
-            "POST", options['url'], headers=headers, data=payload)
+            "POST", options['url'], headers=headers, data=payload, verify=False)
         return json.loads(response.text.encode('utf8'))
 
     def requestSnapBI(self, options={'method', 'apiKey', 'accessToken', 'url', 'data', 'additionalHeader'}):
@@ -77,7 +77,7 @@ class HttpClient():
         header.update(options['additionalHeader'])
         payload = json.dumps(options['data'])
         response = requests.request(
-            "POST", options['url'], headers=header, data=payload)
+            "POST", options['url'], headers=header, data=payload, verify=False)
         return json.loads(response.text.encode('utf8'))
     
     def requestV2(self, options={'method', 'apiKey', 'accessToken', 'url', 'path', 'data', 'signature', 'timestamp'}):

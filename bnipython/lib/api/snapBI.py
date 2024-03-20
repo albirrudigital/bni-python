@@ -10,9 +10,9 @@ class SnapBI():
         self.config = client.getConfig()
         self.httpClient = HttpClient()
         self.configSnap = options
-        self.configSnap['ipAddress'] = ''
-        self.configSnap['latitude'] = ''
-        self.configSnap['longitude'] = ''
+        self.configSnap['ipAddress'] = '172.24.281.24'
+        self.configSnap['latitude'] = '-6.108841'
+        self.configSnap['longitude'] = '106.7782137'
 
     def getTokenSnapBI(self):
         token = self.httpClient.tokenRequestSnapBI({
@@ -45,50 +45,6 @@ class SnapBI():
             'apiKey': self.config['apiKey'],
             'accessToken': token,
             'url': f'{self.baseUrl}/snap-service/v1/balance-inquiry',
-            'data': body,
-            'additionalHeader': {
-                'X-SIGNATURE': signature,
-                'X-TIMESTAMP': timeStamp,
-                'X-PARTNER-ID': self.config['apiKey'],
-                'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
-                'X-DEVICE-ID': 'bni-python/0.1.0',
-                'X-EXTERNAL-ID': randomNumber(),
-                'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
-                'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
-            }
-        })
-        return responseSnapBI(params={'res': res})
-
-    def bankStatement(self,  params={
-        'partnerReferenceNo',
-        'accountNo',
-        'fromDateTime',
-        'toDateTime'
-    }):
-
-        token = self.getTokenSnapBI()
-        body = {
-            'partnerReferenceNo': params['partnerReferenceNo'],
-            'accountNo': params['accountNo'],
-            'fromDateTime': params['fromDateTime'],
-            'toDateTime': params['toDateTime']
-        }
-
-        timeStamp = getTimestamp()
-        signature = generateSignatureServiceSnapBI({
-            'body': body,
-            'method': 'POST',
-            'url': '/snap-service/v1/bank-statement',
-            'accessToken': token,
-            'timeStamp': timeStamp,
-            'apiSecret': self.config['apiSecret']
-        })
-        res = self.httpClient.requestSnapBI({
-            'method': 'POST',
-            'apiKey': self.config['apiKey'],
-            'accessToken': token,
-            'url': f'{self.baseUrl}/snap-service/v1/bank-statement',
             'data': body,
             'additionalHeader': {
                 'X-SIGNATURE': signature,
@@ -156,19 +112,23 @@ class SnapBI():
         token = self.getTokenSnapBI()
         body = {
             'originalPartnerReferenceNo': params['originalPartnerReferenceNo'],
-            'originalReferenceNo': params['originalReferenceNo'],
-            'originalExternalId': params['originalExternalId'],
+            'originalReferenceNo': params['originalReferenceNo'] if  params['originalReferenceNo'] != '' else '',
+            'originalExternalId': params['originalExternalId'] if params['originalExternalId'] != '' else '',
             'serviceCode': params['serviceCode'],
-            'transactionDate': params['transactionDate'],
+            'transactionDate': params['transactionDate'] if params['transactionDate'] != '' else '',
             'amount': {
                 'value': params['amount']['value'],
                 'currency': params['amount']['currency']
             },
-            'additionalInfo': {
-                'deviceId': params['additionalInfo']['deviceId'],
-                'channel': params['additionalInfo']['channel']
-            }
         }
+
+        additional_info = params.get('additionalInfo')
+        if additional_info is not None:
+            if isinstance(additional_info, dict):
+                body['additionalInfo'] = {
+                    'deviceId': additional_info.get('deviceId', ''),
+                    'channel': additional_info.get('channel', '')
+                }
 
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
@@ -229,11 +189,14 @@ class SnapBI():
             'remark': params['remark'] if params['remark'] != '' else '',
             'sourceAccountNo': params['sourceAccountNo'],
             'transactionDate': timeStamp if params['transactionDate'] == '' else params['transactionDate'],
-            'additionalInfo': {
-                'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
-                'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
-            }
         }
+        additional_info = params.get('additionalInfo')
+        if additional_info is not None:
+            if isinstance(additional_info, dict):
+                body['additionalInfo'] = {
+                    'deviceId': additional_info.get('deviceId', ''),
+                    'channel': additional_info.get('channel', '')
+                }
 
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
@@ -305,7 +268,7 @@ class SnapBI():
             'beneficiaryCustomerType': params['beneficiaryCustomerType'],
             'beneficiaryEmail': params['beneficiaryEmail'] if params['beneficiaryEmail'] != '' else '',
             'currency': params['currency'] if params['currency'] != '' else '',
-            'customerReference': params['customerReference'] if params['customerReference'] != '' else '',
+            'customerReference': params['customerReference'],
             'feeType': params['feeType'] if params['feeType'] != '' else '',
             'kodePos': params['kodePos'] if params['kodePos'] != '' else '',
             'recieverPhone': params['recieverPhone'] if params['recieverPhone'] != '' else '',
@@ -315,11 +278,14 @@ class SnapBI():
             'senderPhone': params['senderPhone'] if params['senderPhone'] != '' else '',
             'sourceAccountNo': params['sourceAccountNo'],
             'transactionDate': timeStamp if params['transactionDate'] == '' else params['transactionDate'],
-            'additionalInfo': {
-                'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
-                'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
-            }
         }
+        additional_info = params.get('additionalInfo')
+        if additional_info is not None:
+            if isinstance(additional_info, dict):
+                body['additionalInfo'] = {
+                    'deviceId': additional_info.get('deviceId', ''),
+                    'channel': additional_info.get('channel', '')
+                }
 
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
@@ -391,7 +357,7 @@ class SnapBI():
             'beneficiaryCustomerType': params['beneficiaryCustomerType'],
             'beneficiaryEmail': params['beneficiaryEmail'] if params['beneficiaryEmail'] != '' else '',
             'currency': params['currency'] if params['currency'] != '' else '',
-            'customerReference': params['customerReference'] if params['customerReference'] != '' else '',
+            'customerReference': params['customerReference'],
             'feeType': params['feeType'] if params['feeType'] != '' else '',
             'kodePos': params['kodePos'] if params['kodePos'] != '' else '',
             'recieverPhone': params['recieverPhone'] if params['recieverPhone'] != '' else '',
@@ -401,11 +367,14 @@ class SnapBI():
             'senderPhone': params['senderPhone'] if params['senderPhone'] != '' else '',
             'sourceAccountNo': params['sourceAccountNo'],
             'transactionDate': timeStamp if params['transactionDate'] == '' else params['transactionDate'],
-            'additionalInfo': {
-                'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
-                'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
-            }
         }
+        additional_info = params.get('additionalInfo')
+        if additional_info is not None:
+            if isinstance(additional_info, dict):
+                body['additionalInfo'] = {
+                    'deviceId': additional_info.get('deviceId', ''),
+                    'channel': additional_info.get('channel', '')
+                }
 
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
@@ -448,11 +417,14 @@ class SnapBI():
             'beneficiaryBankCode': params['beneficiaryBankCode'],
             'beneficiaryAccountNo': params['beneficiaryAccountNo'],
             'partnerReferenceNo': params['partnerReferenceNo'] if params['partnerReferenceNo'] != '' else '',
-            'additionalInfo': {
-                'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
-                'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
-            }
         }
+        additional_info = params.get('additionalInfo')
+        if additional_info is not None:
+            if isinstance(additional_info, dict):
+                body['additionalInfo'] = {
+                    'deviceId': additional_info.get('deviceId', ''),
+                    'channel': additional_info.get('channel', '')
+                }
 
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
@@ -514,15 +486,18 @@ class SnapBI():
             'beneficiaryBankName': params['beneficiaryBankName'] if params['beneficiaryBankName'] != '' else '',
             'beneficiaryEmail': params['beneficiaryEmail'] if params['beneficiaryEmail'] != '' else '',
             'currency': params['currency'] if params['currency'] != '' else '',
-            'customerReference': params['customerReference'] if params['customerReference'] != '' else '',
+            'customerReference': params['customerReference'],
             'feeType': params['feeType'] if params['feeType'] != '' else '',
             'sourceAccountNo': params['sourceAccountNo'],
             'transactionDate': timeStamp if params['transactionDate'] == '' else params['transactionDate'],
-            'additionalInfo': {
-                'deviceId': params['additionalInfo']['deviceId'] if params['additionalInfo']['deviceId'] != '' else '',
-                'channel': params['additionalInfo']['channel'] if params['additionalInfo']['deviceId'] != '' else ''
-            }
         }
+        additional_info = params.get('additionalInfo')
+        if additional_info is not None:
+            if isinstance(additional_info, dict):
+                body['additionalInfo'] = {
+                    'deviceId': additional_info.get('deviceId', ''),
+                    'channel': additional_info.get('channel', '')
+                }
 
         timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
