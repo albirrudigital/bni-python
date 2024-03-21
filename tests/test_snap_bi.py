@@ -27,6 +27,18 @@ class TestSnapBI(unittest.TestCase):
         self.assertEqual(data, '2001100')
         print('should return responseCode 2001100')
 
+    def testFailedBalanceInquiry(self):
+        print('\n==============================================')
+        snap = SnapBI(
+            self.client,  {'privateKeyPath': './private.key', 'channelId': '95221'})
+        res = snap.balanceInquiry({
+            'partnerReferenceNo': '202010290000000000002',
+            'accountNo': ''
+        })
+        data = res['responseCode']
+        self.assertEqual(data, '4001101')
+        print('should return responseCode 4001101')
+
     def testGetInternalAccountInquiry(self):
         print('\n==============================================')
         snap = SnapBI(
@@ -38,6 +50,18 @@ class TestSnapBI(unittest.TestCase):
         data = res['responseCode']
         self.assertEqual(data, '2001500')
         print('should return responseCode 2001500')
+
+    def testFailedInternalAccountInquiry(self):
+        print('\n==============================================')
+        snap = SnapBI(
+            self.client,  {'privateKeyPath': './private.key', 'channelId': 'API'})
+        res = snap.internalAccountInquiry({
+            'partnerReferenceNo': '2023062601000000000509',
+            'beneficiaryAccountNo': ''
+        })
+        data = res['responseCode']
+        self.assertEqual(data, '4001501')
+        print('should return responseCode 4001501')
 
     def testGetTransactionStatusInquiry(self):
         print('\n==============================================')
@@ -61,6 +85,29 @@ class TestSnapBI(unittest.TestCase):
         data = res['responseCode']
         self.assertEqual(data, '2003600')
         print('should return responseCode 2003600')
+
+    def testFailedTransactionStatusInquiry(self):
+        print('\n==============================================')
+        snap = SnapBI(
+            self.client,  {'privateKeyPath': './private.key', 'channelId': 'API'})
+        res = snap.transactionStatusInquiry({
+            'originalPartnerReferenceNo': '',
+            'originalReferenceNo': '',
+            'originalExternalId': '',
+            'serviceCode': '22',
+            'transactionDate': '',
+            'amount': {
+                'value': '110000010',
+                'currency': 'IDR'
+            },
+            'additionalInfo': {
+                'deviceId': '09864ADCASA',
+                'channel': 'API'
+            }
+        })
+        data = res['responseCode']
+        self.assertEqual(data, '4003601')
+        print('should return responseCode 4003601')
 
     def testGetTransferIntraBank(self):
         print('\n==============================================')
@@ -88,6 +135,29 @@ class TestSnapBI(unittest.TestCase):
         data = res['responseCode']
         self.assertEqual(data, '2001700')
         print('should return responseCode 2001700')
+
+    def testFailedTransferIntraBank(self):
+        print('\n==============================================')
+        snap = SnapBI(
+            self.client,  {'privateKeyPath': './private.key', 'channelId': 'API'})
+        res = snap.transferIntraBank({
+            'partnerReferenceNo': '20220527110338724198',
+            'amount': {
+                'value': '1000000.00',
+                'currency': 'IDR'
+            },
+            'beneficiaryAccountNo': '0115476117',
+            'beneficiaryEmail': "'",
+            'customerReference': '20220527110338724198',
+            'currency': 'IDR',
+            'remark': '20220527110338724198',
+            'feeType': 'OUR',
+            'sourceAccountNo': '0114754574',
+            'transactionDate': '2022-05-27T11:03:37+07:00',
+        })
+        data = res['responseCode']
+        self.assertEqual(data, '4031714')
+        print('should return responseCode 4031714')
 
     def testGetTransferRTGS(self):
         print('\n==============================================')
@@ -127,6 +197,44 @@ class TestSnapBI(unittest.TestCase):
         self.assertEqual(data, '2002200')
         print('should return responseCode 2002200')
 
+    def testFailedTransferRTGS(self):
+        print('\n==============================================')
+        snap = SnapBI(
+            self.client,  {'privateKeyPath': './private.key', 'channelId': '95221'})
+        res = snap.transferRTGS({
+            'partnerReferenceNo': '20220513095840015788857',
+            'amount': {
+                'value': '100000001.00',
+                'currency': 'IDR'
+            },
+            'beneficiaryAccountName': 'PTZomatoMediaIndonesia',
+            'beneficiaryAccountNo': '',
+            'beneficiaryAccountAddress': 'JlGatotSubrotoNoKav18RW1KuninganBarKecMampangPrptKotaJakartaSelatanDaerahKhususIbukotaJakarta12710',
+            'beneficiaryBankCode': 'CENAIDJA',
+            'beneficiaryBankName': 'PTBANKCENTRALASIATbk',
+            'beneficiaryCustomerResidence': '1',
+            'beneficiaryCustomerType': '2',
+            'beneficiaryEmail': '',
+            'currency': 'IDR',
+            'customerReference': '20220513095840015788857',
+            'feeType': 'OUR',
+            'kodePos': '-',
+            'recieverPhone': '-',
+            'remark': 'DANA20220513095840015788857PTZomatoMediaIndonesia',
+            'senderCustomerResidence': '-',
+            'senderCustomerType': '-',
+            'senderPhone': '',
+            'sourceAccountNo': '0115476151',
+            'transactionDate': '2020-06-17T01:03:04+07:00',
+            'additionalInfo': {
+                'deviceId': '',
+                'channel': ''
+            }
+        })
+        data = res['responseCode']
+        self.assertEqual(data, '4002201')
+        print('should return responseCode 4002201')
+
     def testGetTransferSKNBI(self):
         print('\n==============================================')
         snap = SnapBI(
@@ -165,6 +273,44 @@ class TestSnapBI(unittest.TestCase):
         self.assertEqual(data, '2002300')
         print('should return responseCode 2002300')
 
+    def testFailedTransferSKNBI(self):
+        print('\n==============================================')
+        snap = SnapBI(
+            self.client,  {'privateKeyPath': './private.key', 'channelId': '95221'})
+        res = snap.transferSKNBI({
+            'partnerReferenceNo': '20220523150428586179325',
+            'amount': {
+                'value': '10000001.00',
+                'currency': 'IDR'
+            },
+            'beneficiaryAccountName': 'PTZomatoMediaIndonesia',
+            'beneficiaryAccountNo': '',
+            'beneficiaryAddress': 'JlGatotSubrotoNoKav18RW1KuninganBarKecMampangPrptKotaJakartaSelatanDaerahKhususIbukotaJakarta12710',
+            'beneficiaryBankCode': 'CENAIDJAXXX',
+            'beneficiaryBankName': 'PTBANKCENTRALASIATbk',
+            'beneficiaryCustomerResidence': '1',
+            'beneficiaryCustomerType': '2',
+            'beneficiaryEmail': '',
+            'currency': 'IDR',
+            'customerReference': '20220523150428586179325',
+            'feeType': 'OUR',
+            'kodePos': '',
+            'recieverPhone': '',
+            'remark': 'DANA20220523150428586179325PTZomatoMediaIndonesia',
+            'senderCustomerResidence': '',
+            'senderCustomerType': '',
+            'senderPhone': '',
+            'sourceAccountNo': '0115476151',
+            'transactionDate': '2020-06-17T01:03:04+07:00',
+            'additionalInfo': {
+                'deviceId': '',
+                'channel': ''
+            }
+        })
+        data = res['responseCode']
+        self.assertEqual(data, '4002301')
+        print('should return responseCode 4002301')
+
     def testGetExternalAccountInquiry(self):
         print('\n==============================================')
         snap = SnapBI(
@@ -181,6 +327,23 @@ class TestSnapBI(unittest.TestCase):
         data = res['responseCode']
         self.assertEqual(data, '2001600')
         print('should return responseCode 2001600')
+
+    def testFailedExternalAccountInquiry(self):
+        print('\n==============================================')
+        snap = SnapBI(
+            self.client,  {'privateKeyPath': './private.key', 'channelId': '95221'})
+        res = snap.externalAccountInquiry({
+            'beneficiaryBankCode': 'CENAIDJAXXX',
+            'partnerReferenceNo': '20240226163135663',
+            'beneficiaryAccountNo': '',
+            'additionalInfo': {
+                'deviceId': '09864ADCASA',
+                'channel': 'API'
+            }
+        })
+        data = res['responseCode']
+        self.assertEqual(data, '4001601')
+        print('should return responseCode 4001601')
 
     def testGetTransferInterBank(self):
         print('\n==============================================')
@@ -211,6 +374,36 @@ class TestSnapBI(unittest.TestCase):
         data = res['responseCode']
         self.assertEqual(data, '2001800')
         print('should return responseCode 2001800')
+
+    def testFailedTransferInterBank(self):
+        print('\n==============================================')
+        snap = SnapBI(
+            self.client,  {'privateKeyPath': './private.key', 'channelId': '95221'})
+        res = snap.transferInterBank({
+            'partnerReferenceNo': '20240226163731861',
+            'amount': {
+                'value': '500000',
+                'currency': 'IDR'
+            },
+            'beneficiaryAccountName': 'SRI ANGGRAINI',
+            'beneficiaryAccountNo': '0000000986',
+            'beneficiaryAddress': 'Palembang',
+            'beneficiaryBankCode': '014',
+            'beneficiaryBankName': 'Bank BCA',
+            'beneficiaryEmail': 'customertes@outlook.com',
+            'currency': 'IDR',
+            'customerReference': '20231219085',
+            'sourceAccountNo': '0317709144',
+            'transactionDate': '2024-01-04T08:37:08+07:00',
+            'feeType': 'OUR',
+            'additionalInfo': {
+                'deviceId': '09864ADCASA',
+                'channel': 'API'
+            },
+        })
+        data = res['responseCode']
+        self.assertEqual(data, '4031814')
+        print('should return responseCode 4031814')
 
     # ###################### CASES NEGATIVE #####################
 
