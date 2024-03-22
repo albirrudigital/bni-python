@@ -13,8 +13,7 @@ class HttpClient():
     def tokenRequest(self, options={'url', 'path', 'username', 'password'}):
         url = str(options['url']).replace(
             'http://', '').replace('https://', '')
-        httpClient = http.client.HTTPSConnection(
-            url, context=ssl._create_unverified_context())
+        httpClient = http.client.HTTPSConnection(url)
         username = options['username']
         password = options['password']
         authorize = base64.b64encode(f'{username}:{password}'.encode('utf-8'))
@@ -33,8 +32,7 @@ class HttpClient():
     def request(self, options={'method', 'apiKey', 'accessToken', 'url', 'path', 'data'}):
         url = str(options['url']).replace(
             'http://', '').replace('https://', '')
-        httpClient = http.client.HTTPSConnection(
-            url, context=ssl._create_unverified_context())
+        httpClient = http.client.HTTPSConnection(url)
         accessToken = options['accessToken']
         path = options['path']
         url = f'{path}?access_token={accessToken}'
@@ -63,8 +61,7 @@ class HttpClient():
             'X-CLIENT-KEY': options['clientId']
         }
 
-        response = requests.request(
-            "POST", options['url'], headers=headers, data=payload, verify=False)
+        response = requests.request("POST", options['url'], headers=headers, data=payload)
         return json.loads(response.text.encode('utf8'))
 
     def requestSnapBI(self, options={'method', 'apiKey', 'accessToken', 'url', 'data', 'additionalHeader'}):
@@ -77,14 +74,13 @@ class HttpClient():
         header.update(options['additionalHeader'])
         payload = json.dumps(options['data'])
         response = requests.request(
-            "POST", options['url'], headers=header, data=payload, verify=False)
+            "POST", options['url'], headers=header, data=payload)
         return json.loads(response.text.encode('utf8'))
     
     def requestV2(self, options={'method', 'apiKey', 'accessToken', 'url', 'path', 'data', 'signature', 'timestamp'}):
         url = str(options['url']).replace(
             'http://', '').replace('https://', '')
-        httpClient = http.client.HTTPSConnection(
-            url, context=ssl._create_unverified_context())
+        httpClient = http.client.HTTPSConnection(url)
         accessToken = options['accessToken']
         path = options['path']
         url = f'{path}?access_token={accessToken}'
@@ -104,8 +100,7 @@ class HttpClient():
     def requestV2BniDirect(self, options={'method', 'apiKey', 'accessToken', 'url', 'path', 'data', 'signature', 'timestamp', 'bniDirectKey'}):
         url = str(options['url']).replace(
             'http://', '').replace('https://', '')
-        httpClient = http.client.HTTPSConnection(
-            url, context=ssl._create_unverified_context())
+        httpClient = http.client.HTTPSConnection(url)
         accessToken = options['accessToken']
         path = options['path']
         url = f'{path}?access_token={accessToken}'

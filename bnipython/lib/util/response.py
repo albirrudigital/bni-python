@@ -1,3 +1,4 @@
+import json
 def responseOGP(params={'res', 'resObj'}):
     try:
         if (params['res'][params['resObj']]['parameters']['responseCode'] != '0001'):
@@ -29,6 +30,7 @@ def responseSnapBI(params={'res'}):
     if not params['res']['responseCode'] in statusCodeSuccess:
         raise ValueError(
             f"\033[91m {params['res']['responseCode']} : {params['res']['responseMessage']} \033[0m")
+    print(json.dumps(params['res'], indent=2))
     return params['res']
 
 def responseRDN(params={'res', 'resObj'}):
