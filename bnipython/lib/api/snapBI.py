@@ -10,9 +10,10 @@ class SnapBI():
         self.config = client.getConfig()
         self.httpClient = HttpClient()
         self.configSnap = options
-        self.configSnap['ipAddress'] = '172.24.281.24'
-        self.configSnap['latitude'] = '-6.108841'
-        self.configSnap['longitude'] = '106.7782137'
+        self.configSnap['ipAddress'] = options.get('ipAddress', '')
+        self.configSnap['latitude'] = options.get('latitude', '')
+        self.configSnap['longitude'] = options.get('longitude', '')
+        self.configSnap['channelId'] = options.get('channelId', '')
 
     def getTokenSnapBI(self):
         token = self.httpClient.tokenRequestSnapBI({
