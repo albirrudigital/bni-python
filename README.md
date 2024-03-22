@@ -202,17 +202,6 @@ balanceInquiry = snap.balanceInquiry({
 })
 ```
 
-#### Bank Statement
-```python
-# return as Object
-bankStatement = snap.bankStatement({
-  'partnerReferenceNo': '202010290000000000002', # optional
-  'accountNo': '0115476117',
-  'fromDateTime': '2010-01-01T12:08:56+07:00', # optional
-  'toDateTime': '2011-01-01T12:08:56+07:00' # optional
-})
-```
-
 #### Internal Account Inquiry
 ```python
 # return as Object
