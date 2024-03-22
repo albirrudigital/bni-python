@@ -51,12 +51,12 @@ class SnapBI():
                 'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
-                'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
+                'X-IP-Address': self.configSnap['ipAddress'],
                 'X-DEVICE-ID': 'bni-python/0.1.0',
                 'X-EXTERNAL-ID': randomNumber(),
-                'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
-                'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+                'CHANNEL-ID': self.configSnap['channelId'],
+                'X-LATITUDE': self.configSnap['latitude'],
+                'X-LONGITUDE': self.configSnap['longitude']
             }
         })
         return responseSnapBI(params={'res': res})
@@ -90,12 +90,12 @@ class SnapBI():
                 'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
-                'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
+                'X-IP-Address': self.configSnap['ipAddress'],
                 'X-DEVICE-ID': 'bni-python/0.1.0',
                 'X-EXTERNAL-ID': randomNumber(),
-                'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
-                'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+                'CHANNEL-ID': self.configSnap['channelId'],
+                'X-LATITUDE': self.configSnap['latitude'],
+                'X-LONGITUDE': self.configSnap['longitude']
             }
         })
         return responseSnapBI(params={'res': res})
@@ -150,12 +150,12 @@ class SnapBI():
                 'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
-                'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
+                'X-IP-Address': self.configSnap['ipAddress'],
                 'X-DEVICE-ID': 'bni-python/0.1.0',
                 'X-EXTERNAL-ID': randomNumber(),
-                'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
-                'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+                'CHANNEL-ID': self.configSnap['channelId'],
+                'X-LATITUDE': self.configSnap['latitude'],
+                'X-LONGITUDE': self.configSnap['longitude']
             }
         })
         return responseSnapBI(params={'res': res})
@@ -218,12 +218,12 @@ class SnapBI():
                 'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
-                'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
+                'X-IP-Address': self.configSnap['ipAddress'],
                 'X-DEVICE-ID': 'bni-python/0.1.0',
                 'X-EXTERNAL-ID': randomNumber(),
-                'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
-                'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+                'CHANNEL-ID': self.configSnap['channelId'],
+                'X-LATITUDE': self.configSnap['latitude'],
+                'X-LONGITUDE': self.configSnap['longitude']
             }
         })
         return responseSnapBI(params={'res': res})
@@ -307,12 +307,12 @@ class SnapBI():
                 'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
-                'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
+                'X-IP-Address': self.configSnap['ipAddress'],
                 'X-DEVICE-ID': 'bni-python/0.1.0',
                 'X-EXTERNAL-ID': randomNumber(),
-                'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
-                'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+                'CHANNEL-ID': self.configSnap['channelId'],
+                'X-LATITUDE': self.configSnap['latitude'],
+                'X-LONGITUDE': self.configSnap['longitude']
             }
         })
         return responseSnapBI(params={'res': res})
@@ -396,12 +396,12 @@ class SnapBI():
                 'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
-                'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
+                'X-IP-Address': self.configSnap['ipAddress'],
                 'X-DEVICE-ID': 'bni-python/0.1.0',
                 'X-EXTERNAL-ID': randomNumber(),
-                'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
-                'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+                'CHANNEL-ID': self.configSnap['channelId'],
+                'X-LATITUDE': self.configSnap['latitude'],
+                'X-LONGITUDE': self.configSnap['longitude']
             }
         })
         return responseSnapBI(params={'res': res})
@@ -446,12 +446,12 @@ class SnapBI():
                 'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
-                'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
+                'X-IP-Address': self.configSnap['ipAddress'],
                 'X-DEVICE-ID': 'bni-python/0.1.0',
                 'X-EXTERNAL-ID': randomNumber(),
-                'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
-                'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+                'CHANNEL-ID': self.configSnap['channelId'],
+                'X-LATITUDE': self.configSnap['latitude'],
+                'X-LONGITUDE': self.configSnap['longitude']
             }
         })
         return responseSnapBI(params={'res': res})
@@ -519,12 +519,12 @@ class SnapBI():
                 'X-SIGNATURE': signature,
                 'X-TIMESTAMP': timeStamp,
                 'X-PARTNER-ID': self.config['apiKey'],
-                'X-IP-Address': self.configSnap['ipAddress'] if self.configSnap['ipAddress'] != '' else '',
+                'X-IP-Address': self.configSnap['ipAddress'],
                 'X-DEVICE-ID': 'bni-python/0.1.0',
                 'X-EXTERNAL-ID': randomNumber(),
-                'CHANNEL-ID': self.configSnap['channelId'] if self.configSnap['channelId'] != '' else '',
-                'X-LATITUDE': self.configSnap['latitude'] if self.configSnap['latitude'] != '' else '',
-                'X-LONGITUDE': self.configSnap['longitude'] if self.configSnap['longitude'] != '' else ''
+                'CHANNEL-ID': self.configSnap['channelId'],
+                'X-LATITUDE': self.configSnap['latitude'],
+                'X-LONGITUDE': self.configSnap['longitude']
             }
         })
         return responseSnapBI(params={'res': res})
