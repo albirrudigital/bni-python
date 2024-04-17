@@ -370,7 +370,7 @@ transferInterBank = snap.transferInterBank({
 
 ```
 
-### 2.3.C RDN
+### 2.2.C RDN
 Create `RDN` class object
 ```python
 from bnipython import BNIClient, RDN
@@ -622,7 +622,7 @@ paymentUsingInterbank = rekening_dana_nasabah.paymentUsingInterbank({
 })
 ```
 
-### 2.4.C RDL
+### 2.2.C RDL
 Create `RDL` class object
 ```python
 from bnipython import BNIClient, RDL
@@ -855,7 +855,7 @@ paymentUsingInterbank = p2p_lending.paymentUsingInterbank({
 })
 ```
 
-### 2.5.E RDF
+### 2.2.E RDF
 Create `RDF` class object
 ```python
 from bnipython import BNIClient, RDF
@@ -1087,6 +1087,66 @@ paymentUsingInterbank = rekening_dana_funder.paymentUsingInterbank({
   'amount': '15000' # Total payment/transfer
 })
 ```
+### 2.2.F BNI Move / Digiloan
+Create `BNIMove` class object
+```python
+from bnipython import BNIClient, BNIMove
+
+# Create Client instance
+client = BNIClient({
+  'env': False,
+  'clientId': '{your-client-id}',
+  'clientSecret': '{your-client-secret}',
+  'apiKey': '{your-api-key}',
+  'apiSecret': '{your-api-secret}',
+  'appName': '{your-app-name}'
+})
+bniMove = BNIMove(client)
+```
+Available methods for `BNIMove` class
+
+#### Prescreening
+```python
+# return as Object
+prescreening = bniMove.prescreening({
+  "kodeMitra":"BNI", # Mitra ID / reference application from mitra
+  "npp":"", # No Refferal (optional)
+  "namaLengkapKtp":"Muhammad Haikal Madani", # Nama lengkap KTP
+  "noKtp":"3174052209980002", # Nomor KTP
+  "noHandphone":"085921658045", # No Handphone
+  "alamatUsaha":"jakarta", # Alamat Usaha
+  "provinsiUsaha":"06", # Provinsi Usaha
+  "kotaUsaha":"143", # Kota Usaha
+  "kecamatanUsaha":"1074", # Kecamatan Usaha
+  "kelurahanUsaha":"4254", # Kelurahan Usaha 
+  "kodePosUsaha":"11450", # Kode Pos Usaha
+  "sektorEkonomi":"2", # Sektor Ekonomi 
+  "totalPenjualan":50000000, # Total Penjualan per bulan
+  "jangkaWaktu":"12", # Jangka waktu / tenor
+  "jenisPinjaman":"1", # Jenis Pinjaman
+  "maximumKredit":50000000, # Maksimum kredit/plafond
+  "jenisKelamin":"1", # Jenis Kelamin
+  "tanggalLahir":"1998-10-07", # Tanggal Lahir
+  "subSektorEkonomi":"050111", # Sub-Sektor Ekonomi
+  "deskripsi":"Usaha Ternak Perikanan", # Deskripsi
+  "email":"muhammadhaikalmadani@mail.com" # Email (optional)
+})
+```
+
+#### Save Image
+```python
+# return as Object
+saveImage = bniMove.saveImage({
+  "Id": "MJO2024022000004", # Id
+  "deskripsi": "Foto Identitas KTP", # Deskripsi 
+  "jenisDokumen": "A03", # Jenis dokumen
+  "namaFile": "Foto KTP", # Nama file
+  "extensionFile": "png", # Extension File
+  "dataBase64": "" # Base64 encoded image file
+})
+```
+
+
 
 ## Get help
 

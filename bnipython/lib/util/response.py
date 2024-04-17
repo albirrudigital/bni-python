@@ -80,3 +80,13 @@ def responseRDF(params={'res'}):
         code = params['res']['Response']['parameters']['responseCode']
         message = params['res']['Response']['parameters']['responseMessage']
         raise ValueError(f'\033[91m {code}:{message} \033[0m')
+    
+def responseBNIMove(params={'res'}):
+    status_code = params['res'].get('statusCode')
+    if status_code is None:
+        raise ValueError("Missing status code in response")
+    if status_code != 0:
+        status_message = params['res'].get('statusDescription', 'Unknown Error')
+        error_message = f"Error: {status_code} - {status_message}"
+        raise ValueError(error_message)
+    return params['res']
