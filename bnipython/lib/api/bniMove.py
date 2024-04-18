@@ -1,5 +1,5 @@
 from bnipython.lib.net.httpClient import HttpClient
-from bnipython.lib.util.utils import generateSignature, getTimestamp
+from bnipython.lib.util.utils import generateSignature, getTimestampBNIMove
 from bnipython.lib.util.response import responseBNIMove
 
 class BNIMove():
@@ -33,7 +33,7 @@ class BNIMove():
         'deskripsi',
         'email'
     }):
-        timeStamp = getTimestamp()
+        timeStamp = getTimestampBNIMove()
         payload = {**params, **{ 'timestamp': timeStamp }}
         signature = generateSignature(
             {'body': payload, 'apiSecret': self.client['apiSecret']})
@@ -57,7 +57,7 @@ class BNIMove():
         'extensionFile',
         'dataBase64',
     }):
-        timeStamp = getTimestamp()
+        timeStamp = getTimestampBNIMove()
         payload = {**params, **{ 'timestamp': timeStamp }}
         signature = generateSignature(
             {'body': payload, 'apiSecret': self.client['apiSecret']})

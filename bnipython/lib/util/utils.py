@@ -34,6 +34,8 @@ def escape(string):
 def getTimestamp():
     return datetime.now(pytz.timezone('Asia/Jakarta')).strftime('%Y-%m-%dT%H:%M:%S+07:00')
 
+def getTimestampBNIMove():
+    return datetime.now(pytz.timezone('Asia/Jakarta')).strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + '+07:00'
 
 def generateTokenSignature(params={'privateKeyPath', 'clientId', 'timeStamp'}):
     privateKeyPath = params['privateKeyPath']
