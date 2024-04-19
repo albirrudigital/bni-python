@@ -7,7 +7,9 @@ here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / 'README.md').read_text(encoding='utf-8')
 
 pkg_req = [
-    'requests>=2.25.0'
+    'requests>=2.25.0',
+    'pyOpenSSL>=22.0.0',
+    'pytz>=2022.2.1'
 ]
 test_req = pkg_req + [
     'pytest>=3.0.6'
@@ -15,7 +17,7 @@ test_req = pkg_req + [
 
 setup(
     name="bnipython",
-    version="0.7.3",
+    version="0.8.4",
     author="BNI API",
     author_email="",
     license='MIT',
