@@ -269,7 +269,7 @@ transferIntraBank = snap.transferIntraBank({
   },
   'beneficiaryAccountName': 'PTZomatoMediaIndonesia',
   'beneficiaryAccountNo': '"3333333333',
-  'beneficiaryAccountAddress': 'JlGatotSubrotoNoKav18RW1KuninganBarKecMampangPrptKotaJakartaSelatanDaerahKhususIbukotaJakarta12710', # optional
+  'beneficiaryAddress': 'JlGatotSubrotoNoKav18RW1KuninganBarKecMampangPrptKotaJakartaSelatanDaerahKhususIbukotaJakarta12710', # optional
   'beneficiaryBankCode': 'CENAIDJA',
   'beneficiaryBankName': 'PTBANKCENTRALASIATbk', # optional
   'beneficiaryCustomerResidence': '1',
@@ -278,7 +278,7 @@ transferIntraBank = snap.transferIntraBank({
   'currency': 'IDR', # optional
   'customerReference': '20220513095840015788857',
   'feeType': 'OUR', # OUR: fee will be paid by sender (default), BEN: fee will be paid by beneficary, SHA: fee divided
-  'kodePos': '-', # optional
+  'kodepos': '-', # optional
   'recieverPhone': '-', # optional
   'remark': '20220513095840015788857', # optional
   'senderCustomerResidence': '-', # optional
@@ -313,7 +313,7 @@ transferSKNBI = snap.transferSKNBI({
   'currency': 'IDR', # optional
   'customerReference': '20220523150428586179325',
   'feeType': 'OUR', # OUR: fee will be paid by sender (default), BEN: fee will be paid by beneficary, SHA: fee divided
-  'kodePos': '12550', # optional
+  'kodepos': '12550', # optional
   'recieverPhone': '08123456789', # optional
   'remark': 'DANA20220523150428586179325PTZomatoMediaIndonesia', # optional
   'senderCustomerResidence': '', # optional

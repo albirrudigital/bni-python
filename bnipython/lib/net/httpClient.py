@@ -1,55 +1,44 @@
-import http.client
 import json
-import ssl
 import base64
 import requests
 from bnipython.lib.util.utils import getTimestamp, generateTokenSignature
 
-
 class HttpClient():
-    def __init__(self):
-        self.httpClient = http.client.HTTPSConnection('')
+    def __init__(self, verify=True):
+        self.verify = verify
 
     def tokenRequest(self, options={'url', 'path', 'username', 'password'}):
-        url = str(options['url']).replace(
-            'http://', '').replace('https://', '')
-        httpClient = http.client.HTTPSConnection(url)
+        url = f"{options['url']}{options['path']}"
         username = options['username']
         password = options['password']
-        authorize = base64.b64encode(f'{username}:{password}'.encode('utf-8'))
+        authorize = base64.b64encode(f'{username}:{password}'.encode('utf-8')).decode()
         headers = {
             'User-Agent': 'bni-python/0.1.0',
-            'Authorization': f'Basic {authorize.decode()}',
+            'Authorization': f'Basic {authorize}',
             'Content-Type': 'application/x-www-form-urlencoded'
         }
         payload = 'grant_type=client_credentials'
 
-        httpClient.request('POST', options['path'], payload, headers)
-        res = httpClient.getresponse()
-        data = res.read()
-        return json.loads(str(data.decode('utf-8')))
+        response = requests.post(url, headers=headers, data=payload, verify=self.verify)
+        return response.json()
 
     def request(self, options={'method', 'apiKey', 'accessToken', 'url', 'path', 'data'}):
-        url = str(options['url']).replace(
-            'http://', '').replace('https://', '')
-        httpClient = http.client.HTTPSConnection(url)
-        accessToken = options['accessToken']
-        path = options['path']
-        url = f'{path}?access_token={accessToken}'
-        payload = json.dumps(options['data'])
+        url = f"{options['url']}{options['path']}?access_token={options['accessToken']}"
         headers = {
             'User-Agent': 'bni-python/0.1.0',
             'x-api-key': options['apiKey'],
             'Content-Type': 'application/json'
         }
-        httpClient.request(options['method'], url, payload, headers)
-        res = httpClient.getresponse()
-        data = res.read()
-        return json.loads(str(data.decode('utf-8')))
+        payload = json.dumps(options['data'])
+        response = requests.request(options['method'], url, headers=headers, data=payload, verify=self.verify)
+        return response.json()
 
     def tokenRequestSnapBI(self, options={'url', 'clientId', 'privateKeyPath'}):
         timeStamp = getTimestamp()
-        payload = "{\n\"grantType\":\"client_credentials\",\n\"additionalInfo\": {}\n}"
+        payload = json.dumps({
+            "grantType": "client_credentials",
+            "additionalInfo": {}
+        })
         headers = {
             'Content-Type': 'application/json',
             'X-SIGNATURE': generateTokenSignature({
@@ -60,31 +49,22 @@ class HttpClient():
             'X-TIMESTAMP': timeStamp,
             'X-CLIENT-KEY': options['clientId']
         }
-
-        response = requests.request("POST", options['url'], headers=headers, data=payload)
-        return json.loads(response.text.encode('utf8'))
+        response = requests.post(options['url'], headers=headers, data=payload, verify=self.verify)
+        return response.json()
 
     def requestSnapBI(self, options={'method', 'apiKey', 'accessToken', 'url', 'data', 'additionalHeader'}):
-        accessToken = options['accessToken']
-        header = {
-            'content-type': 'application/json',
-            'user-agent': 'bni-python/0.1.0',
-            'Authorization': f'Bearer {accessToken}',
+        headers = {
+            'Content-Type': 'application/json',
+            'User-Agent': 'bni-python/0.1.0',
+            'Authorization': f'Bearer {options['accessToken']}',
         }
-        header.update(options['additionalHeader'])
+        headers.update(options['additionalHeader'])
         payload = json.dumps(options['data'])
-        response = requests.request(
-            "POST", options['url'], headers=header, data=payload)
-        return json.loads(response.text.encode('utf8'))
-    
+        response = requests.request(options['method'], options['url'], headers=headers, data=payload, verify=self.verify)
+        return response.json()
+
     def requestV2(self, options={'method', 'apiKey', 'accessToken', 'url', 'path', 'data', 'signature', 'timestamp'}):
-        url = str(options['url']).replace(
-            'http://', '').replace('https://', '')
-        httpClient = http.client.HTTPSConnection(url)
-        accessToken = options['accessToken']
-        path = options['path']
-        url = f'{path}?access_token={accessToken}'
-        payload = json.dumps(options['data'])
+        url = f"{options['url']}{options['path']}?access_token={options['accessToken']}"
         headers = {
             'User-Agent': 'bni-python/0.1.0',
             'x-api-key': options['apiKey'],
@@ -92,7 +72,6 @@ class HttpClient():
             'x-timestamp': options['timestamp'],
             'Content-Type': 'application/json'
         }
-        httpClient.request(options['method'], url, payload, headers)
-        res = httpClient.getresponse()
-        data = res.read()
-        return json.loads(str(data.decode('utf-8')))
+        payload = json.dumps(options['data'])
+        response = requests.request(options['method'], url, headers=headers, data=payload, verify=self.verify)
+        return response.json()
