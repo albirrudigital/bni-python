@@ -17,7 +17,7 @@ test_req = pkg_req + [
 
 setup(
     name="bnipython",
-    version="0.8.4",
+    version="0.8.5",
     author="BNI API",
     author_email="",
     license='MIT',
