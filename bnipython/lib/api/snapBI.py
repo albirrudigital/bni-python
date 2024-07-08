@@ -111,6 +111,7 @@ class SnapBI():
     }):
 
         token = self.getTokenSnapBI()
+        timeStamp = getTimestamp()
         body = {
             'originalPartnerReferenceNo': params['originalPartnerReferenceNo'],
             'originalReferenceNo': params.get('originalReferenceNo', ''),
@@ -131,7 +132,6 @@ class SnapBI():
                     'channel': additional_info.get('channel', '')
                 }
 
-        timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',
@@ -176,6 +176,7 @@ class SnapBI():
     ):
 
         token = self.getTokenSnapBI()
+        timeStamp = getTimestamp()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
             'amount': {
@@ -199,7 +200,6 @@ class SnapBI():
                     'channel': additional_info.get('channel', '')
                 }
 
-        timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',
@@ -254,6 +254,7 @@ class SnapBI():
     }):
 
         token = self.getTokenSnapBI()
+        timeStamp = getTimestamp()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
             'amount': {
@@ -288,7 +289,6 @@ class SnapBI():
                     'channel': additional_info.get('channel', '')
                 }
 
-        timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',
@@ -343,6 +343,7 @@ class SnapBI():
     }):
 
         token = self.getTokenSnapBI()
+        timeStamp = getTimestamp()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
             'amount': {
@@ -377,7 +378,6 @@ class SnapBI():
                     'channel': additional_info.get('channel', '')
                 }
 
-        timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',
@@ -474,6 +474,7 @@ class SnapBI():
     }):
 
         token = self.getTokenSnapBI()
+        timeStamp = getTimestamp()
         body = {
             'partnerReferenceNo': params['partnerReferenceNo'],
             'amount': {
@@ -500,7 +501,6 @@ class SnapBI():
                     'channel': additional_info.get('channel', '')
                 }
 
-        timeStamp = getTimestamp()
         signature = generateSignatureServiceSnapBI({
             'body': body,
             'method': 'POST',

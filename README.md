@@ -526,7 +526,7 @@ inquiryAccountInfo = rekening_dana_nasabah.inquiryAccountInfo({
 #### Inquiry Account Balance
 ```python
 # return as Object
-inquiryAccountInfo = rekening_dana_nasabah.inquiryAccountInfo({
+inquiryAccountBalance = rekening_dana_nasabah.inquiryAccountBalance({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117' # Account number
@@ -748,7 +748,7 @@ inquiryAccountInfo = p2p_lending.inquiryAccountInfo({
 #### Inquiry Account Balance
 ```python
 # return as Object
-inquiryAccountInfo = p2p_lending.inquiryAccountInfo({
+inquiryAccountBalance = p2p_lending.inquiryAccountBalance({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117' # Account number
@@ -768,7 +768,7 @@ inquiryAccountHistory = p2p_lending.inquiryAccountHistory({
 #### Payment Using Transfer
 ```python
 # return as Object
-inquiryAccountHistory = p2p_lending.paymentUsingTransfer({
+paymentUsingTransfer = p2p_lending.paymentUsingTransfer({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117', # Account number
@@ -981,7 +981,7 @@ inquiryAccountInfo = rekening_dana_funder.inquiryAccountInfo({
 #### Inquiry Account Balance
 ```python
 # return as Object
-inquiryAccountInfo = rekening_dana_funder.inquiryAccountInfo({
+inquiryAccountBalance = rekening_dana_funder.inquiryAccountBalance({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117' # Account number
@@ -1001,7 +1001,7 @@ inquiryAccountHistory = rekening_dana_funder.inquiryAccountHistory({
 #### Payment Using Transfer
 ```python
 # return as Object
-inquiryAccountHistory = rekening_dana_funder.paymentUsingTransfer({
+paymentUsingTransfer = rekening_dana_funder.paymentUsingTransfer({
   'companyId': 'SANDBOX', # Registered participan id from KSEI
   'parentCompanyId': 'STI_CHS', # optional
   'accountNumber': '0115476117', # Account number
