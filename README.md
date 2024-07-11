@@ -186,7 +186,7 @@ client = BNIClient({
   'appName': '{your-app-name}'
 })
 
-snap = SnapBI(self.client, { 
+snap = SnapBI(client, { 
   'privateKeyPath': '{your-rsa-private-key-path}', 
   'channelId': '{your-channel-id}',
   'ipAddress': '{your-ip-address}', # optional
